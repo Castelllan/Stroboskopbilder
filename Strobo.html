@@ -1,0 +1,2399 @@
+<!doctype html>
+<!-- STROBO: vollständig offline nutzbar. Diese Datei im Browser öffnen und zum Weitergeben kopieren.
+Erzeugt aus den Projektdateien mit npm run build. -->
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#234b3c">
+  <meta name="description" content="Mache Bewegung sichtbar. Erstelle aus deinem Video ein Stroboskopbild – direkt im Browser, einfach und ohne Upload.">
+  <title>STROBO — Bewegung sichtbar machen</title>
+  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iMTIiIGZpbGw9IiMyMzRiM2MiLz48ZyBmaWxsPSIjZDhlZWE0Ij48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSIzIiBvcGFjaXR5PSIuMzUiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjE5IiByPSI0IiBvcGFjaXR5PSIuNjUiLz48Y2lyY2xlIGN4PSIyOSIgY3k9IjI5IiByPSI1Ii8+PC9nPjwvc3ZnPgo=" type="image/svg+xml">
+  <style>
+:root {
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  color:#29392f;
+  background:#f7f8f4;
+  font-synthesis:none;
+  --green:#284e3d;
+  --muted:#859087;
+  --line:#e5e8e0;
+  --lime:#dcebbd;
+  --surface:#fff;
+  --radius:15px
+}
+.browser-warning {
+  padding: 16px;
+  border: 1px solid #d8bc8c;
+  border-radius: 9px;
+  background: #fff4df;
+  color: #76572d;
+  font-size: 14px;
+  line-height: 1.6;
+}
+* {
+  box-sizing:border-box
+}
+body {
+  margin:0
+}
+button,input,summary {
+  font:inherit
+}
+button,a,input,summary {
+  -webkit-tap-highlight-color:transparent
+}
+button {
+  cursor:pointer
+}
+button {
+  color:inherit
+}
+button:disabled {
+  cursor:not-allowed
+}
+button,a {
+  touch-action:manipulation
+}
+button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,canvas:focus-visible {
+  outline:3px solid #94b175;
+  outline-offset:4px
+}
+button {
+  border:0
+}
+a {
+  color:inherit;
+  text-decoration:none
+}
+[hidden] {
+  display:none!important
+}
+.icon {
+  height:19px;
+  width:19px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.6;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  flex-shrink:0
+}
+.icon.small {
+  width:15px;
+  height:15px
+}
+.icon-definitions {
+  position:absolute;
+  width:0;
+  height:0;
+  overflow:hidden
+}
+.header {
+  height:86px;
+  max-width:1440px;
+  margin:auto;
+  padding:0 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  gap:32px
+}
+.brand {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:31px;
+  font-weight:740;
+  letter-spacing:-1.7px
+}
+.brand img {
+  width:35px;
+  height:35px
+}
+.brand-period {
+  color:#6d8857
+}
+.header nav {
+  display:flex;
+  align-items:center;
+  gap:33px;
+  font-size:13px;
+  height:100%;
+  margin-left:55px
+}
+.nav-active {
+  height:100%;
+  display:flex;
+  align-items:center;
+  position:relative;
+  font-weight:600
+}
+.nav-active:after {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:2px;
+  background:#3a5c44
+}
+.nav-help {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:none;
+  color:#768075;
+  padding:8px 0;
+  font-size:13px
+}
+.nav-help .icon {
+  width:16px;
+  height:16px
+}
+.nav-help:hover {
+  color:var(--green)
+}
+.classroom-badge {
+  font-size:11px;
+  padding:9px 12px;
+  border:1px solid #dfe6d8;
+  border-radius:7px;
+  color:#587146;
+  display:flex;
+  gap:7px;
+  align-items:center;
+  background:#eef2e7
+}
+.classroom-badge .icon {
+  width:15px;
+  height:15px
+}
+main {
+  max-width:1328px;
+  margin:auto;
+  padding:40px 5% 0
+}
+.intro {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:24px;
+  margin-bottom:31px
+}
+.eyebrow {
+  font-size:10px;
+  font-weight:650;
+  letter-spacing:1.7px;
+  color:#637850;
+  margin:0 0 15px;
+  display:flex;
+  align-items:center;
+  gap:7px
+}
+.eyebrow>span {
+  width:6px;
+  height:6px;
+  background:#7d965f;
+  border-radius:50%
+}
+h1 {
+  font-size:43px;
+  line-height:1.2;
+  letter-spacing:-1.8px;
+  font-weight:580;
+  margin:0 0 12px;
+  color:#233e2e
+}
+h1>span {
+  color:#7e9071
+}
+.intro-copy {
+  font-size:13px;
+  line-height:1.7;
+  color:#81877e;
+  margin:0
+}
+.mobile-break {
+  display:none
+}
+.intro-note {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  margin-top:37px;
+  color:#596b54;
+  flex-shrink:0
+}
+.intro-note>.icon {
+  height:23px;
+  width:23px;
+  color:#789063
+}
+.intro-note div>span {
+  display:block;
+  color:#949c8f;
+  font-size:10px;
+  margin-top:6px
+}
+.workspace {
+  display:grid;
+  grid-template-columns:310px minmax(0,1fr);
+  background:var(--surface);
+  border:1px solid #e2e7db;
+  border-radius:var(--radius);
+  box-shadow:0 5px 22px #293a2910;
+  overflow:hidden
+}
+.controls {
+  padding:26px 25px 20px;
+  border-right:1px solid var(--line);
+  background:#fdfefb;
+  min-width:0
+}
+.control-heading {
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-bottom:15px
+}
+.step-number {
+  display:grid;
+  place-items:center;
+  background:#edf2e6;
+  color:#718361;
+  border:1px solid #e2e8d9;
+  font-size:10px;
+  width:24px;
+  height:24px;
+  border-radius:7px;
+  font-weight:550
+}
+.control-heading h2 {
+  font-size:14px;
+  font-weight:600;
+  margin:0;
+  letter-spacing:-.1px
+}
+.dropzone {
+  width:100%;
+  min-height:151px;
+  border:1.5px dashed #cbd5c2;
+  border-radius:10px;
+  background:#f5f8f0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  padding:17px 10px;
+  transition:background .2s,border-color .2s
+}
+.dropzone:hover,.dropzone.dragover {
+  background:#ecf2e2;
+  border-color:#719253
+}
+.upload-icon {
+  background:#e7eedc;
+  border:1px solid #dde7d2;
+  height:38px;
+  width:38px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  margin-bottom:11px;
+  color:#668051
+}
+.upload-icon .icon {
+  width:19px;
+  height:19px
+}
+.dropzone>strong {
+  font-size:12px;
+  font-weight:600
+}
+.dropzone>span:not(.upload-icon) {
+  font-size:11px;
+  color:#909889;
+  margin-top:7px
+}
+.dropzone u {
+  color:#668154;
+  text-decoration-color:#b2c0a5;
+  text-underline-offset:3px
+}
+.dropzone>small {
+  font-size:9px;
+  color:#a0a798;
+  margin-top:14px;
+  letter-spacing:.15px
+}
+.demo-button {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  background:none;
+  gap:7px;
+  font-size:10px;
+  margin-top:13px;
+  padding:3px 0;
+  color:#7e8b73
+}
+.demo-button>.icon:first-child {
+  width:13px;
+  height:13px
+}
+.demo-button>.icon:last-child {
+  margin-left:auto
+}
+.demo-button:hover {
+  color:var(--green)
+}
+.section-divider {
+  height:1px;
+  background:var(--line);
+  margin:23px 0 20px
+}
+.frequency-help {
+  margin-left:auto;
+  color:#a3ac9c
+}
+.icon-button {
+  display:grid;
+  place-items:center;
+  border:0;
+  background:transparent;
+  padding:6px;
+  border-radius:5px
+}
+.icon-button:hover:not(:disabled) {
+  background:#edf2e5;
+  color:var(--green)
+}
+.icon-button:disabled {
+  opacity:.35
+}
+.frequency-help .icon {
+  width:15px;
+  height:15px
+}
+.field-label {
+  font-size:10px;
+  color:#8d9487;
+  display:block;
+  margin-bottom:8px
+}
+.frequency-field {
+  display:flex;
+  align-items:center;
+  border:1px solid #dce3d6;
+  border-radius:7px;
+  background:#fff;
+  height:44px;
+  padding:0 13px;
+  transition:border .2s
+}
+.frequency-field:focus-within {
+  border-color:#7e985e;
+  box-shadow:0 0 0 3px #edf3e4
+}
+.frequency-field input {
+  outline:none;
+  border:0;
+  min-width:0;
+  flex:1;
+  font-size:20px;
+  color:#304a33;
+  font-weight:500;
+  background:none
+}
+.frequency-field>span {
+  font-size:12px;
+  color:#929b8c
+}
+.frequency-presets {
+  display:flex;
+  gap:7px;
+  margin-top:9px
+}
+.frequency-presets button {
+  flex:1;
+  border:1px solid #e6e9e1;
+  background:white;
+  border-radius:5px;
+  padding:7px 1px;
+  font-size:10px;
+  color:#8c9585;
+  transition:.15s
+}
+.frequency-presets button.selected {
+  border-color:#becfab;
+  background:#edf3e3;
+  color:#587043
+}
+.frequency-presets button:hover {
+  border-color:#a2b78b
+}
+.interval-hint {
+  font-size:10px;
+  color:#929b88;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  margin:11px 0 18px
+}
+.interval-hint>.icon {
+  height:13px;
+  width:13px
+}
+.interval-hint strong {
+  color:#6c805a;
+  font-weight:500
+}
+.advanced {
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)
+}
+.advanced summary {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  list-style:none;
+  padding:14px 0;
+  font-size:10px;
+  color:#818b76;
+  cursor:pointer
+}
+.advanced summary::-webkit-details-marker {
+  display:none
+}
+.advanced summary .icon {
+  width:13px;
+  height:13px;
+  transition:transform .2s
+}
+.advanced[open] summary .icon {
+  transform:rotate(180deg)
+}
+.advanced-content {
+  padding-bottom:15px
+}
+.range-label {
+  font-size:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:5px;
+  margin:5px 0 9px;
+  color:#6f7d63
+}
+.range-label>span,.range-label>output {
+  color:#939b8c
+}
+.time-range {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:15px;
+  font-size:11px;
+  color:#9ba291
+}
+.time-range label {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  flex:1;
+  font-size:10px;
+  min-width:0
+}
+.time-range input {
+  width:100%;
+  min-width:0;
+  border:1px solid #dce3d6;
+  background:#fff;
+  padding:8px;
+  border-radius:5px;
+  font-size:12px;
+  color:var(--green)
+}
+input[type=range] {
+  width:100%;
+  accent-color:var(--green)
+}
+.setting-note {
+  font-size:10px;
+  line-height:1.6;
+  color:#8a9581;
+  margin:7px 0 0
+}
+.overlay-options {
+  display:flex;
+  gap:18px;
+  margin:16px 0 20px
+}
+.overlay-options label {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:10px;
+  color:#78866d;
+  cursor:pointer
+}
+.overlay-options input {
+  margin:0;
+  accent-color:#5e7946;
+  width:12px;
+  height:12px
+}
+.primary-button {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:9px;
+  width:100%;
+  background:var(--green);
+  color:#fff;
+  border:1px solid var(--green);
+  border-radius:7px;
+  padding:13px 12px;
+  font-size:11px;
+  font-weight:500;
+  transition:background .2s,transform .2s
+}
+.primary-button:hover:not(:disabled) {
+  background:#365d46;
+  transform:translateY(-1px)
+}
+.primary-button:disabled {
+  background:#e3e8da;
+  border-color:#e3e8da;
+  color:#a6af9b
+}
+.primary-button>.icon {
+  height:15px;
+  width:15px
+}
+.primary-button>.icon:last-child {
+  margin-left:auto
+}
+.create-area>p {
+  font-size:9px;
+  text-align:center;
+  color:#a1aa94;
+  margin:10px 0 0;
+  line-height:1.5
+}
+.text-button {
+  background:none;
+  font-size:11px;
+  color:#66804f;
+  padding:8px;
+  text-decoration:underline;
+  text-underline-offset:3px
+}
+.create-area>.text-button {
+  width:100%;
+  margin-top:4px
+}
+.error-message {
+  color:#a54833;
+  background:#fff0e9;
+  font-size:11px;
+  line-height:1.6;
+  padding:10px;
+  border-radius:7px;
+  overflow-wrap:anywhere
+}
+.file-info {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 11px;
+  background:#edf3e5;
+  border:1px solid #dce6d2;
+  border-radius:9px;
+  min-height:80px
+}
+.file-icon {
+  height:36px;
+  width:36px;
+  display:grid;
+  place-items:center;
+  color:#64844c;
+  background:#e1ead5;
+  border-radius:7px;
+  flex-shrink:0
+}
+.file-info>div {
+  min-width:0;
+  flex:1
+}
+.file-info strong {
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:11px;
+  font-weight:600
+}
+.file-info span:not(.file-icon) {
+  display:block;
+  font-size:9px;
+  margin-top:6px;
+  color:#8c9881
+}
+.file-info>.icon-button {
+  color:#8b9781
+}
+.file-info>.icon-button .icon {
+  width:13px;
+  height:13px
+}
+.preview-panel {
+  min-width:0;
+  display:flex;
+  flex-direction:column
+}
+.preview-toolbar {
+  height:61px;
+  padding:0 23px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid var(--line);
+  flex-shrink:0
+}
+.preview-tabs {
+  display:flex;
+  align-items:center;
+  gap:18px;
+  height:100%
+}
+.preview-tabs>button {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  background:none;
+  padding:0;
+  font-size:10px;
+  color:#98a08f;
+  height:100%;
+  position:relative;
+  white-space:nowrap
+}
+.preview-tabs>button.active {
+  color:#48623b;
+  font-weight:550
+}
+.preview-tabs>button.active:after {
+  content:"";
+  position:absolute;
+  height:2px;
+  background:#587447;
+  left:0;
+  right:0;
+  bottom:-1px
+}
+.preview-tabs>button>.icon {
+  height:14px;
+  width:14px
+}
+.preview-tag {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  color:#89987a;
+  background:#f0f4e9;
+  padding:5px 8px;
+  border:1px solid #e6ecde;
+  border-radius:5px;
+  font-size:9px;
+  white-space:nowrap
+}
+.preview-tag>span {
+  width:4px;
+  height:4px;
+  background:#92a67b;
+  border-radius:50%
+}
+.visual-area {
+  padding:21px;
+  background:#f9faf6;
+  position:relative;
+  flex:1;
+  min-height:390px;
+  display:flex;
+  align-items:stretch;
+  justify-content:center
+}
+.result-view {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  width:100%
+}
+.example-scene {
+  position:relative;
+  width:100%;
+  height:100%;
+  min-height:352px;
+  border:1px solid #e2e8d8;
+  border-radius:8px;
+  background-color:#eef2e7;
+  background-image:linear-gradient(#d7dfcd65 1px,transparent 1px),linear-gradient(90deg,#d7dfcd65 1px,transparent 1px);
+  background-size:23px 23px;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden
+}
+.scene-top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:17px 19px;
+  gap:10px
+}
+.scene-label {
+  background:#fcfdf8c9;
+  border:1px solid #dfe6d6;
+  border-radius:5px;
+  padding:5px 8px;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  font-size:9px;
+  color:#718461
+}
+.scene-label>span {
+  width:4px;
+  height:4px;
+  background:#7b9561;
+  border-radius:50%
+}
+.scene-interval {
+  font-family:ui-monospace,"Cascadia Code",monospace;
+  color:#8c9b7f;
+  font-size:10px
+}
+.fall-illustration {
+  display:block;
+  width:100%;
+  min-height:250px;
+  flex:1;
+  object-fit:contain
+}
+.scene-bottom {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 19px 15px;
+  color:#8b9b7c;
+  font-size:10px;
+  gap:8px
+}
+.example-watermark {
+  font-size:7px;
+  color:#a2ae97;
+  letter-spacing:1.5px
+}
+.canvas-wrap {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  height:100%;
+  min-height:320px;
+  overflow:hidden;
+  background:#eef1e9;
+  border:1px solid #e2e8d8;
+  border-radius:7px
+}
+#result-canvas {
+  display:block;
+  max-width:100%;
+  max-height:440px;
+  object-fit:contain;
+  width:auto;
+  height:auto
+}
+.video-view {
+  width:100%;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:350px;
+  background:#eef2e7;
+  border:1px solid #e2e8d8;
+  border-radius:8px;
+  overflow:hidden
+}
+#video-player {
+  max-width:100%;
+  max-height:440px;
+  width:100%;
+  display:block
+}
+.video-empty {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  background:#eef2e7;
+  color:#9aaa8a;
+  font-size:11px
+}
+.video-empty>.icon {
+  width:37px;
+  height:37px;
+  stroke-width:1
+}
+.video-empty>p {
+  color:#758c60;
+  margin:15px 0 5px
+}
+.video-empty>span {
+  font-size:10px
+}
+.preview-bottom {
+  min-height:58px;
+  padding:12px 23px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line)
+}
+.preview-bottom>div:first-child {
+  font-size:9px;
+  color:#98a08d;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  line-height:1.5
+}
+.status-dot {
+  width:5px;
+  height:5px;
+  border-radius:50%;
+  background:#b4c0a9;
+  flex-shrink:0
+}
+.status-dot.ready {
+  background:#648a48
+}
+.preview-actions {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-shrink:0
+}
+.preview-actions .icon-button>.icon {
+  width:14px;
+  height:14px
+}
+.preview-actions .icon-button {
+  color:#98a48b;
+  padding:5px
+}
+.download-button {
+  display:flex;
+  align-items:center;
+  gap:5px;
+  padding:8px 10px;
+  border:1px solid #ceddc0;
+  border-radius:5px;
+  background:#f1f6e9;
+  color:#5d7e47;
+  font-size:9px
+}
+.download-button>.icon {
+  height:13px;
+  width:13px
+}
+.download-button:disabled {
+  border-color:#e5e9df;
+  background:#f7f9f2;
+  color:#a3ad98
+}
+.download-button:hover:not(:disabled) {
+  background:#e2eccf
+}
+.frames-area {
+  padding:20px 23px 18px
+}
+.frames-title {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:13px
+}
+.frames-title h3 {
+  margin:0;
+  font-size:11px;
+  font-weight:550;
+  color:#65735b
+}
+.frames-title>span {
+  font-size:7px;
+  letter-spacing:1px;
+  color:#b0b7a8
+}
+.empty-frames {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:9px
+}
+.empty-frames>div {
+  height:54px;
+  background:#f6f8f1;
+  border:1px solid #eaf0e1;
+  border-radius:5px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#d0dac5;
+  position:relative
+}
+.empty-frames>div>.icon {
+  width:17px;
+  height:17px;
+  stroke-width:1.2
+}
+.empty-frames>div>span {
+  font-size:7px;
+  position:absolute;
+  bottom:5px;
+  left:6px;
+  color:#bdc8b2
+}
+.empty-frames>p {
+  grid-column:1/-1;
+  margin:1px 0 0;
+  color:#a5ae9a;
+  font-size:9px
+}
+.frame-strip {
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:9px;
+  scrollbar-width:thin;
+  scrollbar-color:#c9d5bb transparent
+}
+.frame-item {
+  min-width:95px;
+  width:95px;
+  flex-shrink:0;
+  cursor:pointer;
+  background:none;
+  padding:0;
+  text-align:left
+}
+.frame-item img {
+  width:100%;
+  height:59px;
+  object-fit:contain;
+  display:block;
+  border-radius:5px;
+  background:#f0f3e8;
+  border:1px solid #e2e8d8
+}
+.frame-item>span {
+  display:flex;
+  justify-content:space-between;
+  font-size:9px;
+  color:#728363;
+  margin-top:7px;
+  font-variant-numeric:tabular-nums;
+  gap:5px
+}
+.frame-item>span>small {
+  color:#a7b29a;
+  font-size:8px
+}
+.frame-item:hover img {
+  border-color:#8ba76a
+}
+.frame-item.selected img {
+  border:2px solid #6d8a51
+}
+.tips-row {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:23px;
+  padding:29px 0 28px
+}
+.tip {
+  display:flex;
+  gap:12px
+}
+.tip-icon {
+  width:32px;
+  height:32px;
+  border-radius:8px;
+  display:grid;
+  place-items:center;
+  background:#edf2e5;
+  color:#839574;
+  flex-shrink:0
+}
+.tip-icon>.icon {
+  height:17px;
+  width:17px
+}
+.tip h3 {
+  font-size:10px;
+  margin:2px 0 6px;
+  font-weight:550;
+  color:#5e7053
+}
+.tip p {
+  font-size:10px;
+  line-height:1.8;
+  color:#969f8d;
+  margin:0
+}
+footer {
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  padding:19px 0 25px;
+  font-size:9px;
+  color:#a0a998;
+  gap:20px
+}
+footer>span:last-child {
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+footer .icon {
+  width:12px;
+  height:12px
+}
+.progress-overlay {
+  position:absolute;
+  inset:21px;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:#f7faf0f5;
+  border:1px solid #dce6d2;
+  border-radius:8px;
+  backdrop-filter:blur(5px)
+}
+.processing-spinner {
+  height:31px;
+  width:31px;
+  border:2px solid #d7e3c9;
+  border-top-color:#587b3e;
+  border-radius:50%;
+  animation:spin 1s linear infinite
+}
+.progress-overlay h3 {
+  font-size:16px;
+  font-weight:550;
+  margin:20px 0 8px;
+  color:var(--green)
+}
+.progress-overlay p {
+  font-size:11px;
+  color:#8a977d;
+  margin:0 0 18px
+}
+.progress-overlay progress {
+  height:7px;
+  width:65%;
+  max-width:280px;
+  appearance:none;
+  border:0;
+  border-radius:7px;
+  background:#dfe8d4;
+  overflow:hidden
+}
+.progress-overlay progress::-webkit-progress-bar {
+  background:#dfe8d4;
+  border-radius:7px
+}
+.progress-overlay progress::-webkit-progress-value {
+  background:#658648;
+  border-radius:7px
+}
+.progress-overlay progress::-moz-progress-bar {
+  background:#658648
+}
+.progress-overlay>span:last-child {
+  margin-top:10px;
+  font-size:10px;
+  color:#94a185
+}
+@keyframes spin {
+  to {
+    transform:rotate(360deg)
+  }
+}
+dialog {
+  border:1px solid #dde5d5;
+  padding:28px;
+  border-radius:16px;
+  background:#fdfefb;
+  color:#30472f;
+  max-height:88vh;
+  box-shadow:0 25px 80px #20372030
+}
+dialog::backdrop {
+  background:#24372b70;
+  backdrop-filter:blur(4px)
+}
+.help-dialog {
+  max-width:540px;
+  width:calc(100% - 32px)
+}
+.dialog-heading {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px
+}
+.dialog-heading>.eyebrow {
+  margin:0;
+  font-size:9px
+}
+.dialog-heading .icon-button {
+  color:#8b9b7d
+}
+.help-dialog>h2 {
+  font-size:28px;
+  font-weight:550;
+  letter-spacing:-.9px;
+  line-height:1.25;
+  margin:19px 0 24px
+}
+.help-steps {
+  list-style:none;
+  padding:0;
+  margin:0
+}
+.help-steps li {
+  display:flex;
+  gap:15px;
+  margin-bottom:20px
+}
+.help-steps li>span {
+  font-size:11px;
+  background:#eaf1df;
+  color:#779157;
+  width:29px;
+  height:29px;
+  display:grid;
+  place-items:center;
+  border-radius:7px;
+  flex-shrink:0
+}
+.help-steps h3 {
+  font-size:13px;
+  font-weight:550;
+  margin:1px 0 6px
+}
+.help-steps p {
+  font-size:12px;
+  color:#7b8a6f;
+  line-height:1.7;
+  margin:0
+}
+.physics-note {
+  display:flex;
+  gap:12px;
+  background:#eef4e5;
+  border:1px solid #dde8d1;
+  border-radius:9px;
+  padding:15px
+}
+.physics-note>.icon {
+  color:#6b8750
+}
+.physics-note strong {
+  font-size:11px;
+  font-weight:600
+}
+.physics-note p {
+  font-size:11px;
+  line-height:1.8;
+  color:#7f916d;
+  margin:7px 0 0
+}
+.help-footnote {
+  font-size:10px;
+  color:#8f9c82;
+  line-height:1.7;
+  margin:18px 0
+}
+.help-dialog>.primary-button {
+  font-size:12px
+}
+.toast {
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:9;
+  background:#284b38;
+  color:#f2f7eb;
+  border:1px solid #486642;
+  padding:13px 22px;
+  font-size:12px;
+  line-height:1.5;
+  max-width:calc(100% - 32px);
+  box-shadow:0 8px 25px #19341f20;
+  border-radius:8px
+}
+.measure-dialog {
+  max-width:870px;
+  width:calc(100% - 32px)
+}
+.measure-dialog h2 {
+  margin:0;
+  font-size:20px;
+  font-weight:550
+}
+.measure-dialog>p {
+  font-size:11px;
+  color:#8c9980
+}
+.measurement-image {
+  background:#eef1e8;
+  border:1px solid #e0e7d7;
+  border-radius:7px;
+  max-height:48vh;
+  overflow:auto;
+  margin-top:16px
+}
+#measure-canvas {
+  display:block;
+  max-width:100%;
+  max-height:47vh;
+  object-fit:contain;
+  cursor:crosshair;
+  margin:auto
+}
+.measurement-controls {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:15px 0;
+  padding-bottom:15px;
+  border-bottom:1px solid var(--line)
+}
+.measurement-controls>div>span {
+  display:block;
+  font-size:10px;
+  color:#8e9a80;
+  margin-bottom:7px
+}
+.measurement-controls strong {
+  font-size:17px;
+  color:#48683c;
+  font-weight:500
+}
+.calibration {
+  display:flex;
+  gap:10px;
+  align-items:end
+}
+.calibration label {
+  font-size:10px;
+  color:#8a977c;
+  flex:1;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px
+}
+.calibration input {
+  display:block;
+  min-width:0;
+  width:120px;
+  background:white;
+  border:1px solid #d8e1cd;
+  padding:9px;
+  font-size:12px;
+  border-radius:5px;
+  color:var(--green)
+}
+.secondary-button {
+  padding:10px;
+  background:#edf4e2;
+  border:1px solid #d8e4cc;
+  border-radius:5px;
+  color:#64804c;
+  font-size:10px
+}
+.secondary-button:disabled {
+  opacity:.4
+}
+.fullscreen-view {
+  background:#f8faf4!important;
+  padding:20px
+}
+.fullscreen-view .result-view {
+  height:100%
+}
+.fullscreen-view #result-canvas {
+  max-height:calc(100vh - 45px);
+  max-width:calc(100vw - 45px)
+}
+.fullscreen-view .example-scene {
+  max-height:100%;
+  width:100%;
+  max-width:1200px
+}
+.fullscreen-view .fall-illustration {
+  max-height:75vh
+}
+@media(min-width:1500px) {
+  main {
+    padding-top:49px
+  }
+  .intro {
+    margin-bottom:38px
+  }
+  h1 {
+    font-size:48px
+  }
+  .workspace {
+    grid-template-columns:335px minmax(0,1fr)
+  }
+  .controls {
+    padding:29px
+  }
+  .visual-area {
+    min-height:440px
+  }
+  .example-scene {
+    min-height:398px
+  }
+  .fall-illustration {
+    min-height:290px
+  }
+}
+@media(max-width:1100px) {
+  .header {
+    padding:0 4%
+  }
+  .header nav {
+    margin-left:0;
+    gap:24px
+  }
+  main {
+    padding-left:4%;
+    padding-right:4%
+  }
+  .workspace {
+    grid-template-columns:280px minmax(0,1fr)
+  }
+  .controls {
+    padding:23px 19px
+  }
+  .preview-toolbar {
+    padding:0 17px
+  }
+  .preview-tabs {
+    gap:13px
+  }
+  .preview-tag {
+    font-size:8px
+  }
+  .visual-area {
+    padding:17px
+  }
+  .preview-bottom {
+    padding:12px 17px
+  }
+  .preview-bottom>div:first-child {
+    max-width:165px
+  }
+  .frames-area {
+    padding:18px 17px
+  }
+  .intro-note {
+    font-size:10px
+  }
+  .intro-note div>span {
+    font-size:9px
+  }
+  .tip {
+    gap:9px
+  }
+  .tip p {
+    font-size:9px
+  }
+  .tip h3 {
+    font-size:9px
+  }
+  .scene-top,.scene-bottom {
+    padding-left:12px;
+    padding-right:12px
+  }
+  .overlay-options {
+    gap:11px
+  }
+}
+@media(max-width:860px) {
+  h1 {
+    font-size:37px
+  }
+  .intro-note {
+    display:none
+  }
+  .classroom-badge {
+    font-size:9px;
+    padding:8px
+  }
+  .header nav {
+    gap:20px;
+    font-size:12px
+  }
+  .nav-help {
+    font-size:12px
+  }
+  .workspace {
+    grid-template-columns:260px minmax(0,1fr)
+  }
+  .controls {
+    padding:23px 16px
+  }
+  .preview-tag {
+    display:none
+  }
+  .preview-bottom {
+    flex-wrap:wrap;
+    gap:9px
+  }
+  .preview-bottom>div:first-child {
+    max-width:none;
+    width:100%
+  }
+  .preview-actions {
+    margin-left:auto
+  }
+  .visual-area {
+    min-height:372px;
+    padding:13px
+  }
+  .example-scene {
+    min-height:330px
+  }
+  .scene-interval {
+    font-size:9px
+  }
+  .scene-bottom {
+    font-size:8px
+  }
+  .frames-title>span {
+    display:none
+  }
+  .empty-frames>div:nth-child(5) {
+    display:none
+  }
+  .empty-frames {
+    grid-template-columns:repeat(4,1fr)
+  }
+  .tips-row {
+    gap:14px
+  }
+  .tip {
+    display:block
+  }
+  .tip-icon {
+    margin-bottom:10px
+  }
+  .tip p br {
+    display:none
+  }
+}
+@media(max-width:650px) {
+  .header {
+    height:70px;
+    padding:0 20px;
+    gap:12px
+  }
+  .brand {
+    font-size:27px;
+    gap:8px
+  }
+  .brand img {
+    height:30px;
+    width:30px
+  }
+  .header nav {
+    margin-left:auto
+  }
+  .nav-active {
+    display:none!important
+  }
+  .nav-help {
+    font-size:10px;
+    gap:5px
+  }
+  .classroom-badge {
+    display:none
+  }
+  main {
+    padding:29px 18px 0
+  }
+  .intro {
+    margin-bottom:24px
+  }
+  .eyebrow {
+    font-size:8px;
+    letter-spacing:1.3px;
+    margin-bottom:12px
+  }
+  h1 {
+    font-size:31px;
+    letter-spacing:-1.3px;
+    margin-bottom:10px
+  }
+  .intro-copy {
+    font-size:11px;
+    line-height:1.8
+  }
+  .mobile-break {
+    display:block
+  }
+  .workspace {
+    display:flex;
+    flex-direction:column;
+    border-radius:12px
+  }
+  .controls {
+    padding:21px;
+    border-right:0;
+    border-bottom:1px solid var(--line)
+  }
+  .control-heading {
+    margin-bottom:13px
+  }
+  .control-heading h2 {
+    font-size:13px
+  }
+  .dropzone {
+    min-height:133px;
+    padding:14px
+  }
+  .demo-button {
+    font-size:11px
+  }
+  .section-divider {
+    margin:21px 0
+  }
+  .field-label {
+    font-size:11px
+  }
+  .frequency-field {
+    height:46px
+  }
+  .frequency-presets button {
+    font-size:11px;
+    padding:8px
+  }
+  .interval-hint {
+    font-size:11px
+  }
+  .advanced summary {
+    font-size:11px
+  }
+  .overlay-options label {
+    font-size:11px
+  }
+  .overlay-options {
+    gap:22px;
+    margin-bottom:18px
+  }
+  .primary-button {
+    font-size:12px;
+    padding:14px
+  }
+  .create-area>p {
+    font-size:10px
+  }
+  .preview-toolbar {
+    height:55px;
+    padding:0 17px
+  }
+  .preview-tabs {
+    gap:21px
+  }
+  .preview-tabs>button {
+    font-size:11px
+  }
+  .preview-tag {
+    display:flex;
+    font-size:7px
+  }
+  .visual-area {
+    min-height:307px;
+    padding:13px
+  }
+  .example-scene {
+    min-height:280px
+  }
+  .fall-illustration {
+    min-height:200px
+  }
+  .scene-top {
+    padding:13px
+  }
+  .scene-bottom {
+    padding:10px 13px 14px
+  }
+  .preview-bottom {
+    padding:12px 15px;
+    flex-wrap:nowrap
+  }
+  .preview-bottom>div:first-child {
+    width:auto;
+    font-size:8px;
+    flex:1;
+    min-width:0
+  }
+  .preview-actions {
+    gap:2px
+  }
+  .download-button {
+    font-size:9px;
+    padding:8px
+  }
+  .frames-area {
+    padding:18px 15px
+  }
+  .frames-title h3 {
+    font-size:11px
+  }
+  .empty-frames {
+    grid-template-columns:repeat(5,1fr);
+    gap:7px
+  }
+  .empty-frames>div:nth-child(5) {
+    display:flex
+  }
+  .empty-frames>p {
+    font-size:9px
+  }
+  .tips-row {
+    grid-template-columns:1fr;
+    gap:20px;
+    padding:26px 4px
+  }
+  .tip {
+    display:flex;
+    gap:12px
+  }
+  .tip-icon {
+    margin-bottom:0
+  }
+  .tip h3 {
+    font-size:11px
+  }
+  .tip p {
+    font-size:10px
+  }
+  .tip p br {
+    display:none
+  }
+  footer {
+    font-size:8px;
+    line-height:1.6
+  }
+  footer>span:last-child {
+    max-width:160px;
+    text-align:right
+  }
+  .help-dialog {
+    padding:23px
+  }
+  .help-dialog>h2 {
+    font-size:24px
+  }
+  .measure-dialog {
+    padding:18px
+  }
+  .calibration {
+    flex-wrap:wrap
+  }
+  .calibration label {
+    flex-basis:100%
+  }
+  .measurement-controls strong {
+    font-size:14px
+  }
+  .measurement-image {
+    max-height:40vh
+  }
+  #measure-canvas {
+    max-height:39vh
+  }
+  .canvas-wrap {
+    min-height:270px
+  }
+  #result-canvas {
+    max-height:430px
+  }
+  .progress-overlay {
+    inset:13px
+  }
+  .progress-overlay h3 {
+    font-size:14px
+  }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*:before,*:after {
+    animation-duration:.01ms!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important
+  }
+}
+/* Keep the experiment and its main action together in a laptop viewport. */
+@media(min-width:651px) {
+  main {
+    padding-top:31px
+  }
+  .intro {
+    margin-bottom:25px
+  }
+  .controls {
+    padding-top:22px;
+    padding-bottom:20px
+  }
+  .dropzone {
+    min-height:135px
+  }
+  .section-divider {
+    margin:18px 0 16px
+  }
+  .control-heading {
+    margin-bottom:12px
+  }
+  .interval-hint {
+    margin-bottom:15px
+  }
+  .overlay-options {
+    margin:14px 0 16px
+  }
+  .visual-area {
+    min-height:0;
+    height:373px;
+    flex:0 0 373px
+  }
+  .example-scene {
+    min-height:0
+  }
+  .fall-illustration {
+    height:0;
+    min-height:0;
+    flex:1
+  }
+  .canvas-wrap {
+    min-height:0
+  }
+  #result-canvas,#video-player {
+    max-height:330px
+  }
+  .video-view {
+    min-height:0
+  }
+  .frames-area {
+    padding-top:17px;
+    padding-bottom:16px
+  }
+  .preview-panel {
+    min-height:578px
+  }
+}
+@media(min-width:1500px) {
+  .visual-area {
+    height:412px;
+    flex-basis:412px
+  }
+  #result-canvas,#video-player {
+    max-height:370px
+  }
+  .preview-panel {
+    min-height:640px
+  }
+}
+@media(max-width:650px) {
+  .fall-illustration {
+    height:215px;
+    min-height:0;
+    flex:none
+  }
+  .example-scene {
+    min-height:0
+  }
+  .visual-area {
+    min-height:300px
+  }
+  .preview-tag {
+    display:none
+  }
+}
+</style>
+  
+</head>
+<body>
+  <svg class="icon-definitions" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V3m-5 5 5-5 5 5M4 15v5a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-5"/></symbol>
+      <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="14" rx="3"/><path d="m16 9 5-3v12l-5-3"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M4 16v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+      <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 .5c0 2-2.5 2-2.5 4M12 17h.01"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9S4 17 4 12V6l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+      <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6m-5 0v6l-6 10a1.5 1.5 0 0 0 1.3 2h13.4a1.5 1.5 0 0 0 1.3-2L14 9V3M7 15h10"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7V5Z"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5L12 3Z"/></symbol>
+      <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></symbol>
+      <symbol id="i-ruler" viewBox="0 0 24 24"><path d="m3 16 13-13 5 5L8 21l-5-5Zm6-6 2 2m2-6 2 2m-9 6 2 2"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 6-6 4 4 3-3 5 5"/></symbol>
+      <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/></symbol>
+    </defs>
+  </svg>
+  <header class="header">
+    <a class="brand" href="#workspace" aria-label="STROBO Startseite"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iMTIiIGZpbGw9IiMyMzRiM2MiLz48ZyBmaWxsPSIjZDhlZWE0Ij48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSIzIiBvcGFjaXR5PSIuMzUiLz48Y2lyY2xlIGN4PSIyMCIgY3k9IjE5IiByPSI0IiBvcGFjaXR5PSIuNjUiLz48Y2lyY2xlIGN4PSIyOSIgY3k9IjI5IiByPSI1Ii8+PC9nPjwvc3ZnPgo=" alt="" width="36" height="36"><span>strobo<span class="brand-period">.</span></span></a>
+    <nav aria-label="Hauptnavigation"><a class="nav-active" href="#workspace">Arbeitsbereich</a><button id="help-button" class="nav-help"><svg class="icon"><use href="#i-help"/></svg>So funktioniert’s</button></nav>
+    <span class="classroom-badge"><svg class="icon"><use href="#i-flask"/></svg>Für den Physikunterricht</span>
+  </header>
+
+  <main>
+    <p id="browser-warning" class="browser-warning">STROBO benötigt einen Browser mit JavaScript. Auf dem iPad bitte die Webadresse in Safari öffnen; die Vorschau einer HTML-Datei reicht nicht.</p>
+    <section class="intro">
+      <div><p class="eyebrow"><span></span>BEWEGUNG SICHTBAR MACHEN</p><h1>Ein Video. <span>Viele Momente.</span></h1><p class="intro-copy">Verwandle Bewegung in ein Stroboskopbild.<br class="mobile-break"> Video auswählen, Frequenz festlegen, Physik entdecken.</p></div>
+      <div class="intro-note"><svg class="icon"><use href="#i-shield"/></svg><div>Dein Video bleibt bei dir.<span>Alles passiert lokal in deinem Browser.</span></div></div>
+    </section>
+
+    <section class="workspace" id="workspace" aria-label="Stroboskopbild erstellen">
+      <aside class="controls">
+        <div class="control-heading"><span class="step-number">01</span><h2>Dein Video</h2></div>
+        <input id="file-input" type="file" accept="video/*,.mp4,.mov,.webm,.m4v" hidden>
+        <button class="dropzone" id="dropzone"><span class="upload-icon"><svg class="icon"><use href="#i-upload"/></svg></span><strong>Video hier ablegen</strong><span>oder <u>Datei auswählen</u></span><small>MP4, MOV oder WebM</small></button>
+        <div id="file-info" class="file-info" hidden><span class="file-icon"><svg class="icon"><use href="#i-video"/></svg></span><div><strong id="file-name"></strong><span id="file-meta"></span></div><button id="remove-video" class="icon-button" aria-label="Video entfernen"><svg class="icon"><use href="#i-close"/></svg></button></div>
+        <button class="demo-button" id="demo-button"><svg class="icon"><use href="#i-play"/></svg>Kein Video? Beispiel ausprobieren<svg class="icon small"><use href="#i-arrow"/></svg></button>
+
+        <div class="section-divider"></div>
+        <div class="control-heading"><span class="step-number">02</span><h2>Deine Frequenz</h2><button class="icon-button frequency-help" id="frequency-help" aria-label="Was bedeutet Frequenz?"><svg class="icon"><use href="#i-help"/></svg></button></div>
+        <label class="field-label" for="frequency">Bilder pro Sekunde</label>
+        <div class="frequency-field"><input type="number" id="frequency" min="0.1" max="120" step="0.1" value="10" inputmode="decimal"><span>Hz</span></div>
+        <div class="frequency-presets" role="group" aria-label="Frequenz auswählen"><button data-frequency="5">5 Hz</button><button data-frequency="10" class="selected" aria-pressed="true">10 Hz</button><button data-frequency="20">20 Hz</button><button data-frequency="30">30 Hz</button></div>
+        <p class="interval-hint"><svg class="icon"><use href="#i-clock"/></svg>Ein Bild alle <strong id="interval-value">0,10 Sekunden</strong></p>
+
+        <details id="advanced-settings" class="advanced"><summary>Weitere Einstellungen<svg class="icon"><use href="#i-chevron"/></svg></summary><div class="advanced-content"><div class="range-label">Zeitbereich <span>in Sekunden</span></div><div class="time-range"><label for="start-time">Von<input id="start-time" type="number" min="0" step="0.01" value="0"></label><span>–</span><label for="end-time">Bis<input id="end-time" type="number" min="0" step="0.01" placeholder="Ende"></label></div><label for="sensitivity" class="range-label">Bewegungserkennung <output id="sensitivity-value">Normal</output></label><input id="sensitivity" type="range" min="8" max="65" value="22"><p class="setting-note">Links: feine Bewegungen. Rechts: weniger Bildrauschen.</p></div></details>
+        <div class="overlay-options"><label><input id="time-labels" type="checkbox" checked><span>Zeitleiste im Bild</span></label><label><input id="grid-overlay" type="checkbox"><span>Hilfsraster</span></label></div>
+        <div class="create-area"><button class="primary-button" id="create-button" disabled><svg class="icon"><use href="#i-spark"/></svg><span>Stroboskopbild erstellen</span><svg class="icon"><use href="#i-arrow"/></svg></button><p id="create-hint">Wähle ein Video, um loszulegen.</p><button id="cancel-button" class="text-button" hidden>Verarbeitung abbrechen</button></div>
+        <p id="error-message" class="error-message" role="alert" hidden></p>
+      </aside>
+
+      <div class="preview-panel">
+        <div class="preview-toolbar"><div class="preview-tabs" role="tablist" aria-label="Ansicht"><button id="result-tab" class="active" role="tab" aria-selected="true" aria-controls="result-view"><svg class="icon"><use href="#i-image"/></svg>Stroboskopbild</button><button id="video-tab" role="tab" aria-selected="false" aria-controls="video-view"><svg class="icon"><use href="#i-video"/></svg>Originalvideo</button></div><span class="preview-tag" id="preview-tag"><span></span>Beispielvorschau</span></div>
+        <div class="visual-area" id="visual-area">
+          <div class="result-view" id="result-view" role="tabpanel" aria-labelledby="result-tab">
+            <div class="example-scene" id="example-scene"><div class="scene-top"><span class="scene-label"><span></span>Freier Fall</span><span class="scene-interval">Δt = 0,10 s</span></div>
+              <svg class="fall-illustration" viewBox="0 0 740 400" aria-label="Illustration eines fallenden Balls mit zunehmenden Abständen" role="img">
+                <defs><radialGradient id="ball-shading" cx="32%" cy="25%" r="80%"><stop offset="0" stop-color="#65866a"/><stop offset=".5" stop-color="#3e684c"/><stop offset="1" stop-color="#254734"/></radialGradient><filter id="ball-shadow" x="-80%" y="-80%" width="260%" height="260%"><feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#304b36" flood-opacity=".12"/></filter></defs>
+                <g class="ruler-ticks" stroke="#b0bba9" stroke-width="1"><path d="M206 45v310M196 45h10m-6 25h6m-6 25h6m-6 25h6m-10 25h10m-6 25h6m-6 25h6m-6 25h6m-10 25h10m-6 25h6m-6 25h6m-6 25h6m-10 25h10"/></g><g fill="#8b9686" font-family="Arial,sans-serif" font-size="10" text-anchor="end"><text x="185" y="49">0</text><text x="185" y="149">100</text><text x="185" y="249">200</text><text x="185" y="349">300</text><text x="186" y="376">px</text></g>
+                <path d="M334 40v309" stroke="#acbaa6" stroke-width="1" stroke-dasharray="3 6"/><g fill="url(#ball-shading)" filter="url(#ball-shadow)"><circle cx="334" cy="47" r="13" opacity=".25"/><circle cx="334" cy="63" r="13" opacity=".35"/><circle cx="334" cy="89" r="13" opacity=".45"/><circle cx="334" cy="125" r="13" opacity=".58"/><circle cx="334" cy="171" r="13" opacity=".72"/><circle cx="334" cy="227" r="13" opacity=".85"/><circle cx="334" cy="293" r="13"/></g>
+                <g stroke="#b4bfae" stroke-width="1"><path d="M359 47h35M359 89h35M359 171h35M359 293h35"/></g><g fill="#6e7d66" font-family="Arial,sans-serif" font-size="11"><text x="404" y="51">t = 0,00 s</text><text x="404" y="93">t = 0,20 s</text><text x="404" y="175">t = 0,40 s</text><text x="404" y="297">t = 0,60 s</text></g>
+                <g transform="translate(503 130)"><rect width="160" height="76" rx="9" fill="#f8faf3" stroke="#dce4d5"/><text x="16" y="27" fill="#526446" font-family="Arial,sans-serif" font-size="11">Gleiche Zeitabstände.</text><text x="16" y="47" fill="#526446" font-family="Arial,sans-serif" font-size="11">Immer größere Strecken.</text><path d="M-53 49h40" stroke="#bbc6b3" stroke-dasharray="3 4"/></g>
+              </svg><div class="scene-bottom"><span>So wird Beschleunigung sichtbar.</span><span class="example-watermark">ILLUSTRATION</span></div>
+            </div>
+            <div class="canvas-wrap" id="canvas-wrap" hidden><canvas id="result-canvas" aria-label="Dein erstelltes Stroboskopbild"></canvas></div>
+          </div>
+          <div class="video-view" id="video-view" role="tabpanel" aria-labelledby="video-tab" hidden><video id="video-player" controls playsinline preload="auto"></video><div class="video-empty" id="video-empty"><svg class="icon"><use href="#i-video"/></svg><p>Dein Video erscheint hier.</p><span>Wähle links eine Datei aus.</span></div></div>
+          <div id="progress-overlay" class="progress-overlay" hidden><span class="processing-spinner"></span><h3>Bewegung wird sichtbar …</h3><p id="progress-description">Hintergrund wird ermittelt.</p><progress id="processing-progress" max="100" value="0"></progress><span id="progress-count">0 %</span></div>
+        </div>
+        <div class="preview-bottom"><div><span class="status-dot" id="status-dot"></span><span id="preview-status">Dein nächstes Experiment beginnt hier.</span></div><div class="preview-actions"><button id="measure-button" class="icon-button" disabled aria-label="Strecke messen" title="Strecke messen"><svg class="icon"><use href="#i-ruler"/></svg></button><button id="fullscreen-button" class="icon-button" aria-label="Vorschau vergrößern" title="Vorschau vergrößern"><svg class="icon"><use href="#i-expand"/></svg></button><button id="download-button" class="download-button" disabled><svg class="icon"><use href="#i-download"/></svg>PNG herunterladen</button></div></div>
+        <div class="frames-area" id="frames-area"><div class="frames-title"><h3>Die Bewegung, Bild für Bild</h3><span id="frames-count">GLEICHE ZEITABSTÄNDE</span></div><div class="empty-frames" id="empty-frames"><div><svg class="icon"><use href="#i-image"/></svg><span>01</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>02</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>03</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>04</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>05</span></div><p>Deine Einzelbilder erscheinen nach dem Erstellen hier.</p></div><div class="frame-strip" id="frame-strip" hidden></div></div>
+      </div>
+    </section>
+
+    <section class="tips-row" aria-label="Tipps für dein Experiment"><div class="tip"><span class="tip-icon"><svg class="icon"><use href="#i-video"/></svg></span><div><h3>Ruhige Kamera, klares Ergebnis</h3><p>Filme mit feststehender Kamera und einem <br>möglichst einfarbigen Hintergrund.</p></div></div><div class="tip"><span class="tip-icon"><svg class="icon"><use href="#i-clock"/></svg></span><div><h3>Die Zeit ist deine Konstante</h3><p>Bei 10 Hz liegen zwischen zwei Positionen <br>genau 0,1 Sekunden im Video.</p></div></div><div class="tip"><span class="tip-icon"><svg class="icon"><use href="#i-ruler"/></svg></span><div><h3>Vom Bild zur Beschleunigung</h3><p>Filme einen Maßstab mit. Lies Strecken ab <br>und berechne v = Δs / Δt.</p></div></div></section>
+    <footer><span>Weniger Technik. Mehr Aha-Momente.</span><span>Mit Neugier gemacht. Für den Unterricht.<svg class="icon"><use href="#i-flask"/></svg></span></footer>
+  </main>
+
+  <dialog id="help-dialog" class="help-dialog"><div class="dialog-heading"><span class="eyebrow">DEIN KLEINES PHYSIKLABOR</span><button class="icon-button" data-close-dialog aria-label="Hilfe schließen"><svg class="icon"><use href="#i-close"/></svg></button></div><h2>Bewegung verstehen.<br>In drei einfachen Schritten.</h2><ol class="help-steps"><li><span>01</span><div><h3>Video auswählen</h3><p>Filme den fallenden Ball mit feststehender Kamera. Ein ruhiger Hintergrund und ein mitgefilmtes Lineal machen das Ergebnis leichter messbar.</p></div></li><li><span>02</span><div><h3>Frequenz festlegen</h3><p>10 Hz bedeutet zehn Bilder pro Sekunde. Die Zeit zwischen zwei Bildern beträgt Δt = 1 / f, also 0,1 s. Wähle bei Bedarf nur den Abschnitt des Falls aus.</p></div></li><li><span>03</span><div><h3>Erstellen, messen, entdecken</h3><p>Das Programm legt die bewegten Bildbereiche übereinander. Lade das Ergebnis als PNG herunter oder miss direkt im Bild mit dem Lineal-Werkzeug.</p></div></li></ol><div class="physics-note"><svg class="icon"><use href="#i-flask"/></svg><div><strong>Ein Experiment. Viele Erkenntnisse.</strong><p>Bestimme die mittlere Geschwindigkeit v = Δs / Δt für aufeinanderfolgende Intervalle. Aus ihrer Änderung folgt a ≈ Δv / Δt. Beim freien Fall aus der Ruhe gilt s = ½ g t² mit g ≈ 9,81 m/s².</p></div></div><p class="help-footnote">Die Genauigkeit hängt von Bildrate, Perspektive und Belichtungszeit ab. Bei Zeitlupenvideos beziehen sich Zeitangaben auf die Wiedergabe; für die reale Zeit ist der Zeitlupenfaktor nötig. Frequenzen oberhalb der Aufnahmebildrate können dieselben Videobilder mehrfach auswählen.</p><button class="primary-button" data-close-dialog>Los geht’s<svg class="icon"><use href="#i-arrow"/></svg></button></dialog>
+
+  <dialog id="measure-dialog" class="measure-dialog"><div class="dialog-heading"><h2>Strecke messen</h2><button class="icon-button" data-close-dialog aria-label="Messwerkzeug schließen"><svg class="icon"><use href="#i-close"/></svg></button></div><p>Klicke im Bild auf den Anfang und das Ende einer Strecke.</p><div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: zwei Punkte anklicken" tabindex="0"></canvas></div><div class="measurement-controls"><div><span>Gemessene Strecke</span><strong id="measurement-value">Zwei Punkte auswählen</strong></div><button class="text-button" id="reset-measurement">Neu messen</button></div><div class="calibration"><label for="known-distance">Diese Referenzstrecke entspricht<input id="known-distance" type="number" min="0.01" step="0.1" placeholder="z. B. 100"><span>cm</span></label><button class="secondary-button" id="calibrate-button" disabled>Als Maßstab verwenden</button></div><p id="calibration-note" class="setting-note">Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden weitere Strecken in Zentimetern angezeigt.</p></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+<script id="embedded-demo" type="application/octet-stream" data-mime="video/webm">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</script>
+<script>
+(() => {
+'use strict';
+const MAX_FRAMES = 300;
+const MAX_SIDE = 1280;
+
+/** Times refer to video playback. The end is exclusive, to avoid seeking past the last frame. */
+function samplingTimes(start, end, frequency, maxFrames = MAX_FRAMES) {
+  if (!Number.isFinite(frequency) || frequency < 0.1 || frequency > 120) throw new Error('Bitte gib eine Frequenz zwischen 0,1 und 120 Hz ein.');
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || end <= start) throw new Error('Der Beginn muss vor dem Ende des Zeitbereichs liegen.');
+  const count = Math.ceil((end - start) * frequency - 1e-8);
+  if (count > maxFrames) throw new Error(`Dieser Abschnitt ergibt ${count.toLocaleString('de-DE')} Bilder. Wähle einen kürzeren Zeitbereich oder eine niedrigere Frequenz (höchstens ${maxFrames} Bilder).`);
+  return Array.from({ length: Math.max(1, count) }, (_, i) => start + i / frequency);
+}
+
+/** An odd set of temporal samples removes a moving object while preserving the static scene. */
+function medianBackground(samples) {
+  if (!samples.length || samples.some(s => s.length !== samples[0].length)) throw new Error('Ungültige Hintergrundbilder.');
+  const output = new Uint8ClampedArray(samples[0].length);
+  const values = new Uint8Array(samples.length);
+  for (let p = 0; p < output.length; p++) {
+    if (p % 4 === 3) { output[p] = 255; continue; }
+    for (let i = 0; i < samples.length; i++) {
+      const value = samples[i][p];
+      let j = i;
+      while (j > 0 && values[j - 1] > value) { values[j] = values[j - 1]; j--; }
+      values[j] = value;
+    }
+    output[p] = values[Math.floor(samples.length / 2)];
+  }
+  return output;
+}
+
+/** Keep each moving pixel at full contrast rather than averaging the ball away. */
+function compositeMotion(output, background, frame, strongest, threshold = 22) {
+  const cutoff = threshold * threshold * 3;
+  let changed = 0;
+  for (let p = 0, pixel = 0; p < output.length; p += 4, pixel++) {
+    const r = frame[p] - background[p];
+    const g = frame[p + 1] - background[p + 1];
+    const b = frame[p + 2] - background[p + 2];
+    const difference = r * r + g * g + b * b;
+    if (difference > cutoff) changed++;
+    if (difference > cutoff && difference > strongest[pixel]) {
+      strongest[pixel] = difference;
+      output[p] = frame[p]; output[p + 1] = frame[p + 1]; output[p + 2] = frame[p + 2]; output[p + 3] = 255;
+    }
+  }
+  return changed;
+}
+
+function fitDimensions(width, height, limit = MAX_SIDE) {
+  const scale = Math.min(1, limit / Math.max(width, height));
+  return { width: Math.max(1, Math.round(width * scale)), height: Math.max(1, Math.round(height * scale)) };
+}
+
+function waitForVideo(video, signal) {
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => finish(new Error('Das Video konnte nicht rechtzeitig geladen werden. Versuche ein anderes Video.')), 20000);
+    const finish = (error) => {
+      clearTimeout(timeout);
+      video.removeEventListener('loadeddata', loaded);
+      video.removeEventListener('error', failed);
+      signal?.removeEventListener('abort', aborted);
+      if (error) reject(error); else resolve(video);
+    };
+    const loaded = () => finish();
+    const failed = () => finish(new Error('Dieses Videoformat kann dein Browser nicht lesen. Verwende ein MP4 mit H.264 oder ein WebM-Video.'));
+    const aborted = () => finish(new DOMException('Abgebrochen', 'AbortError'));
+    if (signal?.aborted) return aborted();
+    if (video.readyState >= 2) return loaded();
+    video.addEventListener('loadeddata', loaded, { once: true });
+    video.addEventListener('error', failed, { once: true });
+    signal?.addEventListener('abort', aborted, { once: true });
+  });
+}
+
+function seekVideo(video, time, signal) {
+  if (signal?.aborted) return Promise.reject(new DOMException('Abgebrochen', 'AbortError'));
+  if (Math.abs(video.currentTime - time) < 0.00001 && video.readyState >= 2) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => finish(new Error('Ein Videobild konnte nicht gelesen werden. Versuche ein anderes Video.')), 15000);
+    const finish = (error) => {
+      clearTimeout(timeout);
+      video.removeEventListener('seeked', done);
+      video.removeEventListener('error', failed);
+      signal?.removeEventListener('abort', aborted);
+      if (error) reject(error); else resolve();
+    };
+    const done = () => finish();
+    const failed = () => finish(new Error('Das Video konnte nicht vollständig gelesen werden.'));
+    const aborted = () => finish(new DOMException('Abgebrochen', 'AbortError'));
+    video.addEventListener('seeked', done, { once: true });
+    video.addEventListener('error', failed, { once: true });
+    signal?.addEventListener('abort', aborted, { once: true });
+    video.currentTime = time;
+  });
+}
+
+const breathe = () => new Promise(resolve => setTimeout(resolve, 0));
+
+/** Streaming the selected frames keeps memory bounded even for high-resolution videos. */
+async function processVideo({ url, start, end, frequency, threshold, signal, onProgress }) {
+  const times = samplingTimes(start, end, frequency);
+  const video = document.createElement('video');
+  video.muted = true; video.playsInline = true; video.preload = 'auto'; video.src = url;
+  try {
+    await waitForVideo(video, signal);
+    const { width, height } = fitDimensions(video.videoWidth, video.videoHeight);
+    const work = document.createElement('canvas');
+    work.width = width; work.height = height;
+    const ctx = work.getContext('2d', { willReadFrequently: true });
+    if (!ctx) throw new Error('Dein Browser unterstützt die Bildverarbeitung nicht.');
+    const samples = [];
+    // Offset the probes from output timestamps to avoid accidentally sampling a periodic motion at the same phase.
+    const lastTime = Math.max(start, end - Math.min(0.02, (end - start) / 100));
+    const probes = 9;
+    for (let i = 0; i < probes; i++) {
+      await seekVideo(video, start + (lastTime - start) * (i + 0.37) / probes, signal);
+      ctx.drawImage(video, 0, 0, width, height);
+      samples.push(ctx.getImageData(0, 0, width, height).data);
+      onProgress({ percent: (i + 1) / probes * 15, text: 'Ruhiger Hintergrund wird ermittelt.' });
+    }
+    const background = new Uint8ClampedArray(width * height * 4);
+    // Work in bands so cancellation and UI updates stay responsive.
+    const bandSize = width * 4 * 40;
+    for (let offset = 0; offset < background.length; offset += bandSize) {
+      signal?.throwIfAborted();
+      const bandEnd = Math.min(offset + bandSize, background.length);
+      background.set(medianBackground(samples.map(s => s.subarray(offset, bandEnd))), offset);
+      onProgress({ percent: 15 + bandEnd / background.length * 15, text: 'Hintergrund und Bewegung werden getrennt.' });
+      await breathe();
+    }
+    samples.length = 0;
+    const output = new Uint8ClampedArray(background);
+    const strongest = new Uint32Array(width * height);
+    const thumbs = [];
+    const thumb = document.createElement('canvas');
+    const dimensions = fitDimensions(width, height, 176);
+    thumb.width = dimensions.width; thumb.height = dimensions.height;
+    const thumbCtx = thumb.getContext('2d');
+    let motionPixels = 0;
+    for (let i = 0; i < times.length; i++) {
+      await seekVideo(video, times[i], signal);
+      ctx.drawImage(video, 0, 0, width, height);
+      const frame = ctx.getImageData(0, 0, width, height).data;
+      motionPixels = Math.max(motionPixels, compositeMotion(output, background, frame, strongest, threshold));
+      thumbCtx.drawImage(work, 0, 0, thumb.width, thumb.height);
+      thumbs.push({ time: times[i], relativeTime: times[i] - start, url: thumb.toDataURL('image/jpeg', 0.75) });
+      onProgress({ percent: 30 + (i + 1) / times.length * 69, text: `Bild ${i + 1} von ${times.length} wird zusammengeführt.` });
+      await breathe();
+    }
+    return { data: output, width, height, times, thumbs, frequency, start, end, motionPixels, originalWidth: video.videoWidth, originalHeight: video.videoHeight };
+  } finally {
+    video.pause(); video.removeAttribute('src'); video.load();
+  }
+}
+
+function decorateResult(canvas, result, { grid = false, timeline = true } = {}) {
+  const legendHeight = timeline ? Math.round(result.width * 0.065) + 35 : 0;
+  canvas.width = result.width; canvas.height = result.height + legendHeight;
+  const ctx = canvas.getContext('2d');
+  ctx.putImageData(new ImageData(result.data, result.width, result.height), 0, 0);
+  if (grid) {
+    const interval = 50;
+    ctx.save(); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(70,100,55,0.24)'; ctx.fillStyle = 'rgba(45,75,35,0.7)'; ctx.font = '11px sans-serif';
+    for (let x = interval; x < result.width; x += interval) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, result.height); ctx.stroke(); ctx.fillText(`${x}px`, x + 4, 13); }
+    for (let y = interval; y < result.height; y += interval) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(result.width, y); ctx.stroke(); ctx.fillText(`${y}px`, 4, y - 4); }
+    ctx.restore();
+  }
+  if (timeline) {
+    const top = result.height;
+    const fontSize = Math.max(10, Math.round(result.width / 80));
+    const fmt = n => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
+    ctx.fillStyle = '#f3f6ed'; ctx.fillRect(0, top, result.width, legendHeight);
+    ctx.fillStyle = '#3d5c32'; ctx.font = `600 ${fontSize}px sans-serif`;
+    const left = 15;
+    ctx.fillText(`STROBO  ·  ${result.frequency.toLocaleString('de-DE')} Hz  ·  Δt = ${fmt(1 / result.frequency)} s  ·  ${result.times.length} Bilder`, left, top + fontSize + 13);
+    ctx.fillStyle = '#86957a'; ctx.font = `${Math.max(8, fontSize - 1)}px sans-serif`;
+    const indices = result.times.length <= 12 ? result.times.map((_, i) => i) : Array.from({ length: 9 }, (_, i) => Math.round(i * (result.times.length - 1) / 8));
+    const y = top + fontSize + 31;
+    ctx.fillText('t =', left, y);
+    const width = (result.width - 60) / indices.length;
+    indices.forEach((index, i) => ctx.fillText(`${fmt(result.times[index] - result.start)} s`, 45 + i * width, y));
+    if (legendHeight > 68) ctx.fillText(`Zeitangaben relativ zum Abschnittsbeginn. Videobeginn: ${fmt(result.start)} s.`, left, top + legendHeight - 12);
+  }
+}
+
+const $ = id => document.getElementById(id);
+if ($('browser-warning')) $('browser-warning').hidden = true;
+const state = { url: null, name: '', duration: 0, width: 0, height: 0, result: null, busy: false, loading: false, controller: null, loadController: null, loadId: 0, scale: null, points: [], measurement: null };
+const number = (value, digits = 2) => value.toLocaleString('de-DE', { minimumFractionDigits: digits, maximumFractionDigits: digits });
+const plural = count => `${count} ${count === 1 ? 'Bild' : 'Bilder'}`;
+let toastTimer;
+
+function toast(message) {
+  $('toast').textContent = message; $('toast').hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { $('toast').hidden = true; }, 4500);
+}
+function error(message = '') { $('error-message').textContent = message; $('error-message').hidden = !message; }
+function setTag(text) { $('preview-tag').replaceChildren(); const dot = document.createElement('span'); $('preview-tag').append(dot, document.createTextNode(text)); }
+
+function settings() {
+  const frequency = $('frequency').valueAsNumber;
+  const start = $('start-time').value === '' ? 0 : $('start-time').valueAsNumber;
+  const end = $('end-time').value === '' ? state.duration : $('end-time').valueAsNumber;
+  if (end > state.duration + 0.001) throw new Error('Der gewählte Zeitbereich liegt außerhalb des Videos.');
+  const actualEnd = Math.min(end, state.duration);
+  const times = samplingTimes(start, actualEnd, frequency);
+  return { frequency, start, end: actualEnd, times, threshold: $('sensitivity').valueAsNumber };
+}
+
+function updateControls() {
+  const frequency = $('frequency').valueAsNumber;
+  $('interval-value').textContent = Number.isFinite(frequency) && frequency > 0 ? `${number(1 / frequency, frequency > 20 ? 3 : 2)} Sekunden` : '–';
+  document.querySelectorAll('[data-frequency]').forEach(button => {
+    const selected = Number(button.dataset.frequency) === frequency;
+    button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected));
+  });
+  $('create-button').disabled = true;
+  if (state.busy) return;
+  if (state.loading) { $('create-hint').textContent = 'Video wird geladen …'; return; }
+  if (!state.url) { $('create-hint').textContent = 'Wähle ein Video, um loszulegen.'; return; }
+  try {
+    const config = settings();
+    $('create-button').disabled = false;
+    $('create-hint').textContent = `${plural(config.times.length)} · ${number(config.end - config.start)} Sekunden ausgewählt`;
+  } catch (err) { $('create-hint').textContent = err.message; }
+}
+
+function selectTab(tab) {
+  const result = tab === 'result';
+  $('result-tab').classList.toggle('active', result); $('video-tab').classList.toggle('active', !result);
+  $('result-tab').setAttribute('aria-selected', String(result)); $('video-tab').setAttribute('aria-selected', String(!result));
+  $('result-tab').tabIndex = result ? 0 : -1; $('video-tab').tabIndex = result ? -1 : 0;
+  $('result-view').hidden = !result; $('video-view').hidden = result;
+  if (result) $('video-player').pause();
+}
+
+function resetResult() {
+  state.result = null; state.scale = null; state.points = [];
+  $('download-button').disabled = true; $('measure-button').disabled = true;
+  $('empty-frames').hidden = false; $('frame-strip').hidden = true; $('frame-strip').replaceChildren();
+  $('frames-count').textContent = 'GLEICHE ZEITABSTÄNDE'; $('status-dot').classList.remove('ready');
+  resetCalibration();
+}
+
+function resetCalibration() {
+  state.scale = null; state.points = []; state.measurement = null;
+  $('known-distance').value = '';
+  $('calibration-note').textContent = 'Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden weitere Strecken in Zentimetern angezeigt.';
+  $('calibrate-button').disabled = true;
+}
+
+function clearVideo() {
+  state.loadId++; state.loadController?.abort(); state.controller?.abort();
+  const player = $('video-player'); player.pause(); player.removeAttribute('src'); player.load();
+  if (state.url) URL.revokeObjectURL(state.url);
+  state.url = null; state.duration = 0; state.name = ''; state.loading = false;
+  $('file-input').value = ''; $('file-info').hidden = true; $('dropzone').hidden = false;
+  $('video-empty').hidden = false; $('example-scene').hidden = false; $('canvas-wrap').hidden = true;
+  $('start-time').value = '0'; $('end-time').value = ''; $('end-time').placeholder = 'Ende';
+  resetResult(); error(); setTag('Beispielvorschau');
+  $('preview-status').textContent = 'Dein nächstes Experiment beginnt hier.';
+  updateControls();
+}
+
+async function loadVideo(file, { demo = false } = {}) {
+  if (state.busy) return;
+  clearVideo();
+  const id = ++state.loadId;
+  state.loading = true; state.name = file.name; state.url = URL.createObjectURL(file);
+  state.loadController = new AbortController();
+  const player = $('video-player'); player.src = state.url;
+  $('dropzone').hidden = true; $('file-info').hidden = false;
+  $('file-name').textContent = file.name; $('file-meta').textContent = 'Video wird gelesen …';
+  $('video-empty').hidden = true; updateControls();
+  try {
+    await waitForVideo(player, state.loadController.signal);
+    if (id !== state.loadId) return;
+    if (!Number.isFinite(player.duration) || player.duration <= 0 || !player.videoWidth) throw new Error('Das Video hat keine lesbare Dauer. Verwende eine vollständig gespeicherte Videodatei.');
+    state.duration = player.duration; state.width = player.videoWidth; state.height = player.videoHeight;
+    $('file-meta').textContent = `${number(state.duration)} s · ${state.width} × ${state.height} px${demo ? ' · Simulation' : ''}`;
+    $('start-time').max = state.duration; $('end-time').max = state.duration;
+    $('end-time').placeholder = number(state.duration); state.loading = false;
+    const canvas = $('result-canvas'); const dims = fitDimensions(state.width, state.height);
+    canvas.width = dims.width; canvas.height = dims.height;
+    canvas.getContext('2d').drawImage(player, 0, 0, dims.width, dims.height);
+    $('example-scene').hidden = true; $('canvas-wrap').hidden = false;
+    setTag('Video bereit'); selectTab('result');
+    $('preview-status').textContent = 'Video bereit. Jetzt die Bewegung festhalten.';
+    updateControls();
+    if (demo) { toast('Beispiel geladen: ein simulierter freier Fall.'); }
+  } catch (err) {
+    if (id !== state.loadId || err.name === 'AbortError') return;
+    clearVideo(); error(err.message);
+  }
+}
+
+function setBusy(busy) {
+  state.busy = busy;
+  $('progress-overlay').hidden = !busy; $('cancel-button').hidden = !busy;
+  document.querySelectorAll('.controls input, .controls button:not(#cancel-button):not(#frequency-help)').forEach(el => { el.disabled = busy; });
+  $('download-button').disabled = busy || !state.result; $('measure-button').disabled = busy || !state.result;
+  $('create-button').querySelector('span').textContent = busy ? 'Bild wird erstellt …' : 'Stroboskopbild erstellen';
+  updateControls();
+}
+
+function renderResult() {
+  if (!state.result) return;
+  decorateResult($('result-canvas'), state.result, { grid: $('grid-overlay').checked, timeline: $('time-labels').checked });
+}
+
+async function createResult() {
+  if (state.busy || state.loading || !state.url) return;
+  let config;
+  try { config = settings(); } catch (err) { error(err.message); return; }
+  error(); state.controller = new AbortController(); selectTab('result'); $('video-player').pause();
+  $('processing-progress').value = 0; $('progress-count').textContent = '0 %';
+  $('progress-description').textContent = 'Hintergrund wird ermittelt.';
+  setBusy(true);
+  try {
+    const result = await processVideo({ ...config, url: state.url, signal: state.controller.signal, onProgress: ({ percent, text }) => {
+      $('processing-progress').value = percent; $('progress-count').textContent = `${Math.round(percent)} %`; $('progress-description').textContent = text;
+    }});
+    state.result = result; resetCalibration();
+    $('processing-progress').value = 100; $('progress-count').textContent = '100 %';
+    renderResult(); $('example-scene').hidden = true; $('canvas-wrap').hidden = false;
+    $('empty-frames').hidden = true; $('frame-strip').hidden = false; $('frame-strip').replaceChildren();
+    const fragment = document.createDocumentFragment();
+    result.thumbs.forEach((frame, i) => {
+      const button = document.createElement('button'); button.className = 'frame-item';
+      button.setAttribute('aria-label', `Einzelbild ${i + 1} bei ${number(frame.relativeTime, 3)} Sekunden im Video ansehen`);
+      const img = document.createElement('img'); img.src = frame.url; img.alt = `Position bei t = ${number(frame.relativeTime)} s`; img.loading = 'lazy';
+      const caption = document.createElement('span'); caption.textContent = `${number(frame.relativeTime)} s`;
+      const index = document.createElement('small'); index.textContent = String(i + 1).padStart(2, '0'); caption.append(index);
+      button.append(img, caption);
+      button.addEventListener('click', () => {
+        selectTab('video'); $('video-player').pause(); $('video-player').currentTime = frame.time;
+        document.querySelectorAll('.frame-item.selected').forEach(el => el.classList.remove('selected')); button.classList.add('selected');
+      });
+      fragment.append(button);
+    });
+    $('frame-strip').append(fragment); $('frames-count').textContent = `${plural(result.times.length).toUpperCase()} · Δt = ${number(1 / result.frequency, result.frequency > 20 ? 3 : 2)} s`;
+    setTag('Dein Ergebnis'); $('status-dot').classList.add('ready');
+    $('preview-status').textContent = `${plural(result.times.length)} zusammengeführt · ${result.width} × ${result.height} px`;
+    if (result.times.length < 2) toast('Nur ein Bild ausgewählt. Erhöhe die Frequenz für mehrere Positionen.');
+    else if (result.motionPixels < 20) toast('Kaum Bewegung erkannt. Probiere eine empfindlichere Bewegungserkennung.');
+    else toast('Dein Stroboskopbild ist fertig.');
+  } catch (err) {
+    if (err.name === 'AbortError') toast('Verarbeitung abgebrochen.');
+    else error(err.message || 'Das Bild konnte nicht erstellt werden. Bitte versuche es mit einem kürzeren Video.');
+  } finally { state.controller = null; setBusy(false); }
+}
+
+function download() {
+  if (!state.result || state.busy) return;
+  $('result-canvas').toBlob(blob => {
+    if (!blob) { error('Das PNG konnte nicht gespeichert werden.'); return; }
+    const url = URL.createObjectURL(blob); const anchor = document.createElement('a');
+    anchor.href = url;
+    const base = state.name.replace(/\.[^.]+$/, '').replace(/[^\p{L}\p{N}_-]+/gu, '-').slice(0, 80) || 'video';
+    anchor.download = `${base}-strobo-${state.result.frequency}Hz.png`;
+    document.body.append(anchor); anchor.click(); anchor.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000);
+    toast('Dein Stroboskopbild wird als PNG gespeichert.');
+  }, 'image/png');
+}
+
+function drawMeasurement() {
+  const result = state.result; if (!result) return;
+  const canvas = $('measure-canvas'); canvas.width = result.width; canvas.height = result.height;
+  const ctx = canvas.getContext('2d'); ctx.putImageData(new ImageData(result.data, result.width, result.height), 0, 0);
+  const radius = Math.max(4, result.width / 180);
+  ctx.lineWidth = Math.max(2, result.width / 500); ctx.strokeStyle = '#da6747'; ctx.fillStyle = '#da6747';
+  if (state.points.length === 2) {
+    const [a, b] = state.points;
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+    const pixels = Math.hypot(b.x - a.x, b.y - a.y);
+    state.measurement = pixels;
+    $('measurement-value').textContent = state.scale ? `${number(pixels * state.scale)} cm` : `${number(pixels, 1)} px`;
+  } else {
+    state.measurement = null;
+    $('measurement-value').textContent = state.points.length ? 'Jetzt den zweiten Punkt wählen' : 'Zwei Punkte auswählen';
+  }
+  state.points.forEach((point, i) => {
+    ctx.beginPath(); ctx.arc(point.x, point.y, radius, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke(); ctx.strokeStyle = '#da6747';
+    ctx.fillStyle = '#da6747'; ctx.font = `600 ${Math.max(13, result.width / 55)}px sans-serif`; ctx.fillText(String(i + 1), point.x + radius + 6, point.y - radius - 3);
+  });
+  $('calibrate-button').disabled = !state.measurement || !($('known-distance').valueAsNumber > 0);
+}
+
+$('dropzone').addEventListener('click', () => $('file-input').click());
+$('file-input').addEventListener('change', event => { if (event.target.files[0]) loadVideo(event.target.files[0]); });
+for (const event of ['dragenter', 'dragover']) $('dropzone').addEventListener(event, e => { e.preventDefault(); if (!state.busy) $('dropzone').classList.add('dragover'); });
+for (const event of ['dragleave', 'drop']) $('dropzone').addEventListener(event, e => { e.preventDefault(); $('dropzone').classList.remove('dragover'); });
+$('dropzone').addEventListener('drop', e => { const file = e.dataTransfer.files[0]; if (file && !state.busy) loadVideo(file); });
+// Prevent a dropped video from navigating away from the experiment.
+window.addEventListener('dragover', e => e.preventDefault()); window.addEventListener('drop', e => e.preventDefault());
+$('remove-video').addEventListener('click', clearVideo);
+$('demo-button').addEventListener('click', async () => {
+  if (state.busy) return;
+  const button = $('demo-button'); button.disabled = true;
+  try {
+    const embedded = $('embedded-demo');
+    let data;
+    if (embedded) {
+      data = Uint8Array.from(atob(embedded.textContent.trim()), char => char.charCodeAt(0));
+    } else {
+      const response = await fetch('/assets/freier-fall.webm');
+      if (!response.ok) throw new Error('Das Beispielvideo konnte nicht geladen werden.');
+      data = await response.blob();
+    }
+    await loadVideo(new File([data], 'Freier-Fall.webm', { type: 'video/webm' }), { demo: true });
+  } catch (err) { error(err.message); } finally { button.disabled = state.busy; }
+});
+for (const id of ['frequency', 'start-time', 'end-time', 'sensitivity']) $(id).addEventListener('input', () => { error(); updateControls(); });
+$('sensitivity').addEventListener('input', () => { const n = $('sensitivity').valueAsNumber; $('sensitivity-value').textContent = n < 18 ? 'Empfindlich' : n > 40 ? 'Weniger Rauschen' : 'Normal'; });
+document.querySelectorAll('[data-frequency]').forEach(button => button.addEventListener('click', () => { $('frequency').value = button.dataset.frequency; error(); updateControls(); }));
+for (const id of ['time-labels', 'grid-overlay']) $(id).addEventListener('change', renderResult);
+$('create-button').addEventListener('click', createResult);
+$('cancel-button').addEventListener('click', () => state.controller?.abort());
+$('download-button').addEventListener('click', download);
+$('result-tab').addEventListener('click', () => selectTab('result')); $('video-tab').addEventListener('click', () => selectTab('video'));
+document.querySelector('.preview-tabs').addEventListener('keydown', e => { if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); const next = $('result-view').hidden ? 'result' : 'video'; selectTab(next); $(`${next}-tab`).focus(); } });
+for (const id of ['help-button', 'frequency-help']) $(id).addEventListener('click', () => $('help-dialog').showModal());
+document.querySelectorAll('[data-close-dialog]').forEach(button => button.addEventListener('click', () => button.closest('dialog').close()));
+document.querySelectorAll('dialog').forEach(dialog => dialog.addEventListener('click', event => { if (event.target === dialog) { const r = dialog.getBoundingClientRect(); if (event.clientX < r.left || event.clientX > r.right || event.clientY < r.top || event.clientY > r.bottom) dialog.close(); } }));
+$('fullscreen-button').addEventListener('click', async () => {
+  const area = $('visual-area');
+  if (document.fullscreenElement) { await document.exitFullscreen(); return; }
+  if (!area.requestFullscreen) { toast('Vergrößere die Ansicht mit der Zoomfunktion deines Browsers.'); return; }
+  try { await area.requestFullscreen(); } catch { toast('Der Browser konnte die Vollbildansicht nicht öffnen.'); }
+});
+document.addEventListener('fullscreenchange', () => $('visual-area').classList.toggle('fullscreen-view', document.fullscreenElement === $('visual-area')));
+$('measure-button').addEventListener('click', () => { if (!state.result) return; state.points = []; drawMeasurement(); $('measure-dialog').showModal(); });
+$('measure-canvas').addEventListener('click', e => {
+  const canvas = $('measure-canvas'); const rect = canvas.getBoundingClientRect();
+  if (state.points.length === 2) state.points = [];
+  state.points.push({ x: (e.clientX - rect.left) * canvas.width / rect.width, y: (e.clientY - rect.top) * canvas.height / rect.height });
+  drawMeasurement();
+});
+$('reset-measurement').addEventListener('click', () => { state.points = []; drawMeasurement(); });
+$('known-distance').addEventListener('input', () => { $('calibrate-button').disabled = !state.measurement || !($('known-distance').valueAsNumber > 0); });
+$('calibrate-button').addEventListener('click', () => {
+  const distance = $('known-distance').valueAsNumber;
+  if (!state.measurement || !(distance > 0) || !Number.isFinite(distance)) return;
+  state.scale = distance / state.measurement;
+  $('calibration-note').textContent = `Maßstab festgelegt: 1 Pixel = ${number(state.scale, 4)} cm. Wähle jetzt eine neue Strecke. Der Maßstab gilt für dieses Ergebnis.`;
+  state.points = []; drawMeasurement(); toast('Maßstab gespeichert. Weitere Strecken werden in cm angezeigt.');
+});
+window.addEventListener('pagehide', () => { state.controller?.abort(); state.loadController?.abort(); if (state.url) URL.revokeObjectURL(state.url); });
+selectTab('result'); updateControls();
+
+})();
+</script>
+</body>
+</html>
