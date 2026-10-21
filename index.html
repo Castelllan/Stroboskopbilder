@@ -1101,6 +1101,8 @@ dialog::backdrop {
 }
 .measurement-controls {
   display:flex;
+  flex-wrap:wrap;
+  gap:12px;
   align-items:center;
   justify-content:space-between;
   margin:15px 0;
@@ -1113,10 +1115,90 @@ dialog::backdrop {
   color:#8e9a80;
   margin-bottom:7px
 }
+.measurement-controls>div {
+  min-width:0;
+  max-width:100%
+}
 .measurement-controls strong {
+  overflow-wrap:anywhere;
   font-size:17px;
   color:#48683c;
   font-weight:500
+}
+#calibration-note {
+  overflow-wrap:anywhere
+}
+.measurement-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px
+}
+.measurement-list {
+  list-style:none;
+  padding:0;
+  margin:0 0 18px;
+  max-height:150px;
+  overflow:auto
+}
+.measurement-list li {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:6px
+}
+.measurement-list li[data-visible="false"] .measurement-name,
+.measurement-list li[data-visible="false"] .measurement-select {
+  color:#8a977c;
+  background:#f3f5ef
+}
+.measurement-visibility[aria-pressed="false"] {
+  background:#eef1e8;
+  color:#8a977c
+}
+.measurement-select {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex:0 0 auto;
+  min-width:0;
+  padding:9px 12px;
+  text-align:left;
+  font-size:12px;
+  color:var(--green);
+  background:#fff;
+  border:1px solid #d8e1cd;
+  border-radius:5px
+}
+.measurement-name {
+  flex:1;
+  min-width:0;
+  width:100%;
+  padding:9px 10px;
+  font:inherit;
+  font-size:12px;
+  color:var(--green);
+  background:#fff;
+  border:1px solid #d8e1cd;
+  border-radius:5px
+}
+.measurement-select[aria-pressed="true"] {
+  background:#edf4e2;
+  border-color:#64804c
+}
+.measurement-swatch {
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  flex-shrink:0;
+  background:var(--measurement-color)
+}
+.measurement-select strong {
+  margin-left:auto;
+  white-space:nowrap
+}
+.measurement-actions button:disabled {
+  opacity:.4;
+  cursor:default
 }
 .calibration {
   display:flex;
@@ -1469,6 +1551,17 @@ dialog::backdrop {
     font-size:14px
   }
 }
+@media(max-width:480px) {
+  .measurement-list li {
+    flex-wrap:wrap
+  }
+  .measurement-name {
+    flex-basis:100%
+  }
+  .measurement-select {
+    flex:1
+  }
+}
 @media(prefers-reduced-motion:reduce) {
   *,*:before,*:after {
     animation-duration:.01ms!important;
@@ -1579,6 +1672,8 @@ dialog::backdrop {
       <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
       <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
       <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="m3 3 18 18M10.6 5.1 12 5c6.5 0 10 7 10 7a19 19 0 0 1-3.1 4M6.1 6.1A20 20 0 0 0 2 12s3.5 7 10 7c1.8 0 3.4-.5 4.8-1.2M10 10a3 3 0 0 0 4 4"/></symbol>
       <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></symbol>
       <symbol id="i-ruler" viewBox="0 0 24 24"><path d="m3 16 13-13 5 5L8 21l-5-5Zm6-6 2 2m2-6 2 2m-9 6 2 2"/></symbol>
       <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
@@ -1643,7 +1738,18 @@ dialog::backdrop {
 
   <dialog id="help-dialog" class="help-dialog"><div class="dialog-heading"><span class="eyebrow">DEIN KLEINES PHYSIKLABOR</span><button class="icon-button" data-close-dialog aria-label="Hilfe schließen"><svg class="icon"><use href="#i-close"/></svg></button></div><h2>Bewegung verstehen.<br>In drei einfachen Schritten.</h2><ol class="help-steps"><li><span>01</span><div><h3>Video auswählen</h3><p>Filme den fallenden Ball mit feststehender Kamera. Ein ruhiger Hintergrund und ein mitgefilmtes Lineal machen das Ergebnis leichter messbar.</p></div></li><li><span>02</span><div><h3>Frequenz festlegen</h3><p>10 Hz bedeutet zehn Bilder pro Sekunde. Die Zeit zwischen zwei Bildern beträgt Δt = 1 / f, also 0,1 s. Wähle bei Bedarf nur den Abschnitt des Falls aus.</p></div></li><li><span>03</span><div><h3>Erstellen, messen, entdecken</h3><p>Das Programm legt die bewegten Bildbereiche übereinander. Lade das Ergebnis als PNG herunter oder miss direkt im Bild mit dem Lineal-Werkzeug.</p></div></li></ol><div class="physics-note"><svg class="icon"><use href="#i-flask"/></svg><div><strong>Ein Experiment. Viele Erkenntnisse.</strong><p>Bestimme die mittlere Geschwindigkeit v = Δs / Δt für aufeinanderfolgende Intervalle. Aus ihrer Änderung folgt a ≈ Δv / Δt. Beim freien Fall aus der Ruhe gilt s = ½ g t² mit g ≈ 9,81 m/s².</p></div></div><p class="help-footnote">Die Genauigkeit hängt von Bildrate, Perspektive und Belichtungszeit ab. Bei Zeitlupenvideos beziehen sich Zeitangaben auf die Wiedergabe; für die reale Zeit ist der Zeitlupenfaktor nötig. Frequenzen oberhalb der Aufnahmebildrate können dieselben Videobilder mehrfach auswählen.</p><button class="primary-button" data-close-dialog>Los geht’s<svg class="icon"><use href="#i-arrow"/></svg></button></dialog>
 
-  <dialog id="measure-dialog" class="measure-dialog"><div class="dialog-heading"><h2>Strecke messen</h2><button class="icon-button" data-close-dialog aria-label="Messwerkzeug schließen"><svg class="icon"><use href="#i-close"/></svg></button></div><p>Klicke im Bild auf den Anfang und das Ende einer Strecke.</p><div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: zwei Punkte anklicken" tabindex="0"></canvas></div><div class="measurement-controls"><div><span>Gemessene Strecke</span><strong id="measurement-value">Zwei Punkte auswählen</strong></div><button class="text-button" id="reset-measurement">Neu messen</button></div><div class="calibration"><label for="known-distance">Diese Referenzstrecke entspricht<input id="known-distance" type="number" min="0.01" step="0.1" placeholder="z. B. 100"><span>cm</span></label><button class="secondary-button" id="calibrate-button" disabled>Als Maßstab verwenden</button></div><p id="calibration-note" class="setting-note">Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden weitere Strecken in Zentimetern angezeigt.</p></dialog>
+  <dialog id="measure-dialog" class="measure-dialog">
+    <div class="dialog-heading"><h2>Strecken messen</h2><button class="icon-button" data-close-dialog aria-label="Messwerkzeug schließen"><svg class="icon"><use href="#i-close"/></svg></button></div>
+    <p>Klicke je Strecke auf Anfang und Ende. Den Namen kannst du direkt in der Liste ändern. Über das Auge kannst du Strecken aus- und einblenden. Klicke auf den Messwert, um eine Strecke als Maßstab auszuwählen.</p>
+    <div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: je Strecke zwei Punkte anklicken" tabindex="0"></canvas></div>
+    <div class="measurement-controls">
+      <div><span>Ausgewählte Strecke</span><strong id="measurement-value" role="status">Zwei Punkte auswählen</strong></div>
+      <div class="measurement-actions"><button class="text-button" id="reset-measurement">Neue Strecke</button><button class="text-button" id="clear-measurements" disabled>Alle löschen</button></div>
+    </div>
+    <ul id="measurement-list" class="measurement-list" aria-label="Gemessene Strecken" hidden></ul>
+    <div class="calibration"><label for="known-distance">Ausgewählte Referenzstrecke entspricht<input id="known-distance" type="number" min="0.01" step="0.1" placeholder="z. B. 100"><span>cm</span></label><button class="secondary-button" id="calibrate-button" disabled>Als Maßstab verwenden</button></div>
+    <p id="calibration-note" class="setting-note">Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.</p>
+  </dialog>
   <div class="toast" id="toast" role="status" hidden></div>
 <script>
 (() => {
@@ -1835,7 +1941,7 @@ function decorateResult(canvas, result, { grid = false, timeline = true } = {}) 
 
 const $ = id => document.getElementById(id);
 if ($('browser-warning')) $('browser-warning').hidden = true;
-const state = { url: null, name: '', duration: 0, width: 0, height: 0, result: null, busy: false, loading: false, controller: null, loadController: null, loadId: 0, scale: null, points: [], measurement: null };
+const state = { url: null, name: '', duration: 0, width: 0, height: 0, result: null, busy: false, loading: false, controller: null, loadController: null, loadId: 0, scale: null, calibrationReferenceId: null, points: [], measurements: [], selectedMeasurementId: null, nextMeasurementId: 1 };
 const number = (value, digits = 2) => value.toLocaleString('de-DE', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const plural = count => `${count} ${count === 1 ? 'Bild' : 'Bilder'}`;
 let toastTimer;
@@ -1893,9 +1999,11 @@ function resetResult() {
 }
 
 function resetCalibration() {
-  state.scale = null; state.points = []; state.measurement = null;
+  state.scale = null; state.calibrationReferenceId = null; state.points = []; state.measurements = []; state.selectedMeasurementId = null; state.nextMeasurementId = 1;
+  $('measurement-list').replaceChildren(); $('measurement-list').hidden = true;
+  $('measurement-value').textContent = 'Zwei Punkte auswählen'; $('clear-measurements').disabled = true;
   $('known-distance').value = '';
-  $('calibration-note').textContent = 'Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden weitere Strecken in Zentimetern angezeigt.';
+  $('calibration-note').textContent = 'Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.';
   $('calibrate-button').disabled = true;
 }
 
@@ -1955,6 +2063,7 @@ function setBusy(busy) {
 function renderResult() {
   if (!state.result) return;
   decorateResult($('result-canvas'), state.result, { grid: $('grid-overlay').checked, timeline: $('time-labels').checked });
+  drawMeasurementOverlays($('result-canvas').getContext('2d'));
 }
 
 async function createResult() {
@@ -2012,28 +2121,128 @@ function download() {
   }, 'image/png');
 }
 
-function drawMeasurement() {
+function measurementColor(id) {
+  const colors = ['#d45132', '#2563eb', '#15803d', '#9333ea', '#b45309', '#0e7490', '#be185d', '#4f46e5'];
+  return colors[id - 1] || `hsl(${((id - 1) * 137.508) % 360}, 70%, 38%)`;
+}
+
+function measurementLabel(measurement) {
+  return state.scale ? `${number(measurement.pixels * state.scale)} cm` : `${number(measurement.pixels, 1)} px`;
+}
+
+function selectedMeasurement() {
+  return state.measurements.find(measurement => measurement.id === state.selectedMeasurementId);
+}
+
+function updateCalibrationButton() {
+  const distance = $('known-distance').valueAsNumber;
+  $('calibrate-button').disabled = !selectedMeasurement() || !(distance > 0) || !Number.isFinite(distance);
+}
+
+function updateCalibrationNote() {
+  if (!state.scale) return;
+  const reference = state.measurements.find(measurement => measurement.id === state.calibrationReferenceId);
+  const description = reference ? `${reference.name} entspricht ${measurementLabel(reference)}` : `1 Pixel = ${number(state.scale, 4)} cm`;
+  $('calibration-note').textContent = `Maßstab festgelegt: ${description}. Alle Messungen verwenden diesen Maßstab. Er gilt für dieses Ergebnis.`;
+}
+
+function drawMeasurementOverlays(ctx, includeDraft = false) {
+  const { width, height } = state.result;
+  const radius = Math.max(4, width / 180);
+  const lineWidth = Math.max(2, width / 500);
+  const displayScale = ctx.canvas.getBoundingClientRect().width / width || 1;
+  const fontSize = Math.max(14, width / 55, 12 / displayScale);
+  ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  const drawPoint = (point, color) => {
+    ctx.beginPath(); ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
+    ctx.fillStyle = color; ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+  };
+  state.measurements.forEach(measurement => {
+    if (measurement.visible === false) return;
+    const [a, b] = measurement.points;
+    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = lineWidth + 2; ctx.stroke();
+    ctx.strokeStyle = measurement.color; ctx.lineWidth = lineWidth; ctx.stroke();
+    measurement.points.forEach(point => drawPoint(point, measurement.color));
+
+    const label = `${measurement.name} · ${measurementLabel(measurement)}`;
+    ctx.font = `600 ${fontSize}px sans-serif`; ctx.textBaseline = 'middle';
+    const padding = fontSize * 0.4;
+    const labelWidth = Math.max(1, Math.min(width - 4, ctx.measureText(label).width + padding * 2));
+    const labelHeight = fontSize + padding * 2;
+    const normalX = -(b.y - a.y) / measurement.pixels;
+    const normalY = (b.x - a.x) / measurement.pixels;
+    const offset = Math.abs(normalX) * labelWidth / 2 + Math.abs(normalY) * labelHeight / 2 + radius + 3;
+    const midX = (a.x + b.x) / 2 + normalX * offset;
+    const midY = (a.y + b.y) / 2 + normalY * offset;
+    const x = Math.max(2, Math.min(width - labelWidth - 2, midX - labelWidth / 2));
+    const y = Math.max(2, Math.min(height - labelHeight - 2, midY - labelHeight / 2));
+    ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.fillRect(x, y, labelWidth, labelHeight);
+    ctx.strokeStyle = measurement.color; ctx.lineWidth = 1.5; ctx.strokeRect(x, y, labelWidth, labelHeight);
+    ctx.fillStyle = measurement.color; ctx.fillText(label, x + padding, y + labelHeight / 2, Math.max(1, labelWidth - padding * 2));
+  });
+  if (includeDraft) state.points.forEach(point => drawPoint(point, measurementColor(state.nextMeasurementId)));
+  ctx.restore();
+}
+
+function renderMeasurementImage() {
   const result = state.result; if (!result) return;
   const canvas = $('measure-canvas'); canvas.width = result.width; canvas.height = result.height;
   const ctx = canvas.getContext('2d'); ctx.putImageData(new ImageData(result.data, result.width, result.height), 0, 0);
-  const radius = Math.max(4, result.width / 180);
-  ctx.lineWidth = Math.max(2, result.width / 500); ctx.strokeStyle = '#da6747'; ctx.fillStyle = '#da6747';
-  if (state.points.length === 2) {
-    const [a, b] = state.points;
-    ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
-    const pixels = Math.hypot(b.x - a.x, b.y - a.y);
-    state.measurement = pixels;
-    $('measurement-value').textContent = state.scale ? `${number(pixels * state.scale)} cm` : `${number(pixels, 1)} px`;
-  } else {
-    state.measurement = null;
-    $('measurement-value').textContent = state.points.length ? 'Jetzt den zweiten Punkt wählen' : 'Zwei Punkte auswählen';
-  }
-  state.points.forEach((point, i) => {
-    ctx.beginPath(); ctx.arc(point.x, point.y, radius, 0, Math.PI * 2); ctx.fill();
-    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke(); ctx.strokeStyle = '#da6747';
-    ctx.fillStyle = '#da6747'; ctx.font = `600 ${Math.max(13, result.width / 55)}px sans-serif`; ctx.fillText(String(i + 1), point.x + radius + 6, point.y - radius - 3);
+  drawMeasurementOverlays(ctx, true);
+}
+
+function drawMeasurement() {
+  if (!state.result) return;
+  renderMeasurementImage();
+  const selected = selectedMeasurement();
+  $('measurement-value').textContent = state.points.length ? 'Jetzt den zweiten Punkt wählen' : selected ? `${selected.name} · ${measurementLabel(selected)}` : 'Zwei Punkte auswählen';
+  $('clear-measurements').disabled = !state.measurements.length && !state.points.length;
+  const list = $('measurement-list'); list.replaceChildren(); list.hidden = !state.measurements.length;
+  state.measurements.forEach(measurement => {
+    const item = document.createElement('li');
+    const select = document.createElement('button'); select.className = 'measurement-select'; select.type = 'button';
+    select.setAttribute('aria-pressed', String(measurement.id === state.selectedMeasurementId));
+    const swatch = document.createElement('span'); swatch.className = 'measurement-swatch'; swatch.style.setProperty('--measurement-color', measurement.color);
+    const name = document.createElement('input'); name.type = 'text'; name.className = 'measurement-name'; name.value = measurement.name; name.maxLength = 40;
+    name.setAttribute('aria-label', `Name für Strecke ${measurement.id}`); name.title = 'Strecke umbenennen';
+    const value = document.createElement('strong'); value.textContent = measurementLabel(measurement);
+    select.append(swatch, value);
+    select.addEventListener('click', () => { state.points = []; state.selectedMeasurementId = measurement.id; drawMeasurement(); });
+    const visibility = document.createElement('button'); visibility.className = 'icon-button measurement-visibility'; visibility.type = 'button';
+    const remove = document.createElement('button'); remove.className = 'icon-button'; remove.type = 'button';
+    const updateNames = () => {
+      select.setAttribute('aria-label', `${measurement.name} auswählen: ${measurementLabel(measurement)}`);
+      const visible = measurement.visible !== false;
+      item.dataset.visible = String(visible);
+      visibility.setAttribute('aria-pressed', String(visible));
+      const visibilityLabel = `${measurement.name} ${visible ? 'ausblenden' : 'einblenden'}`;
+      visibility.setAttribute('aria-label', visibilityLabel); visibility.title = visibilityLabel;
+      visibility.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#${visible ? 'i-eye' : 'i-eye-off'}"/></svg>`;
+      remove.setAttribute('aria-label', `${measurement.name} löschen`); remove.title = `${measurement.name} löschen`;
+    };
+    updateNames();
+    visibility.addEventListener('click', () => {
+      measurement.visible = measurement.visible === false;
+      updateNames(); renderMeasurementImage(); renderResult();
+    });
+    name.addEventListener('input', () => {
+      measurement.name = name.value.trim() || `Strecke ${measurement.id}`;
+      updateNames(); updateCalibrationNote();
+      if (measurement.id === state.selectedMeasurementId) $('measurement-value').textContent = `${measurement.name} · ${measurementLabel(measurement)}`;
+      renderMeasurementImage(); renderResult();
+    });
+    name.addEventListener('blur', () => { name.value = measurement.name; });
+    name.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); name.blur(); } });
+    remove.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>';
+    remove.addEventListener('click', () => {
+      state.measurements = state.measurements.filter(entry => entry.id !== measurement.id);
+      if (state.selectedMeasurementId === measurement.id) state.selectedMeasurementId = null;
+      drawMeasurement(); renderResult();
+    });
+    item.append(name, select, visibility, remove); list.append(item);
   });
-  $('calibrate-button').disabled = !state.measurement || !($('known-distance').valueAsNumber > 0);
+  updateCalibrationButton(); updateCalibrationNote();
 }
 
 $('dropzone').addEventListener('click', () => $('file-input').click());
@@ -2063,21 +2272,43 @@ $('fullscreen-button').addEventListener('click', async () => {
   try { await area.requestFullscreen(); } catch { toast('Der Browser konnte die Vollbildansicht nicht öffnen.'); }
 });
 document.addEventListener('fullscreenchange', () => $('visual-area').classList.toggle('fullscreen-view', document.fullscreenElement === $('visual-area')));
-$('measure-button').addEventListener('click', () => { if (!state.result) return; state.points = []; drawMeasurement(); $('measure-dialog').showModal(); });
+$('measure-button').addEventListener('click', () => { if (!state.result) return; $('measure-dialog').showModal(); drawMeasurement(); });
 $('measure-canvas').addEventListener('click', e => {
+  if (!state.result) return;
   const canvas = $('measure-canvas'); const rect = canvas.getBoundingClientRect();
-  if (state.points.length === 2) state.points = [];
+  state.selectedMeasurementId = null;
   state.points.push({ x: (e.clientX - rect.left) * canvas.width / rect.width, y: (e.clientY - rect.top) * canvas.height / rect.height });
-  drawMeasurement();
+  if (state.points.length === 2) {
+    const [a, b] = state.points;
+    const pixels = Math.hypot(b.x - a.x, b.y - a.y);
+    if (pixels > 0) {
+      const id = state.nextMeasurementId++;
+      state.measurements.push({ id, name: `Strecke ${id}`, visible: true, points: state.points, pixels, color: measurementColor(id) });
+      state.selectedMeasurementId = id;
+    } else {
+      toast('Wähle zwei unterschiedliche Punkte für eine Strecke.');
+    }
+    state.points = [];
+  }
+  drawMeasurement(); renderResult();
 });
-$('reset-measurement').addEventListener('click', () => { state.points = []; drawMeasurement(); });
-$('known-distance').addEventListener('input', () => { $('calibrate-button').disabled = !state.measurement || !($('known-distance').valueAsNumber > 0); });
+$('reset-measurement').addEventListener('click', () => { state.points = []; state.selectedMeasurementId = null; drawMeasurement(); });
+$('clear-measurements').addEventListener('click', () => {
+  state.points = []; state.measurements = []; state.selectedMeasurementId = null;
+  drawMeasurement(); renderResult();
+});
+$('known-distance').addEventListener('input', updateCalibrationButton);
 $('calibrate-button').addEventListener('click', () => {
   const distance = $('known-distance').valueAsNumber;
-  if (!state.measurement || !(distance > 0) || !Number.isFinite(distance)) return;
-  state.scale = distance / state.measurement;
-  $('calibration-note').textContent = `Maßstab festgelegt: 1 Pixel = ${number(state.scale, 4)} cm. Wähle jetzt eine neue Strecke. Der Maßstab gilt für dieses Ergebnis.`;
-  state.points = []; drawMeasurement(); toast('Maßstab gespeichert. Weitere Strecken werden in cm angezeigt.');
+  const reference = selectedMeasurement();
+  if (!reference || !(distance > 0) || !Number.isFinite(distance)) return;
+  state.scale = distance / reference.pixels;
+  state.calibrationReferenceId = reference.id;
+  state.points = []; drawMeasurement(); renderResult(); toast('Maßstab gespeichert. Alle Strecken werden in cm angezeigt.');
+});
+window.addEventListener('resize', () => {
+  renderResult();
+  if ($('measure-dialog').open) drawMeasurement();
 });
 window.addEventListener('pagehide', () => { state.controller?.abort(); state.loadController?.abort(); if (state.url) URL.revokeObjectURL(state.url); });
 selectTab('result'); updateControls();
