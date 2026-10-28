@@ -1097,6 +1097,7 @@ dialog::backdrop {
   max-height:47vh;
   object-fit:contain;
   cursor:crosshair;
+  touch-action:none;
   margin:auto
 }
 .measurement-controls {
@@ -1142,9 +1143,26 @@ dialog::backdrop {
 }
 .measurement-list li {
   display:flex;
+  flex-wrap:wrap;
   align-items:center;
   gap:8px;
   margin-top:6px
+}
+.measurement-label-controls {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:12px;
+  flex-basis:100%;
+  padding:0 0 8px;
+  font-size:11px;
+  color:var(--green)
+}
+.measurement-label-controls label {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer
 }
 .measurement-list li[data-visible="false"] .measurement-name,
 .measurement-list li[data-visible="false"] .measurement-select {
@@ -1740,8 +1758,8 @@ dialog::backdrop {
 
   <dialog id="measure-dialog" class="measure-dialog">
     <div class="dialog-heading"><h2>Strecken messen</h2><button class="icon-button" data-close-dialog aria-label="Messwerkzeug schließen"><svg class="icon"><use href="#i-close"/></svg></button></div>
-    <p>Klicke je Strecke auf Anfang und Ende. Den Namen kannst du direkt in der Liste ändern. Über das Auge kannst du Strecken aus- und einblenden. Klicke auf den Messwert, um eine Strecke als Maßstab auszuwählen.</p>
-    <div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: je Strecke zwei Punkte anklicken" tabindex="0"></canvas></div>
+    <p>Klicke je Strecke auf Anfang und Ende. Den Namen kannst du direkt in der Liste ändern. Über das Auge kannst du Strecken aus- und einblenden. Mit „Länge anzeigen“ blendest du nur den Messwert im Bild aus. Ziehe eine Beschriftung im Bild mit gedrückter Maustaste nach oben oder unten. Klicke auf den Messwert, um eine Strecke als Maßstab auszuwählen.</p>
+    <div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: je Strecke zwei Punkte anklicken; Beschriftungen zum Verschieben nach oben oder unten ziehen" tabindex="0"></canvas></div>
     <div class="measurement-controls">
       <div><span>Ausgewählte Strecke</span><strong id="measurement-value" role="status">Zwei Punkte auswählen</strong></div>
       <div class="measurement-actions"><button class="text-button" id="reset-measurement">Neue Strecke</button><button class="text-button" id="clear-measurements" disabled>Alle löschen</button></div>
@@ -2130,6 +2148,32 @@ function measurementLabel(measurement) {
   return state.scale ? `${number(measurement.pixels * state.scale)} cm` : `${number(measurement.pixels, 1)} px`;
 }
 
+function measurementCaption(measurement) {
+  return measurement.showLength === false ? measurement.name : `${measurement.name} = ${measurementLabel(measurement)}`;
+}
+
+function measurementCaptionLayout(ctx, measurement) {
+  const { width, height } = state.result;
+  const [a, b] = measurement.points;
+  const radius = Math.max(4, width / 180);
+  const displayScale = ctx.canvas.getBoundingClientRect().width / width || 1;
+  const fontSize = Math.max(14, width / 55, 12 / displayScale);
+  const label = measurementCaption(measurement);
+  ctx.font = `600 ${fontSize}px sans-serif`;
+  const padding = fontSize * 0.4;
+  const labelWidth = Math.max(1, Math.min(width - 4, ctx.measureText(label).width + padding * 2));
+  const labelHeight = fontSize + padding * 2;
+  const normalX = -(b.y - a.y) / measurement.pixels;
+  const normalY = (b.x - a.x) / measurement.pixels;
+  const offset = Math.abs(normalX) * labelWidth / 2 + Math.abs(normalY) * labelHeight / 2 + radius + 3;
+  const midX = (a.x + b.x) / 2 + normalX * offset;
+  const baseY = (a.y + b.y) / 2 + normalY * offset - labelHeight / 2;
+  const maxY = Math.max(2, height - labelHeight - 2);
+  const x = Math.max(2, Math.min(width - labelWidth - 2, midX - labelWidth / 2));
+  const y = Math.max(2, Math.min(maxY, baseY + (measurement.labelOffsetY || 0) * height));
+  return { label, padding, labelWidth, labelHeight, x, y, baseY, maxY };
+}
+
 function selectedMeasurement() {
   return state.measurements.find(measurement => measurement.id === state.selectedMeasurementId);
 }
@@ -2150,8 +2194,6 @@ function drawMeasurementOverlays(ctx, includeDraft = false) {
   const { width, height } = state.result;
   const radius = Math.max(4, width / 180);
   const lineWidth = Math.max(2, width / 500);
-  const displayScale = ctx.canvas.getBoundingClientRect().width / width || 1;
-  const fontSize = Math.max(14, width / 55, 12 / displayScale);
   ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   const drawPoint = (point, color) => {
     ctx.beginPath(); ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
@@ -2165,18 +2207,8 @@ function drawMeasurementOverlays(ctx, includeDraft = false) {
     ctx.strokeStyle = measurement.color; ctx.lineWidth = lineWidth; ctx.stroke();
     measurement.points.forEach(point => drawPoint(point, measurement.color));
 
-    const label = `${measurement.name} · ${measurementLabel(measurement)}`;
-    ctx.font = `600 ${fontSize}px sans-serif`; ctx.textBaseline = 'middle';
-    const padding = fontSize * 0.4;
-    const labelWidth = Math.max(1, Math.min(width - 4, ctx.measureText(label).width + padding * 2));
-    const labelHeight = fontSize + padding * 2;
-    const normalX = -(b.y - a.y) / measurement.pixels;
-    const normalY = (b.x - a.x) / measurement.pixels;
-    const offset = Math.abs(normalX) * labelWidth / 2 + Math.abs(normalY) * labelHeight / 2 + radius + 3;
-    const midX = (a.x + b.x) / 2 + normalX * offset;
-    const midY = (a.y + b.y) / 2 + normalY * offset;
-    const x = Math.max(2, Math.min(width - labelWidth - 2, midX - labelWidth / 2));
-    const y = Math.max(2, Math.min(height - labelHeight - 2, midY - labelHeight / 2));
+    const { label, padding, labelWidth, labelHeight, x, y } = measurementCaptionLayout(ctx, measurement);
+    ctx.textBaseline = 'middle';
     ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.fillRect(x, y, labelWidth, labelHeight);
     ctx.strokeStyle = measurement.color; ctx.lineWidth = 1.5; ctx.strokeRect(x, y, labelWidth, labelHeight);
     ctx.fillStyle = measurement.color; ctx.fillText(label, x + padding, y + labelHeight / 2, Math.max(1, labelWidth - padding * 2));
@@ -2196,7 +2228,7 @@ function drawMeasurement() {
   if (!state.result) return;
   renderMeasurementImage();
   const selected = selectedMeasurement();
-  $('measurement-value').textContent = state.points.length ? 'Jetzt den zweiten Punkt wählen' : selected ? `${selected.name} · ${measurementLabel(selected)}` : 'Zwei Punkte auswählen';
+  $('measurement-value').textContent = state.points.length ? 'Jetzt den zweiten Punkt wählen' : selected ? `${selected.name} = ${measurementLabel(selected)}` : 'Zwei Punkte auswählen';
   $('clear-measurements').disabled = !state.measurements.length && !state.points.length;
   const list = $('measurement-list'); list.replaceChildren(); list.hidden = !state.measurements.length;
   state.measurements.forEach(measurement => {
@@ -2211,7 +2243,17 @@ function drawMeasurement() {
     select.addEventListener('click', () => { state.points = []; state.selectedMeasurementId = measurement.id; drawMeasurement(); });
     const visibility = document.createElement('button'); visibility.className = 'icon-button measurement-visibility'; visibility.type = 'button';
     const remove = document.createElement('button'); remove.className = 'icon-button'; remove.type = 'button';
+    const labelControls = document.createElement('div'); labelControls.className = 'measurement-label-controls';
+    const lengthLabel = document.createElement('label');
+    const showLength = document.createElement('input'); showLength.type = 'checkbox'; showLength.checked = measurement.showLength !== false;
+    lengthLabel.append(showLength, document.createTextNode('Länge anzeigen'));
+    showLength.addEventListener('change', () => {
+      measurement.showLength = showLength.checked;
+      renderMeasurementImage(); renderResult();
+    });
+    labelControls.append(lengthLabel);
     const updateNames = () => {
+      showLength.setAttribute('aria-label', `Länge von ${measurement.name} im Bild anzeigen`);
       select.setAttribute('aria-label', `${measurement.name} auswählen: ${measurementLabel(measurement)}`);
       const visible = measurement.visible !== false;
       item.dataset.visible = String(visible);
@@ -2229,7 +2271,7 @@ function drawMeasurement() {
     name.addEventListener('input', () => {
       measurement.name = name.value.trim() || `Strecke ${measurement.id}`;
       updateNames(); updateCalibrationNote();
-      if (measurement.id === state.selectedMeasurementId) $('measurement-value').textContent = `${measurement.name} · ${measurementLabel(measurement)}`;
+      if (measurement.id === state.selectedMeasurementId) $('measurement-value').textContent = `${measurement.name} = ${measurementLabel(measurement)}`;
       renderMeasurementImage(); renderResult();
     });
     name.addEventListener('blur', () => { name.value = measurement.name; });
@@ -2240,7 +2282,7 @@ function drawMeasurement() {
       if (state.selectedMeasurementId === measurement.id) state.selectedMeasurementId = null;
       drawMeasurement(); renderResult();
     });
-    item.append(name, select, visibility, remove); list.append(item);
+    item.append(name, select, visibility, remove, labelControls); list.append(item);
   });
   updateCalibrationButton(); updateCalibrationNote();
 }
@@ -2273,7 +2315,80 @@ $('fullscreen-button').addEventListener('click', async () => {
 });
 document.addEventListener('fullscreenchange', () => $('visual-area').classList.toggle('fullscreen-view', document.fullscreenElement === $('visual-area')));
 $('measure-button').addEventListener('click', () => { if (!state.result) return; $('measure-dialog').showModal(); drawMeasurement(); });
-$('measure-canvas').addEventListener('click', e => {
+const measureCanvas = $('measure-canvas');
+let captionDrag = null;
+let suppressMeasurementClick = false;
+
+function measurementPointerPosition(event) {
+  const rect = measureCanvas.getBoundingClientRect();
+  return {
+    x: (event.clientX - rect.left) * measureCanvas.width / rect.width,
+    y: (event.clientY - rect.top) * measureCanvas.height / rect.height
+  };
+}
+
+function measurementCaptionAt(point) {
+  if (!state.result) return null;
+  const ctx = measureCanvas.getContext('2d');
+  // The last label drawn is on top when labels overlap.
+  for (let i = state.measurements.length - 1; i >= 0; i--) {
+    const measurement = state.measurements[i];
+    if (measurement.visible === false) continue;
+    const layout = measurementCaptionLayout(ctx, measurement);
+    if (point.x >= layout.x && point.x <= layout.x + layout.labelWidth &&
+        point.y >= layout.y && point.y <= layout.y + layout.labelHeight) {
+      return { measurement, layout };
+    }
+  }
+  return null;
+}
+
+measureCanvas.addEventListener('pointerdown', event => {
+  if (event.button !== 0 || !event.isPrimary || captionDrag) return;
+  suppressMeasurementClick = false;
+  const point = measurementPointerPosition(event);
+  const hit = measurementCaptionAt(point);
+  if (!hit) return;
+  event.preventDefault();
+  suppressMeasurementClick = true;
+  captionDrag = { pointerId: event.pointerId, measurement: hit.measurement, grabY: point.y - hit.layout.y };
+  measureCanvas.setPointerCapture(event.pointerId);
+  measureCanvas.style.cursor = 'ns-resize';
+});
+
+measureCanvas.addEventListener('pointermove', event => {
+  const point = measurementPointerPosition(event);
+  if (!captionDrag) {
+    measureCanvas.style.cursor = measurementCaptionAt(point) ? 'ns-resize' : 'crosshair';
+    return;
+  }
+  if (event.pointerId !== captionDrag.pointerId) return;
+  event.preventDefault();
+  const { measurement, grabY } = captionDrag;
+  const { baseY, maxY } = measurementCaptionLayout(measureCanvas.getContext('2d'), measurement);
+  const y = Math.max(2, Math.min(maxY, point.y - grabY));
+  measurement.labelOffsetY = (y - baseY) / state.result.height;
+  renderMeasurementImage(); renderResult();
+});
+
+function endCaptionDrag(event) {
+  if (!captionDrag || event.pointerId !== captionDrag.pointerId) return;
+  captionDrag = null;
+  if (measureCanvas.hasPointerCapture(event.pointerId)) measureCanvas.releasePointerCapture(event.pointerId);
+  measureCanvas.style.cursor = 'crosshair';
+}
+for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
+  measureCanvas.addEventListener(type, endCaptionDrag);
+}
+measureCanvas.addEventListener('pointerleave', () => {
+  if (!captionDrag) measureCanvas.style.cursor = 'crosshair';
+});
+$('measure-dialog').addEventListener('close', () => {
+  if (captionDrag) endCaptionDrag({ pointerId: captionDrag.pointerId });
+});
+measureCanvas.addEventListener('click', e => {
+  if (suppressMeasurementClick) { suppressMeasurementClick = false; return; }
+  if (measurementCaptionAt(measurementPointerPosition(e))) return;
   if (!state.result) return;
   const canvas = $('measure-canvas'); const rect = canvas.getBoundingClientRect();
   state.selectedMeasurementId = null;
@@ -2283,7 +2398,7 @@ $('measure-canvas').addEventListener('click', e => {
     const pixels = Math.hypot(b.x - a.x, b.y - a.y);
     if (pixels > 0) {
       const id = state.nextMeasurementId++;
-      state.measurements.push({ id, name: `Strecke ${id}`, visible: true, points: state.points, pixels, color: measurementColor(id) });
+      state.measurements.push({ id, name: `Strecke ${id}`, visible: true, showLength: true, labelOffsetY: 0, points: state.points, pixels, color: measurementColor(id) });
       state.selectedMeasurementId = id;
     } else {
       toast('Wähle zwei unterschiedliche Punkte für eine Strecke.');
