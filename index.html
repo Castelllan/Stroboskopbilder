@@ -156,10 +156,7 @@ h1 > span { color: var(--muted); }
 .interval-hint .icon { width: .875rem; height: .875rem; }
 .interval-hint strong { font-weight: 550; color: var(--ink); font-variant-numeric: tabular-nums; }
 .settings { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.settings > summary { display: flex; align-items: center; justify-content: space-between; gap: .5rem; list-style: none; min-height: 3rem; padding: .625rem 0; font-size: .75rem; font-weight: 550; color: var(--muted); }
-.settings > summary::-webkit-details-marker { display: none; }
-.settings > summary .icon { width: 1rem; height: 1rem; }
-.settings-content { padding: .125rem 0 1rem; }
+.settings-content { padding: 1rem 0; }
 .range-label { display: flex; justify-content: space-between; gap: .5rem; font-size: .75rem; margin: .5rem 0; }
 .range-label > span, .range-label > output { color: var(--muted); font-size: .6875rem; }
 .time-range { display: flex; align-items: center; gap: .625rem; color: var(--muted); margin-bottom: 1.125rem; }
@@ -462,8 +459,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
         <div class="frequency-presets" role="group" aria-label="Frequenz auswählen"><span class="segment-indicator" aria-hidden="true"></span><button data-frequency="5" aria-pressed="false">5 Hz</button><button data-frequency="10" class="selected" aria-pressed="true">10 Hz</button><button data-frequency="20" aria-pressed="false">20 Hz</button><button data-frequency="30" aria-pressed="false">30 Hz</button></div>
         <p class="interval-hint" id="frequency-interval"><svg class="icon"><use href="#i-clock"/></svg>Ein Bild alle <strong id="interval-value">0,10 Sekunden</strong></p>
 
-        <details class="settings">
-          <summary>Feineinstellungen<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></summary>
+        <div class="settings">
           <div class="settings-content">
             <div class="range-label">Zeitbereich <span>in Sekunden</span></div>
             <div class="time-range"><label for="start-time">Von<input id="start-time" type="number" min="0" step="0.01" value="0"></label><span aria-hidden="true">–</span><label for="end-time">Bis<input id="end-time" type="number" min="0" step="0.01" placeholder="Ende"></label></div>
@@ -472,7 +468,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
             <p class="setting-note" id="sensitivity-note">Links: feine Bewegungen. Rechts: weniger Bildrauschen.</p>
             <div class="overlay-options"><label><input id="time-labels" type="checkbox" role="switch" checked><span>Zeitleiste im Bild</span></label><label><input id="grid-overlay" type="checkbox" role="switch"><span>Hilfsraster</span></label></div>
           </div>
-        </details>
+        </div>
         <div class="create-area"><button class="primary-button" id="create-button" disabled><svg class="icon"><use href="#i-spark"/></svg><span>Stroboskopbild erstellen</span><svg class="icon"><use href="#i-arrow"/></svg></button><p id="create-hint">Wähle ein Video, um loszulegen.</p><button id="cancel-button" class="text-button" hidden>Verarbeitung abbrechen</button></div>
         <p id="error-message" class="error-message" role="alert" hidden></p>
       </aside>
@@ -824,9 +820,6 @@ document.querySelectorAll('.overlay-options input').forEach(input => {
   const spring = createSpring(Number(input.checked), value => input.style.setProperty('--switch-position', value));
   input.addEventListener('change', () => spring.to(Number(input.checked)));
 });
-const settingsChevron = document.querySelector('.settings summary .icon');
-const chevronSpring = createSpring(0, value => { settingsChevron.style.transform = `rotate(${value}deg)`; });
-document.querySelector('.settings').addEventListener('toggle', event => chevronSpring.to(event.target.open ? 180 : 0));
 
 const state = { url: null, name: '', duration: 0, width: 0, height: 0, result: null, busy: false, loading: false, controller: null, loadController: null, loadId: 0, scale: null, calibrationReferenceId: null, points: [], measurements: [], selectedMeasurementId: null, nextMeasurementId: 1 };
 const number = (value, digits = 2) => value.toLocaleString('de-DE', { minimumFractionDigits: digits, maximumFractionDigits: digits });
