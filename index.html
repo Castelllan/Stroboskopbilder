@@ -267,30 +267,47 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
 .physics-note p { font-size: .75rem; line-height: 1.8; color: var(--muted); margin: .5rem 0 0; }
 .help-footnote { font-size: .6875rem; line-height: 1.7; color: var(--muted); margin: 1.25rem 0; }
 .toast { position: fixed; bottom: max(1.5rem, env(safe-area-inset-bottom)); left: 50%; z-index: 9; width: max-content; max-width: calc(100% - 2rem); padding: .875rem 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); box-shadow: 0 8px 40px rgb(15 35 22 / .15); font-size: .8125rem; font-weight: 550; line-height: 1.6; }
-.measure-dialog { max-width: 58rem; width: calc(100% - 2rem); }
-.measure-dialog h2 { font-size: 1.5rem; font-weight: 650; letter-spacing: -.035em; line-height: 1.2; margin: 0; }
-.measure-dialog > p { font-size: .8125rem; line-height: 1.7; color: var(--muted); }
-.measurement-image { background: var(--well); border: 1px solid var(--line); border-radius: .875rem; max-height: 45dvh; overflow: auto; margin-top: 1rem; }
-#measure-canvas { display: block; max-width: 100%; max-height: 44dvh; object-fit: contain; cursor: crosshair; touch-action: none; margin: auto; }
-.measurement-controls { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding-bottom: 1rem; margin: 1rem 0; border-bottom: 1px solid var(--line); }
+.measure-dialog { width: calc(100% - 2rem); height: calc(100dvh - 2rem); max-width: none; max-height: none; padding: 0; overflow: hidden; }
+.measure-dialog[open] { display: flex; flex-direction: column; }
+.measure-dialog > .dialog-heading { flex: none; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); }
+.measure-dialog h2 { font-size: 1.25rem; font-weight: 650; letter-spacing: -.035em; line-height: 1.2; margin: 0; }
+.measurement-instruction { margin: .375rem 0 0; font-size: .75rem; line-height: 1.5; color: var(--muted); }
+.measurement-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; flex: 1; min-height: 0; }
+.measurement-stage { min-width: 0; min-height: 0; padding: 1rem; background: var(--well); }
+.measurement-image { display: grid; place-items: center; width: 100%; height: 100%; min-width: 0; min-height: 0; padding: .75rem; overflow: hidden; border: 1px solid var(--line); border-radius: .875rem; }
+#measure-canvas { display: block; max-width: 100%; max-height: 100%; cursor: crosshair; touch-action: none; }
+.measurement-sidebar { display: flex; flex-direction: column; gap: 1rem; min-width: 0; min-height: 0; padding: 1rem; overflow-y: auto; overscroll-behavior: contain; border-left: 1px solid var(--line); background: var(--sidebar); }
+.measurement-sidebar h3 { font-size: .875rem; font-weight: 600; letter-spacing: -.015em; margin: 0; }
+.measurement-controls { display: flex; flex: none; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding-bottom: .75rem; border-bottom: 1px solid var(--line); }
 .measurement-controls > div { min-width: 0; max-width: 100%; }
 .measurement-controls > div > span { display: block; font-size: .6875rem; color: var(--muted); margin-bottom: .375rem; }
 .measurement-controls strong { font-size: 1rem; font-weight: 600; color: var(--accent); overflow-wrap: anywhere; }
 .measurement-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .measurement-actions button:disabled, .secondary-button:disabled { opacity: .4; }
-.measurement-list { list-style: none; padding: 0; margin: 0 0 1.25rem; max-height: 12rem; overflow: auto; }
-.measurement-list li { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
-.measurement-label-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; flex-basis: 100%; padding-bottom: .5rem; font-size: .75rem; color: var(--muted); }
-.measurement-label-controls label { display: flex; align-items: center; gap: .375rem; cursor: pointer; min-height: 2.75rem; }
+.measurement-collection { display: flex; flex-direction: column; gap: .5rem; flex: 1; min-height: 8rem; }
+.measurement-list { list-style: none; padding: .25rem; margin: 0; min-height: 0; flex: 1; overflow-y: auto; overscroll-behavior: contain; }
+.measurement-list li { display: grid; grid-template-columns: minmax(0, 1fr) repeat(2, 2.75rem); align-items: center; gap: .375rem; padding: .75rem 0; border-bottom: 1px solid var(--line); }
+.measurement-list li:first-child { padding-top: 0; }
+.measurement-list li:last-child { border-bottom: 0; }
+.measurement-empty { margin: 0; font-size: .75rem; line-height: 1.65; color: var(--muted); }
+.measurement-calibration { flex: none; border-top: 1px solid var(--line); padding-top: 1rem; }
+.measurement-calibration h3 { margin-bottom: .75rem; }
+.measurement-label-controls { grid-column: 2 / 4; grid-row: 2; min-width: 0; font-size: .6875rem; line-height: 1.4; color: var(--muted); }
+.measurement-label-controls label { display: flex; align-items: center; gap: .25rem; cursor: pointer; min-height: 2.75rem; }
 .measurement-list li[data-visible="false"] .measurement-name, .measurement-list li[data-visible="false"] .measurement-select, .measurement-visibility[aria-pressed="false"] { color: var(--muted); background: var(--well); }
 .measurement-select { display: flex; align-items: center; gap: .625rem; min-width: 0; min-height: 2.75rem; padding: .625rem .75rem; border: 1px solid var(--line); border-radius: .625rem; background: var(--surface); color: var(--ink); text-align: left; font-size: .8125rem; }
 .measurement-select[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); }
-.measurement-name { flex: 1; width: 100%; }
+.measurement-name { grid-column: 1; grid-row: 1; width: 100%; }
+.measurement-visibility { grid-column: 2; grid-row: 1; }
+.measurement-remove { grid-column: 3; grid-row: 1; }
 .measurement-swatch { width: .75rem; height: .75rem; border-radius: 50%; background: var(--measurement-color); flex-shrink: 0; }
+.measurement-select { grid-column: 1; grid-row: 2; }
 .measurement-select strong { margin-left: auto; white-space: nowrap; }
 .calibration { display: flex; align-items: end; flex-wrap: wrap; gap: .75rem; }
-.calibration label { display: flex; flex-wrap: wrap; align-items: center; flex: 1; gap: .5rem; font-size: .75rem; color: var(--muted); }
+.calibration label { display: flex; flex-wrap: wrap; align-items: center; flex: 1 0 100%; gap: .5rem; font-size: .75rem; color: var(--muted); }
+.calibration label > span:first-child { flex-basis: 100%; }
 .calibration input { width: 7rem; }
+.calibration .secondary-button { width: 100%; }
 #calibration-note { overflow-wrap: anywhere; }
 .secondary-button { min-height: 2.75rem; padding: .625rem .875rem; border-radius: .75rem; background: var(--accent-soft); color: var(--accent); font-size: .75rem; font-weight: 550; }
 .fullscreen-view { background: var(--background); padding: 1.25rem; height: 100%; }
@@ -363,6 +380,22 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
   .measurement-select { flex: 1; }
   .calibration label { flex-basis: 100%; }
   .calibration .secondary-button { width: 100%; }
+}
+@media (max-width: 1000px) {
+  .measurement-workspace { grid-template-columns: minmax(0, 1fr) 18rem; }
+}
+@media (max-width: 860px) and (orientation: portrait) {
+  .measure-dialog { width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; }
+  .measure-dialog > .dialog-heading { padding: .75rem 1rem; align-items: start; }
+  .measurement-workspace { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+  .measurement-stage { height: min(52dvh, calc((100vw - 2.5rem) * var(--measurement-image-ratio, 1) + 2.5rem)); padding: .625rem; }
+  .measurement-image { padding: .5rem; }
+  .measurement-sidebar { border-left: 0; border-top: 1px solid var(--line); }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .measure-dialog { width: 100%; height: 100dvh; border-radius: 0; }
+  .measure-dialog > .dialog-heading { padding: .5rem 1rem; }
+  .measurement-stage { padding: .5rem; }
 }
 @media (prefers-color-scheme: dark) {
   :root { --green: #39785a; --accent: #a1d4b4; --accent-soft: #243b2f; --ink: #e9ede8; --muted: #abb5ac; --faint: #99a49b; --background: #151a17; --surface: #212823; --sidebar: #1c231e; --well: #19211b; --line: #354138; --glass: rgb(27 34 29 / .88); --shadow: 0 24px 64px -24px rgb(0 0 0 / .3); }
@@ -500,16 +533,31 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
   <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-heading"><span class="eyebrow">DEIN KLEINES PHYSIKLABOR</span><button class="icon-button" data-close-dialog aria-label="Hilfe schließen"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="help-title">Bewegung verstehen.<br>In drei einfachen Schritten.</h2><ol class="help-steps"><li><span>01</span><div><h3>Video auswählen</h3><p>Filme den fallenden Ball mit feststehender Kamera. Ein ruhiger Hintergrund und ein mitgefilmtes Lineal machen das Ergebnis leichter messbar.</p></div></li><li><span>02</span><div><h3>Frequenz festlegen</h3><p>10 Hz bedeutet zehn Bilder pro Sekunde. Die Zeit zwischen zwei Bildern beträgt Δt = 1 / f, also 0,1 s. Wähle bei Bedarf nur den Abschnitt des Falls aus.</p></div></li><li><span>03</span><div><h3>Erstellen, messen, entdecken</h3><p>Das Programm legt die bewegten Bildbereiche übereinander. Lade das Ergebnis als PNG herunter oder miss direkt im Bild mit dem Lineal-Werkzeug.</p></div></li></ol><div class="physics-note"><svg class="icon"><use href="#i-flask"/></svg><div><strong>Ein Experiment. Viele Erkenntnisse.</strong><p>Bestimme die mittlere Geschwindigkeit v = Δs / Δt für aufeinanderfolgende Intervalle. Aus ihrer Änderung folgt a ≈ Δv / Δt. Beim freien Fall aus der Ruhe gilt s = ½ g t² mit g ≈ 9,81 m/s².</p></div></div><p class="help-footnote">Die Genauigkeit hängt von Bildrate, Perspektive und Belichtungszeit ab. Bei Zeitlupenvideos beziehen sich Zeitangaben auf die Wiedergabe; für die reale Zeit ist der Zeitlupenfaktor nötig. Frequenzen oberhalb der Aufnahmebildrate können dieselben Videobilder mehrfach auswählen.</p><button class="primary-button" data-close-dialog>Los geht’s<svg class="icon"><use href="#i-arrow"/></svg></button></dialog>
 
   <dialog id="measure-dialog" class="measure-dialog" aria-labelledby="measure-title">
-    <div class="dialog-heading"><h2 id="measure-title">Strecken messen</h2><button class="icon-button" data-close-dialog aria-label="Messwerkzeug schließen"><svg class="icon"><use href="#i-close"/></svg></button></div>
-    <p>Klicke je Strecke auf Anfang und Ende. Den Namen kannst du direkt in der Liste ändern. Über das Auge kannst du Strecken aus- und einblenden. Mit „Länge anzeigen“ blendest du nur den Messwert im Bild aus. Ziehe eine Beschriftung im Bild mit gedrückter Maustaste nach oben oder unten. Klicke auf den Messwert, um eine Strecke als Maßstab auszuwählen.</p>
-    <div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: je Strecke zwei Punkte anklicken; Beschriftungen zum Verschieben nach oben oder unten ziehen" tabindex="0"></canvas></div>
-    <div class="measurement-controls">
-      <div><span>Ausgewählte Strecke</span><strong id="measurement-value" role="status">Zwei Punkte auswählen</strong></div>
-      <div class="measurement-actions"><button class="text-button" id="reset-measurement">Neue Strecke</button><button class="text-button" id="clear-measurements" disabled>Alle löschen</button></div>
+    <div class="dialog-heading">
+      <div><h2 id="measure-title">Strecken messen</h2><p class="measurement-instruction" id="measurement-instruction">Wähle Anfang und Ende einer Strecke. Beschriftungen kannst du im Bild nach oben oder unten ziehen.</p></div>
+      <button class="icon-button" data-close-dialog aria-label="Messwerkzeug schließen"><svg class="icon"><use href="#i-close"/></svg></button>
     </div>
-    <ul id="measurement-list" class="measurement-list" aria-label="Gemessene Strecken" hidden></ul>
-    <div class="calibration"><label for="known-distance">Ausgewählte Referenzstrecke entspricht<input id="known-distance" type="number" min="0.01" step="0.1" placeholder="z. B. 100"><span>cm</span></label><button class="secondary-button" id="calibrate-button" disabled>Als Maßstab verwenden</button></div>
-    <p id="calibration-note" class="setting-note">Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.</p>
+    <div class="measurement-workspace">
+      <div class="measurement-stage">
+        <div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: je Strecke zwei Punkte anklicken; Beschriftungen zum Verschieben nach oben oder unten ziehen" aria-describedby="measurement-instruction" tabindex="0"></canvas></div>
+      </div>
+      <aside class="measurement-sidebar" aria-label="Messwerte und Maßstab">
+        <div class="measurement-controls">
+          <div><span>Ausgewählte Strecke</span><strong id="measurement-value" role="status">Zwei Punkte auswählen</strong></div>
+          <div class="measurement-actions"><button class="text-button" id="reset-measurement">Neue Strecke</button><button class="text-button" id="clear-measurements" disabled>Alle löschen</button></div>
+        </div>
+        <section class="measurement-collection" aria-labelledby="measurement-list-title">
+          <h3 id="measurement-list-title">Gemessene Strecken</h3>
+          <p class="measurement-empty" id="measurement-empty">Wähle zwei Punkte im Bild, um deine erste Strecke zu messen.</p>
+          <ul id="measurement-list" class="measurement-list" aria-label="Gemessene Strecken" hidden></ul>
+        </section>
+        <section class="measurement-calibration" aria-labelledby="calibration-title">
+          <h3 id="calibration-title">Maßstab</h3>
+          <div class="calibration"><label for="known-distance"><span>Ausgewählte Referenzstrecke entspricht</span><input id="known-distance" type="number" min="0.01" step="0.1" placeholder="z. B. 100"><span>cm</span></label><button class="secondary-button" id="calibrate-button" disabled>Als Maßstab verwenden</button></div>
+          <p id="calibration-note" class="setting-note">Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.</p>
+        </section>
+      </aside>
+    </div>
   </dialog>
   <div class="toast" id="toast" role="status" hidden></div>
 <script>
@@ -765,7 +813,7 @@ function showDialog(dialog, trigger = document.activeElement) {
   if (!spring) {
     spring = createSpring(0, value => {
       dialog.style.opacity = value;
-      dialog.style.transform = reducedMotion.matches ? 'none' : `scale(${0.975 + value * 0.025})`;
+      dialog.style.transform = reducedMotion.matches || dialog.id === 'measure-dialog' ? 'none' : `scale(${0.975 + value * 0.025})`;
     }, target => { if (target === 0 && dialog.open) dialog.close(); });
     dialogSprings.set(dialog, spring);
   }
@@ -894,6 +942,7 @@ function resetResult() {
 function resetCalibration() {
   state.scale = null; state.calibrationReferenceId = null; state.points = []; state.measurements = []; state.selectedMeasurementId = null; state.nextMeasurementId = 1;
   $('measurement-list').replaceChildren(); $('measurement-list').hidden = true;
+  $('measurement-empty').hidden = false;
   $('measurement-value').textContent = 'Zwei Punkte auswählen'; $('clear-measurements').disabled = true;
   $('known-distance').value = '';
   $('calibration-note').textContent = 'Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.';
@@ -1091,9 +1140,23 @@ function drawMeasurementOverlays(ctx, includeDraft = false) {
   ctx.restore();
 }
 
+function fitMeasurementCanvas() {
+  if (!state.result || !$('measure-dialog').open) return;
+  const area = document.querySelector('.measurement-image');
+  const style = getComputedStyle(area);
+  const width = area.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+  const height = area.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+  const scale = Math.min(width / state.result.width, height / state.result.height);
+  const canvas = $('measure-canvas');
+  canvas.style.width = `${state.result.width * scale}px`;
+  canvas.style.height = `${state.result.height * scale}px`;
+}
+
 function renderMeasurementImage() {
   const result = state.result; if (!result) return;
+  $('measure-dialog').style.setProperty('--measurement-image-ratio', result.height / result.width);
   const canvas = $('measure-canvas'); canvas.width = result.width; canvas.height = result.height;
+  fitMeasurementCanvas();
   const ctx = canvas.getContext('2d'); ctx.putImageData(new ImageData(result.data, result.width, result.height), 0, 0);
   drawMeasurementOverlays(ctx, true);
 }
@@ -1105,6 +1168,7 @@ function drawMeasurement() {
   $('measurement-value').textContent = state.points.length ? 'Jetzt den zweiten Punkt wählen' : selected ? `${selected.name} = ${measurementLabel(selected)}` : 'Zwei Punkte auswählen';
   $('clear-measurements').disabled = !state.measurements.length && !state.points.length;
   const list = $('measurement-list'); list.replaceChildren(); list.hidden = !state.measurements.length;
+  $('measurement-empty').hidden = !!state.measurements.length;
   state.measurements.forEach(measurement => {
     const item = document.createElement('li');
     const select = document.createElement('button'); select.className = 'measurement-select'; select.type = 'button';
@@ -1116,7 +1180,7 @@ function drawMeasurement() {
     select.append(swatch, value);
     select.addEventListener('click', () => { state.points = []; state.selectedMeasurementId = measurement.id; drawMeasurement(); });
     const visibility = document.createElement('button'); visibility.className = 'icon-button measurement-visibility'; visibility.type = 'button';
-    const remove = document.createElement('button'); remove.className = 'icon-button'; remove.type = 'button';
+    const remove = document.createElement('button'); remove.className = 'icon-button measurement-remove'; remove.type = 'button';
     const labelControls = document.createElement('div'); labelControls.className = 'measurement-label-controls';
     const lengthLabel = document.createElement('label');
     const showLength = document.createElement('input'); showLength.type = 'checkbox'; showLength.checked = measurement.showLength !== false;
@@ -1310,8 +1374,11 @@ $('calibrate-button').addEventListener('click', () => {
 });
 window.addEventListener('resize', () => {
   renderResult();
-  if ($('measure-dialog').open) drawMeasurement();
 });
+const measurementObserver = new ResizeObserver(() => {
+  if ($('measure-dialog').open) renderMeasurementImage();
+});
+measurementObserver.observe(document.querySelector('.measurement-image'));
 const segmentObserver = new ResizeObserver(entries => {
   for (const { target } of entries) syncSegment(target, target.classList.contains('preview-tabs') ? '.active' : '.selected', true);
 });
