@@ -462,7 +462,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
         <div class="settings">
           <div class="settings-content">
             <div class="range-label">Zeitbereich <span>in Sekunden</span></div>
-            <div class="time-range"><label for="start-time">Von<input id="start-time" type="number" min="0" step="0.01" value="0"></label><span aria-hidden="true">–</span><label for="end-time">Bis<input id="end-time" type="number" min="0" step="0.01" placeholder="Ende"></label></div>
+            <div class="time-range"><label for="start-time">Von<input id="start-time" type="text" inputmode="decimal" value="0"></label><span aria-hidden="true">–</span><label for="end-time">Bis<input id="end-time" type="text" inputmode="decimal" placeholder="Ende"></label></div>
             <label for="sensitivity" class="range-label">Bewegungserkennung <output id="sensitivity-value" for="sensitivity">Normal</output></label>
             <input id="sensitivity" type="range" min="8" max="65" value="22" aria-describedby="sensitivity-note">
             <p class="setting-note" id="sensitivity-note">Links: feine Bewegungen. Rechts: weniger Bildrauschen.</p>
@@ -838,10 +838,16 @@ function toast(message) {
 function error(message = '') { $('error-message').textContent = message; $('error-message').hidden = !message; }
 function setTag(text) { $('preview-tag').replaceChildren(); const dot = document.createElement('span'); $('preview-tag').append(dot, document.createTextNode(text)); }
 
+function parseTime(value, fallback) {
+  const normalized = value.trim().replace(',', '.');
+  if (normalized === '') return fallback;
+  return /^(?:\d+(?:\.\d*)?|\.\d+)$/.test(normalized) ? Number(normalized) : NaN;
+}
+
 function settings() {
   const frequency = $('frequency').valueAsNumber;
-  const start = $('start-time').value === '' ? 0 : $('start-time').valueAsNumber;
-  const end = $('end-time').value === '' ? state.duration : $('end-time').valueAsNumber;
+  const start = parseTime($('start-time').value, 0);
+  const end = parseTime($('end-time').value, state.duration);
   if (end > state.duration + 0.001) throw new Error('Der gewählte Zeitbereich liegt außerhalb des Videos.');
   const actualEnd = Math.min(end, state.duration);
   const times = samplingTimes(start, actualEnd, frequency);
@@ -923,7 +929,6 @@ async function loadVideo(file) {
     if (!Number.isFinite(player.duration) || player.duration <= 0 || !player.videoWidth) throw new Error('Das Video hat keine lesbare Dauer. Verwende eine vollständig gespeicherte Videodatei.');
     state.duration = player.duration; state.width = player.videoWidth; state.height = player.videoHeight;
     $('file-meta').textContent = `${number(state.duration)} s · ${state.width} × ${state.height} px`;
-    $('start-time').max = state.duration; $('end-time').max = state.duration;
     $('end-time').placeholder = number(state.duration); state.loading = false;
     const canvas = $('result-canvas'); const dims = fitDimensions(state.width, state.height);
     canvas.width = dims.width; canvas.height = dims.height;
