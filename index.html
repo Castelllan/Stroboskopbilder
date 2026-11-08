@@ -19,8 +19,8 @@ Oberfläche und Verarbeitung sind in dieser Datei enthalten; keine externen Abh�
   --accent: #246349;
   --accent-soft: #e8f1eb;
   --ink: #202824;
-  --muted: #67716b;
-  --faint: #747e77;
+  --muted: #56625a;
+  --faint: #5e6a62;
   --background: #f5f6f4;
   --surface: #ffffff;
   --sidebar: #fafbf9;
@@ -108,7 +108,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
 .help-button .icon { width: 1rem; height: 1rem; color: var(--muted); }
 main { max-width: 1328px; margin: auto; padding: 2.5rem 1.5rem 2rem; }
 .intro { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 1.75rem; }
-.eyebrow { font-size: .6875rem; font-weight: 650; letter-spacing: .12em; color: var(--accent); margin: 0 0 .625rem; }
+.eyebrow { font-size: .75rem; font-weight: 650; letter-spacing: .12em; color: var(--accent); margin: 0 0 .625rem; }
 h1 { font-size: clamp(2rem, 3.3vw, 2.875rem); line-height: 1.12; font-weight: 650; letter-spacing: -.045em; margin: 0; }
 h1 > span { color: var(--muted); }
 .intro-description { margin: .875rem 0 0; color: var(--muted); font-size: .9375rem; line-height: 1.6; }
@@ -127,7 +127,7 @@ h1 > span { color: var(--muted); }
 }
 .controls { flex: 1 1 19.5rem; padding: 1.5rem; background: var(--sidebar); min-width: min(100%, 19.5rem); }
 .control-heading { display: flex; align-items: center; gap: .625rem; margin-bottom: 1rem; }
-.step-number { display: grid; place-items: center; width: 1.625rem; height: 1.625rem; border: 1px solid var(--line); border-radius: 50%; font-size: .6875rem; font-weight: 650; color: var(--accent); background: var(--surface); font-variant-numeric: tabular-nums; }
+.step-number { display: grid; place-items: center; width: 1.625rem; height: 1.625rem; border: 1px solid var(--line); border-radius: 50%; font-size: .75rem; font-weight: 650; color: var(--accent); background: var(--surface); font-variant-numeric: tabular-nums; }
 .control-heading h2 { font-size: .9375rem; line-height: 1.3; letter-spacing: -.02em; font-weight: 650; margin: 0; }
 .dropzone { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 9.75rem; border: 1px dashed #bbc9bd; border-radius: 1rem; padding: 1rem .75rem; background: var(--surface); transition: background-color 120ms, border-color 120ms; }
 .dropzone:hover, .dropzone.dragover { border-color: var(--accent); background: var(--accent-soft); }
@@ -135,7 +135,7 @@ h1 > span { color: var(--muted); }
 .dropzone > strong { font-size: .8125rem; font-weight: 600; }
 .dropzone > span:not(.upload-icon) { font-size: .75rem; color: var(--muted); margin-top: .25rem; }
 .dropzone u { color: var(--accent); text-decoration: none; font-weight: 550; }
-.dropzone > small { color: var(--faint); font-size: .625rem; letter-spacing: .025em; margin-top: .75rem; }
+.dropzone > small { color: var(--faint); font-size: .75rem; letter-spacing: .025em; margin-top: .75rem; }
 .section-divider { height: 1px; background: var(--line); margin: 1.5rem 0; }
 .icon-button { display: grid; place-items: center; min-width: 2.75rem; min-height: 2.75rem; padding: .625rem; border-radius: .75rem; background: transparent; color: var(--muted); }
 .icon-button:hover:not(:disabled) { background: var(--accent-soft); color: var(--accent); }
@@ -152,18 +152,18 @@ h1 > span { color: var(--muted); }
 .segment-indicator { position: absolute; pointer-events: none; z-index: -1; top: .25rem; bottom: .25rem; left: 0; width: calc((100% - .5rem) / var(--segment-count, 2)); border-radius: .5rem; background: var(--surface); box-shadow: 0 1px 4px rgb(23 42 30 / .1), 0 0 0 .5px rgb(23 42 30 / .04); }
 .frequency-presets button { min-height: 2.5rem; padding: .375rem .125rem; font-size: .75rem; font-weight: 550; border-radius: .5rem; background: transparent; color: var(--muted); }
 .frequency-presets button.selected { color: var(--accent); }
-.interval-hint { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem; font-size: .6875rem; line-height: 1.5; color: var(--muted); margin: .75rem 0 1.25rem; }
+.interval-hint { display: flex; align-items: center; flex-wrap: wrap; gap: .3rem; font-size: .75rem; line-height: 1.5; color: var(--muted); margin: .75rem 0 1.25rem; }
 .interval-hint .icon { width: .875rem; height: .875rem; }
 .interval-hint strong { font-weight: 550; color: var(--ink); font-variant-numeric: tabular-nums; }
 .settings { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .settings-content { padding: 1rem 0; }
 .range-label { display: flex; justify-content: space-between; gap: .5rem; font-size: .75rem; margin: .5rem 0; }
-.range-label > span, .range-label > output { color: var(--muted); font-size: .6875rem; }
+.range-label > span, .range-label > output { color: var(--muted); font-size: .75rem; }
 .time-range { display: flex; align-items: center; gap: .625rem; color: var(--muted); margin-bottom: 1.125rem; }
-.time-range label { display: flex; flex-direction: column; flex: 1; gap: .375rem; font-size: .6875rem; min-width: 0; }
+.time-range label { display: flex; flex-direction: column; flex: 1; gap: .375rem; font-size: .75rem; min-width: 0; }
 .time-range input, .calibration input, .measurement-name { width: 100%; min-width: 0; min-height: 2.75rem; padding: .625rem .75rem; border: 1px solid var(--line); border-radius: .625rem; background: var(--surface); color: var(--ink); font-size: .875rem; font-variant-numeric: tabular-nums; }
 input[type=range] { width: 100%; min-height: 2rem; margin: 0; cursor: pointer; }
-.setting-note { font-size: .6875rem; line-height: 1.65; color: var(--muted); margin: .5rem 0 0; }
+.setting-note { font-size: .75rem; line-height: 1.65; color: var(--muted); margin: .5rem 0 0; }
 .overlay-options { display: flex; flex-direction: column; gap: .125rem; margin: 1rem 0 0; }
 .overlay-options label { display: flex; align-items: center; justify-content: space-between; flex-direction: row-reverse; gap: .75rem; min-height: 2.75rem; font-size: .75rem; cursor: pointer; }
 .overlay-options input { appearance: none; position: relative; width: 2.125rem; height: 1.25rem; border-radius: 1rem; background: #c1c8c1; margin: 0; cursor: pointer; flex-shrink: 0; }
@@ -175,7 +175,7 @@ input[type=range] { width: 100%; min-height: 2rem; margin: 0; cursor: pointer; }
 .primary-button:disabled { background: var(--well); color: var(--faint); border-color: var(--line); box-shadow: none; }
 .primary-button .icon { width: 1rem; height: 1rem; }
 .primary-button > .icon:last-child { margin-left: auto; }
-.create-area > p { font-size: .6875rem; line-height: 1.6; text-align: center; color: var(--muted); margin: .625rem 0 0; overflow-wrap: anywhere; }
+.create-area > p { font-size: .75rem; line-height: 1.6; text-align: center; color: var(--muted); margin: .625rem 0 0; overflow-wrap: anywhere; }
 .text-button { background: transparent; color: var(--accent); font-size: .75rem; font-weight: 550; min-height: 2.75rem; padding: .5rem; border-radius: .625rem; }
 .text-button:hover:not(:disabled) { background: var(--accent-soft); }
 .create-area > .text-button { width: 100%; margin-top: .375rem; }
@@ -184,8 +184,8 @@ input[type=range] { width: 100%; min-height: 2rem; margin: 0; cursor: pointer; }
 .file-icon { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border-radius: .75rem; background: var(--surface); color: var(--accent); flex-shrink: 0; }
 .file-info > div { min-width: 0; flex: 1; }
 .file-info strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .75rem; font-weight: 600; }
-.file-info span:not(.file-icon) { display: block; color: var(--muted); font-size: .625rem; margin-top: .25rem; }
-.file-info .icon-button { min-width: 2rem; min-height: 2.75rem; padding: .375rem; }
+.file-info span:not(.file-icon) { display: block; color: var(--muted); font-size: .75rem; margin-top: .25rem; }
+.file-info .icon-button { min-width: 2.75rem; min-height: 2.75rem; padding: .375rem; }
 .file-info .icon-button .icon { width: 1rem; height: 1rem; }
 .preview-panel { display: flex; flex-direction: column; flex: 999 1 28rem; min-width: min(100%, 28rem); background: var(--surface); }
 .preview-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; min-height: 4.75rem; padding: 1rem 1.5rem; gap: .75rem; }
@@ -193,17 +193,17 @@ input[type=range] { width: 100%; min-height: 2rem; margin: 0; cursor: pointer; }
 .preview-tabs > button { display: flex; align-items: center; justify-content: center; gap: .5rem; padding: .5rem .75rem; min-height: 2.5rem; border-radius: .5rem; font-size: .75rem; white-space: nowrap; background: transparent; color: var(--muted); }
 .preview-tabs > button.active { color: var(--ink); font-weight: 600; }
 .preview-tabs .icon { width: 1rem; height: 1rem; }
-.preview-tag { display: flex; align-items: center; gap: .375rem; color: var(--muted); font-size: .6875rem; white-space: nowrap; }
+.preview-tag { display: flex; align-items: center; gap: .375rem; color: var(--muted); font-size: .75rem; white-space: nowrap; }
 .preview-tag > span, .status-dot { width: .375rem; height: .375rem; border-radius: 50%; background: #8c9a8e; flex-shrink: 0; }
 .visual-area { position: relative; display: flex; align-items: stretch; justify-content: center; flex: none; height: clamp(20rem, 40vh, 27rem); min-height: 0; padding: 0 1.5rem; }
 .result-view { display: flex; align-items: stretch; justify-content: center; min-width: 0; width: 100%; }
 .example-scene { display: flex; flex-direction: column; width: 100%; min-height: 0; border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; background-color: var(--well); background-image: linear-gradient(rgb(109 133 110 / .06) 1px, transparent 1px), linear-gradient(90deg, rgb(109 133 110 / .06) 1px, transparent 1px); background-size: 1.75rem 1.75rem; }
 .scene-top, .scene-bottom { display: flex; align-items: center; justify-content: space-between; gap: .75rem; padding: 1rem 1.25rem; }
-.scene-label { display: flex; align-items: center; gap: .375rem; padding: .375rem .625rem; border: 1px solid var(--line); border-radius: 2rem; background: var(--surface); color: var(--muted); font-size: .6875rem; font-weight: 550; }
+.scene-label { display: flex; align-items: center; gap: .375rem; padding: .375rem .625rem; border: 1px solid var(--line); border-radius: 2rem; background: var(--surface); color: var(--muted); font-size: .75rem; font-weight: 550; }
 .scene-label > span { width: .3125rem; height: .3125rem; border-radius: 50%; background: var(--accent); }
-.scene-interval { font-size: .6875rem; font-variant-numeric: tabular-nums; color: var(--muted); }
+.scene-interval { font-size: .75rem; font-variant-numeric: tabular-nums; color: var(--muted); }
 .fall-illustration { display: block; width: 100%; height: 0; min-height: 0; flex: 1; object-fit: contain; }
-.scene-bottom { color: var(--muted); font-size: .6875rem; padding-top: .75rem; }
+.scene-bottom { color: var(--muted); font-size: .75rem; padding-top: .75rem; }
 .example-watermark { font-size: .5625rem; font-weight: 550; letter-spacing: .1em; color: var(--muted); }
 .fall-illustration .ruler-ticks { stroke: #a5b5a4; }
 .fall-illustration .diagram-labels { fill: var(--muted); font-family: inherit; font-size: 18px; }
@@ -215,7 +215,7 @@ input[type=range] { width: 100%; min-height: 2rem; margin: 0; cursor: pointer; }
 .video-empty > p { font-size: .9375rem; font-weight: 550; color: var(--ink); margin: 1rem 0 .25rem; }
 .video-empty > span { font-size: .75rem; }
 .preview-bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .5rem .75rem; padding: .875rem 1.5rem; }
-.preview-bottom > div:first-child { display: flex; align-items: center; gap: .5rem; color: var(--muted); font-size: .6875rem; line-height: 1.5; }
+.preview-bottom > div:first-child { display: flex; align-items: center; gap: .5rem; color: var(--muted); font-size: .75rem; line-height: 1.5; }
 .status-dot.ready { background: var(--accent); }
 .preview-actions { display: flex; align-items: center; flex-shrink: 0; gap: .25rem; margin-left: auto; }
 .preview-actions .icon { width: 1.125rem; height: 1.125rem; }
@@ -230,11 +230,11 @@ input[type=range] { width: 100%; min-height: 2rem; margin: 0; cursor: pointer; }
 .empty-frames > div { position: relative; display: flex; align-items: center; justify-content: center; height: 3.75rem; border-radius: .625rem; border: 1px solid var(--line); background: var(--sidebar); color: #acb9ac; }
 .empty-frames .icon { width: 1.25rem; height: 1.25rem; stroke-width: 1.2; }
 .empty-frames > div > span { position: absolute; left: .5rem; bottom: .25rem; font-size: .5625rem; color: var(--faint); }
-.empty-frames > p { grid-column: 1 / -1; font-size: .6875rem; color: var(--muted); margin: .125rem 0 0; }
+.empty-frames > p { grid-column: 1 / -1; font-size: .75rem; color: var(--muted); margin: .125rem 0 0; }
 .frame-strip { display: flex; gap: .75rem; overflow-x: auto; padding: .25rem .25rem .75rem; scrollbar-width: thin; scrollbar-color: #b4c4b3 transparent; scroll-snap-type: x proximity; }
 .frame-item { min-width: 6.5rem; width: 6.5rem; flex-shrink: 0; padding: 0; background: transparent; text-align: left; scroll-snap-align: start; }
 .frame-item img { display: block; width: 100%; height: 4rem; object-fit: contain; border-radius: .625rem; background: var(--well); border: 1px solid var(--line); }
-.frame-item > span { display: flex; justify-content: space-between; gap: .375rem; font-size: .6875rem; font-variant-numeric: tabular-nums; color: var(--muted); margin-top: .5rem; }
+.frame-item > span { display: flex; justify-content: space-between; gap: .375rem; font-size: .75rem; font-variant-numeric: tabular-nums; color: var(--muted); margin-top: .5rem; }
 .frame-item small { font-size: .5625rem; }
 .frame-item:hover img, .frame-item.selected img { outline: 2px solid var(--accent); outline-offset: 1px; }
 .workspace-note { display: flex; justify-content: center; align-items: center; gap: .5rem; font-size: .75rem; line-height: 1.6; color: var(--muted); text-align: center; margin: 1.25rem 0 0; }
@@ -265,7 +265,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
 .physics-note > .icon { color: var(--accent); }
 .physics-note strong { font-size: .8125rem; font-weight: 600; }
 .physics-note p { font-size: .75rem; line-height: 1.8; color: var(--muted); margin: .5rem 0 0; }
-.help-footnote { font-size: .6875rem; line-height: 1.7; color: var(--muted); margin: 1.25rem 0; }
+.help-footnote { font-size: .75rem; line-height: 1.7; color: var(--muted); margin: 1.25rem 0; }
 .toast { position: fixed; bottom: max(1.5rem, env(safe-area-inset-bottom)); left: 50%; z-index: 9; width: max-content; max-width: calc(100% - 2rem); padding: .875rem 1.25rem; border-radius: 1rem; border: 1px solid var(--line); background: var(--surface); color: var(--ink); box-shadow: 0 8px 40px rgb(15 35 22 / .15); font-size: .8125rem; font-weight: 550; line-height: 1.6; }
 .measure-dialog { width: calc(100% - 2rem); height: calc(100dvh - 2rem); max-width: none; max-height: none; padding: 0; overflow: hidden; }
 .measure-dialog[open] { display: flex; flex-direction: column; }
@@ -280,7 +280,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
 .measurement-sidebar h3 { font-size: .875rem; font-weight: 600; letter-spacing: -.015em; margin: 0; }
 .measurement-controls { display: flex; flex: none; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .75rem; padding-bottom: .75rem; border-bottom: 1px solid var(--line); }
 .measurement-controls > div { min-width: 0; max-width: 100%; }
-.measurement-controls > div > span { display: block; font-size: .6875rem; color: var(--muted); margin-bottom: .375rem; }
+.measurement-controls > div > span { display: block; font-size: .75rem; color: var(--muted); margin-bottom: .375rem; }
 .measurement-controls strong { font-size: 1rem; font-weight: 600; color: var(--accent); overflow-wrap: anywhere; }
 .measurement-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
 .measurement-actions button:disabled, .secondary-button:disabled { opacity: .4; }
@@ -292,7 +292,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
 .measurement-empty { margin: 0; font-size: .75rem; line-height: 1.65; color: var(--muted); }
 .measurement-calibration { flex: none; border-top: 1px solid var(--line); padding-top: 1rem; }
 .measurement-calibration h3 { margin-bottom: .75rem; }
-.measurement-label-controls { grid-column: 2 / 4; grid-row: 2; min-width: 0; font-size: .6875rem; line-height: 1.4; color: var(--muted); }
+.measurement-label-controls { grid-column: 2 / 4; grid-row: 2; min-width: 0; font-size: .75rem; line-height: 1.4; color: var(--muted); }
 .measurement-label-controls label { display: flex; align-items: center; gap: .25rem; cursor: pointer; min-height: 2.75rem; }
 .measurement-list li[data-visible="false"] .measurement-name, .measurement-list li[data-visible="false"] .measurement-select, .measurement-visibility[aria-pressed="false"] { color: var(--muted); background: var(--well); }
 .measurement-select { display: flex; align-items: center; gap: .625rem; min-width: 0; min-height: 2.75rem; padding: .625rem .75rem; border: 1px solid var(--line); border-radius: .625rem; background: var(--surface); color: var(--ink); text-align: left; font-size: .8125rem; }
@@ -372,7 +372,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
   .empty-frames { gap: .375rem; }
   .empty-frames > div { height: 3.25rem; }
   .progress-overlay { inset: 0 1rem; }
-  .workspace-note { align-items: start; font-size: .6875rem; padding: 0 .5rem; }
+  .workspace-note { align-items: start; font-size: .75rem; padding: 0 .5rem; }
   .workspace-note .icon { margin-top: .125rem; }
   dialog { padding: 1.25rem; border-radius: 1.25rem; }
   .help-dialog > h2 { font-size: 1.625rem; }
@@ -388,7 +388,7 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
   .measure-dialog { width: 100%; height: 100dvh; max-height: 100dvh; border-radius: 0; }
   .measure-dialog > .dialog-heading { padding: .75rem 1rem; align-items: start; }
   .measurement-workspace { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
-  .measurement-stage { height: min(52dvh, calc((100vw - 2.5rem) * var(--measurement-image-ratio, 1) + 2.5rem)); padding: .625rem; }
+  .measurement-stage { height: min(42dvh, calc((100vw - 2.5rem) * var(--measurement-image-ratio, 1) + 2.5rem)); padding: .625rem; }
   .measurement-image { padding: .5rem; }
   .measurement-sidebar { border-left: 0; border-top: 1px solid var(--line); }
 }
@@ -431,6 +431,37 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
   .overlay-options input { appearance: auto; width: 1.25rem; height: 1.25rem; }
   .overlay-options input::before { display: none; }
 }
+
+.local-note, .output-note, .session-note { color: var(--muted); font-size: .8125rem; line-height: 1.6; }
+.field-error { color: #963b26; font-size: .8125rem; margin: .375rem 0; }
+.field-error:empty { display: none; }
+[aria-invalid="true"] { border-color: #963b26; }
+.result-notes { margin: 0 1.5rem 1rem; font-size: .8125rem; overflow-wrap: anywhere; }
+.result-notes p { margin: .5rem 0; }
+.result-warning { padding: .75rem; border: 1px solid var(--accent); border-radius: .75rem; background: var(--accent-soft); }
+.preview-actions { flex-wrap: wrap; }
+.measure-action { display: flex; gap: .5rem; align-items: center; }
+.fullscreen-exit { display: none; position: absolute; top: .75rem; right: .75rem; z-index: 3; background: var(--surface); }
+.fullscreen-view .fullscreen-exit, #visual-area:fullscreen .fullscreen-exit { display: block; }
+#result-canvas, #video-player { max-height: 100%; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+.video-position-actions { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.measurement-stage { display: flex; flex-direction: column; gap: .5rem; }
+.measurement-zoom { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem; flex: none; }
+.measurement-image { display: block; overflow: auto; scrollbar-gutter: stable both-edges; flex: 1; min-height: 3rem; }
+#measure-canvas { max-width: none; max-height: none; margin: auto; }
+.point-editor { border-top: 1px solid var(--line); padding-top: .75rem; }
+.point-fields { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; margin: .5rem 0; }
+.point-fields label { font-size: .8125rem; color: var(--muted); }
+.point-fields input { display: block; width: 100%; min-width: 0; padding: .5rem; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: .5rem; }
+.measurement-feedback { margin: 0; padding: .5rem 1rem; font-size: .8125rem; background: var(--accent-soft); color: var(--ink); min-height: 2.25rem; max-height: 4rem; overflow-y: auto; }
+.measurement-calibration { order: -1; }
+.measurement-collection { flex: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 760px) {
+  .result-notes { margin: 0 1rem 1rem; }
+  .time-range input, .calibration input, .measurement-name, .point-fields input { font-size: 1rem; }
+}
+@media (prefers-color-scheme: dark) { .field-error { color: #f4c3ae; } }
 </style>
   
 </head>
@@ -483,34 +514,41 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
         <div class="control-heading"><span class="step-number">01</span><h2>Dein Video</h2></div>
         <input id="file-input" type="file" accept="video/*,.mp4,.mov,.webm,.m4v" hidden>
         <button class="dropzone" id="dropzone"><span class="upload-icon"><svg class="icon"><use href="#i-upload"/></svg></span><strong>Video hier ablegen</strong><span>oder <u>Datei auswählen</u></span><small>MP4, MOV oder WebM</small></button>
-        <div id="file-info" class="file-info" hidden><span class="file-icon"><svg class="icon"><use href="#i-video"/></svg></span><div><strong id="file-name"></strong><span id="file-meta"></span></div><button id="remove-video" class="icon-button" aria-label="Video entfernen"><svg class="icon"><use href="#i-close"/></svg></button></div>
+        <div id="file-info" class="file-info" hidden><span class="file-icon"><svg class="icon"><use href="#i-video"/></svg></span><div><strong id="file-name"></strong><span id="file-meta"></span></div><button id="remove-video" class="icon-button" aria-label="Video und Ergebnis entfernen"><svg class="icon"><use href="#i-close"/></svg></button></div>
 
+        <p class="local-note">Dein Video bleibt auf deinem Gerät. Kein Upload, auch offline nutzbar.</p>
+        <p id="file-error" class="error-message" role="alert" hidden></p>
+        <p id="output-note" class="output-note" hidden></p>
+        <button id="replace-video" class="text-button" hidden>Video ersetzen</button>
         <div class="section-divider"></div>
         <div class="control-heading"><span class="step-number">02</span><h2>Deine Frequenz</h2><button class="icon-button frequency-help" id="frequency-help" data-open-dialog="help-dialog" aria-label="Was bedeutet Frequenz?"><svg class="icon"><use href="#i-help"/></svg></button></div>
         <label class="field-label" for="frequency">Bilder pro Sekunde</label>
-        <div class="frequency-field"><input type="number" id="frequency" min="0.1" max="120" step="0.1" value="10" inputmode="decimal" aria-describedby="frequency-interval create-hint"><span>Hz</span></div>
+        <div class="frequency-field"><input type="text" id="frequency" value="10" inputmode="decimal" aria-describedby="frequency-interval frequency-error"><span>Hz</span></div>
+        <p id="frequency-error" class="field-error"></p>
         <div class="frequency-presets" role="group" aria-label="Frequenz auswählen"><span class="segment-indicator" aria-hidden="true"></span><button data-frequency="5" aria-pressed="false">5 Hz</button><button data-frequency="10" class="selected" aria-pressed="true">10 Hz</button><button data-frequency="20" aria-pressed="false">20 Hz</button><button data-frequency="30" aria-pressed="false">30 Hz</button></div>
         <p class="interval-hint" id="frequency-interval"><svg class="icon"><use href="#i-clock"/></svg>Ein Bild alle <strong id="interval-value">0,10 Sekunden</strong></p>
 
         <div class="settings">
           <div class="settings-content">
             <div class="range-label">Zeitbereich <span>in Sekunden</span></div>
-            <div class="time-range"><label for="start-time">Von<input id="start-time" type="text" inputmode="decimal" value="0"></label><span aria-hidden="true">–</span><label for="end-time">Bis<input id="end-time" type="text" inputmode="decimal" placeholder="Ende"></label></div>
+            <div class="time-range"><label for="start-time">Von<input id="start-time" aria-describedby="start-time-error" type="text" inputmode="decimal" value="0"></label><span aria-hidden="true">–</span><label for="end-time">Bis<input id="end-time" aria-describedby="end-time-error" type="text" inputmode="decimal" placeholder="Ende"></label></div>
+            <p id="start-time-error" class="field-error"></p><p id="end-time-error" class="field-error"></p>
+            <div class="video-position-actions"><button id="use-start" class="text-button" disabled>Videoposition als Start</button><button id="use-end" class="text-button" disabled>Videoposition als Ende</button></div>
             <label for="sensitivity" class="range-label">Bewegungserkennung <output id="sensitivity-value" for="sensitivity">Normal</output></label>
             <input id="sensitivity" type="range" min="8" max="65" value="22" aria-describedby="sensitivity-note">
             <p class="setting-note" id="sensitivity-note">Links: feine Bewegungen. Rechts: weniger Bildrauschen.</p>
             <div class="overlay-options"><label><input id="time-labels" type="checkbox" role="switch" checked><span>Zeitleiste im Bild</span></label><label><input id="grid-overlay" type="checkbox" role="switch"><span>Hilfsraster</span></label></div>
           </div>
         </div>
-        <div class="create-area"><button class="primary-button" id="create-button" disabled><svg class="icon"><use href="#i-spark"/></svg><span>Stroboskopbild erstellen</span><svg class="icon"><use href="#i-arrow"/></svg></button><p id="create-hint">Wähle ein Video, um loszulegen.</p><button id="cancel-button" class="text-button" hidden>Verarbeitung abbrechen</button></div>
+        <div class="create-area"><button class="primary-button" id="create-button" aria-describedby="create-hint" disabled><svg class="icon"><use href="#i-spark"/></svg><span>Stroboskopbild erstellen</span><svg class="icon"><use href="#i-arrow"/></svg></button><p id="create-hint">Wähle ein Video, um loszulegen.</p><button id="cancel-button" class="text-button" hidden>Verarbeitung abbrechen</button></div>
         <p id="error-message" class="error-message" role="alert" hidden></p>
       </aside>
 
       <div class="preview-panel">
         <div class="preview-toolbar"><div class="preview-tabs" role="tablist" aria-label="Ansicht"><span class="segment-indicator" aria-hidden="true"></span><button id="result-tab" class="active" role="tab" aria-selected="true" aria-controls="result-view"><svg class="icon"><use href="#i-image"/></svg>Stroboskopbild</button><button id="video-tab" role="tab" aria-selected="false" aria-controls="video-view"><svg class="icon"><use href="#i-video"/></svg>Originalvideo</button></div><span class="preview-tag" id="preview-tag"><span></span>Beispielvorschau</span></div>
-        <div class="visual-area" id="visual-area">
+        <div class="visual-area" id="visual-area"><button id="exit-fullscreen" class="secondary-button fullscreen-exit">Vollbild schließen</button>
           <div class="result-view" id="result-view" role="tabpanel" aria-labelledby="result-tab" tabindex="0">
-            <div class="example-scene" id="example-scene"><div class="scene-top"><span class="scene-label"><span></span>Freier Fall</span><span class="scene-interval">Δt = 0,10 s</span></div>
+            <div class="example-scene" id="example-scene"><div class="scene-top"><span class="scene-label"><span></span>Beispiel mit 10 Hz</span><span class="scene-interval">Δt = 0,10 s</span></div>
               <svg class="fall-illustration" viewBox="125 10 420 375" aria-label="Illustration eines fallenden Balls mit zunehmenden Abständen" role="img">
                 <defs><radialGradient id="ball-shading" cx="32%" cy="25%" r="80%"><stop offset="0" stop-color="var(--ball-highlight, #82a78b)"/><stop offset=".5" stop-color="var(--ball-mid, #3e7654)"/><stop offset="1" stop-color="var(--ball-base, #234b3c)"/></radialGradient><filter id="ball-shadow" x="-80%" y="-80%" width="260%" height="260%"><feDropShadow dx="2" dy="4" stdDeviation="4" flood-color="#304b36" flood-opacity=".12"/></filter></defs>
                 <g class="ruler-ticks" stroke="#b0bba9" stroke-width="1"><path d="M206 45v310M196 45h10m-6 25h6m-6 25h6m-6 25h6m-10 25h10m-6 25h6m-6 25h6m-6 25h6m-10 25h10m-6 25h6m-6 25h6m-6 25h6m-10 25h10"/></g><g class="diagram-labels" text-anchor="end"><text x="185" y="49">0</text><text x="185" y="149">100</text><text x="185" y="249">200</text><text x="185" y="349">300</text><text x="186" y="376">px</text></g>
@@ -523,29 +561,45 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
           <div class="video-view" id="video-view" role="tabpanel" aria-labelledby="video-tab" tabindex="0" hidden><video id="video-player" controls playsinline preload="auto" aria-label="Dein Originalvideo"></video><div class="video-empty" id="video-empty"><svg class="icon"><use href="#i-video"/></svg><p>Hier beginnt deine Bewegung.</p><span>Wähle ein Video über „Datei auswählen“.</span></div></div>
           <div id="progress-overlay" class="progress-overlay" hidden><span class="processing-spinner" aria-hidden="true"></span><h3>Bewegung wird sichtbar …</h3><p id="progress-description" role="status">Hintergrund wird ermittelt.</p><progress id="processing-progress" max="100" value="0" aria-label="Stroboskopbild wird erstellt"></progress><span id="progress-count">0 %</span></div>
         </div>
-        <div class="preview-bottom"><div><span class="status-dot" id="status-dot"></span><span id="preview-status" role="status">Dein nächstes Experiment beginnt hier.</span></div><div class="preview-actions"><button id="measure-button" class="icon-button" disabled aria-label="Strecke messen" title="Strecke messen"><svg class="icon"><use href="#i-ruler"/></svg></button><button id="fullscreen-button" class="icon-button" aria-label="Vorschau vergrößern" title="Vorschau vergrößern"><svg class="icon"><use href="#i-expand"/></svg></button><button id="download-button" class="download-button" disabled><svg class="icon"><use href="#i-download"/></svg>PNG herunterladen</button></div></div>
+        <div class="preview-bottom"><div><span class="status-dot" id="status-dot"></span><span id="preview-status" role="status">Dein nächstes Experiment beginnt hier.</span></div><div class="preview-actions"><button id="measure-button" class="secondary-button measure-action" disabled aria-label="Strecke messen" title="Strecke messen"><svg class="icon"><use href="#i-ruler"/></svg>Messen</button><button id="fullscreen-button" class="icon-button" aria-label="Vorschau vergrößern" title="Vorschau vergrößern"><svg class="icon"><use href="#i-expand"/></svg></button><button id="download-button" class="download-button" disabled><svg class="icon"><use href="#i-download"/></svg><span id="download-label">PNG herunterladen</span></button></div></div>
+        <div id="result-notes" class="result-notes" hidden>
+          <p id="result-parameters"></p>
+          <p id="stale-result" class="result-warning" role="status" hidden>Einstellungen geändert. Angezeigt und exportiert wird weiterhin das vorherige Ergebnis.</p>
+          <div id="quality-warning" class="result-warning" hidden><p id="quality-text"></p><button id="quality-settings" class="text-button">Einstellungen prüfen</button></div>
+          <button id="show-result" class="text-button">Ergebnis ansehen</button>
+          <p class="session-note">Arbeitsstand nur in diesem Tab. PNG sichert das Bild; editierbare Messungen gehen beim Schließen verloren.</p>
+        </div>
         <div class="frames-area" id="frames-area"><div class="frames-title"><h3>Die Bewegung, Bild für Bild</h3><span id="frames-count">GLEICHE ZEITABSTÄNDE</span></div><div class="empty-frames" id="empty-frames"><div><svg class="icon"><use href="#i-image"/></svg><span>01</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>02</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>03</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>04</span></div><div><svg class="icon"><use href="#i-image"/></svg><span>05</span></div><p>Deine Einzelbilder erscheinen nach dem Erstellen hier.</p></div><div class="frame-strip" id="frame-strip" hidden></div></div>
       </div>
     </section>
     <p class="workspace-note"><svg class="icon" aria-hidden="true"><use href="#i-video"/></svg>Für klare Ergebnisse: feste Kamera, ruhiger Hintergrund.</p>
   </main>
 
-  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-heading"><span class="eyebrow">DEIN KLEINES PHYSIKLABOR</span><button class="icon-button" data-close-dialog aria-label="Hilfe schließen"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="help-title">Bewegung verstehen.<br>In drei einfachen Schritten.</h2><ol class="help-steps"><li><span>01</span><div><h3>Video auswählen</h3><p>Filme den fallenden Ball mit feststehender Kamera. Ein ruhiger Hintergrund und ein mitgefilmtes Lineal machen das Ergebnis leichter messbar.</p></div></li><li><span>02</span><div><h3>Frequenz festlegen</h3><p>10 Hz bedeutet zehn Bilder pro Sekunde. Die Zeit zwischen zwei Bildern beträgt Δt = 1 / f, also 0,1 s. Wähle bei Bedarf nur den Abschnitt des Falls aus.</p></div></li><li><span>03</span><div><h3>Erstellen, messen, entdecken</h3><p>Das Programm legt die bewegten Bildbereiche übereinander. Lade das Ergebnis als PNG herunter oder miss direkt im Bild mit dem Lineal-Werkzeug.</p></div></li></ol><div class="physics-note"><svg class="icon"><use href="#i-flask"/></svg><div><strong>Ein Experiment. Viele Erkenntnisse.</strong><p>Bestimme die mittlere Geschwindigkeit v = Δs / Δt für aufeinanderfolgende Intervalle. Aus ihrer Änderung folgt a ≈ Δv / Δt. Beim freien Fall aus der Ruhe gilt s = ½ g t² mit g ≈ 9,81 m/s².</p></div></div><p class="help-footnote">Die Genauigkeit hängt von Bildrate, Perspektive und Belichtungszeit ab. Bei Zeitlupenvideos beziehen sich Zeitangaben auf die Wiedergabe; für die reale Zeit ist der Zeitlupenfaktor nötig. Frequenzen oberhalb der Aufnahmebildrate können dieselben Videobilder mehrfach auswählen.</p><button class="primary-button" data-close-dialog>Los geht’s<svg class="icon"><use href="#i-arrow"/></svg></button></dialog>
+  <dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title"><div class="dialog-heading"><span class="eyebrow">DEIN KLEINES PHYSIKLABOR</span><button class="icon-button" data-close-dialog aria-label="Hilfe schließen"><svg class="icon"><use href="#i-close"/></svg></button></div><h2 id="help-title">Bewegung verstehen.<br>In drei einfachen Schritten.</h2><ol class="help-steps"><li><span>01</span><div><h3>Video auswählen</h3><p>Filme den fallenden Ball mit feststehender Kamera. Ein ruhiger Hintergrund und ein mitgefilmtes Lineal machen das Ergebnis leichter messbar.</p></div></li><li><span>02</span><div><h3 id="frequency-explanation" tabindex="-1">Frequenz festlegen</h3><p>10 Hz bedeutet zehn Bilder pro Sekunde. Die Zeit zwischen zwei Bildern beträgt Δt = 1 / f, also 0,1 s. Wähle bei Bedarf nur den Abschnitt des Falls aus.</p></div></li><li><span>03</span><div><h3>Erstellen, messen, entdecken</h3><p>Das Programm legt die bewegten Bildbereiche übereinander. Lade das Ergebnis als PNG herunter oder miss direkt im Bild mit dem Lineal-Werkzeug.</p></div></li><li><span>04</span><div><h3>Maßstab festlegen</h3><p>Öffne „Messen“ und markiere die Enden einer bekannten Länge, etwa 10 cm auf einem mitgefilmten Lineal. Wähle diese Strecke, gib 10 cm ein und aktiviere „Als Maßstab verwenden“. Weitere Strecken erscheinen dann in cm. Ohne Maßstab bleiben die Werte in Pixeln.</p></div></li></ol><div class="physics-note"><svg class="icon"><use href="#i-flask"/></svg><div><strong>Ein Experiment. Viele Erkenntnisse.</strong><p>Bestimme die mittlere Geschwindigkeit v = Δs / Δt für aufeinanderfolgende Intervalle. Aus ihrer Änderung folgt a ≈ Δv / Δt. Beim freien Fall aus der Ruhe gilt s = ½ g t² mit g ≈ 9,81 m/s².</p></div></div><p class="help-footnote">Die Genauigkeit hängt von Bildrate, Perspektive und Belichtungszeit ab. Bei Zeitlupenvideos beziehen sich Zeitangaben auf die Wiedergabe; für die reale Zeit ist der Zeitlupenfaktor nötig. Frequenzen oberhalb der Aufnahmebildrate können dieselben Videobilder mehrfach auswählen.</p><button class="primary-button" data-close-dialog>Los geht’s<svg class="icon"><use href="#i-arrow"/></svg></button></dialog>
 
   <dialog id="measure-dialog" class="measure-dialog" aria-labelledby="measure-title">
     <div class="dialog-heading">
-      <div><h2 id="measure-title">Strecken messen</h2><p class="measurement-instruction" id="measurement-instruction">Wähle Anfang und Ende einer Strecke. Beschriftungen kannst du im Bild nach oben oder unten ziehen.</p></div>
+      <div><h2 id="measure-title">Strecken messen</h2><p class="measurement-instruction" id="measurement-instruction">Zwei Punkte anklicken oder mit Pfeiltasten und Enter setzen. Umschalt: 10 Pixel. Endpunkte ziehen oder als Koordinaten korrigieren.</p></div>
       <button class="icon-button" data-close-dialog aria-label="Messwerkzeug schließen"><svg class="icon"><use href="#i-close"/></svg></button>
     </div>
+    <p id="measurement-feedback" class="measurement-feedback" role="status" aria-live="polite"></p>
     <div class="measurement-workspace">
       <div class="measurement-stage">
-        <div class="measurement-image"><canvas id="measure-canvas" aria-label="Streckenmessung: je Strecke zwei Punkte anklicken; Beschriftungen zum Verschieben nach oben oder unten ziehen" aria-describedby="measurement-instruction" tabindex="0"></canvas></div>
+        <div class="measurement-zoom"><button id="zoom-out" class="secondary-button" aria-label="Messbild verkleinern">−</button><output id="zoom-value">100 %</output><button id="zoom-in" class="secondary-button" aria-label="Messbild vergrößern">+</button><button id="zoom-fit" class="text-button">Einpassen</button><button id="pan-image" class="secondary-button" aria-pressed="false">Bild verschieben</button></div>
+        <div class="measurement-image"><canvas id="measure-canvas" role="application" aria-roledescription="Messbild mit Fadenkreuz" aria-label="Messbild: Pfeiltasten bewegen das Fadenkreuz, Enter setzt einen Punkt, Rücktaste verwirft den letzten Entwurfspunkt" aria-describedby="measurement-instruction" tabindex="0"></canvas></div>
       </div>
       <aside class="measurement-sidebar" aria-label="Messwerte und Maßstab">
         <div class="measurement-controls">
           <div><span>Ausgewählte Strecke</span><strong id="measurement-value" role="status">Zwei Punkte auswählen</strong></div>
-          <div class="measurement-actions"><button class="text-button" id="reset-measurement">Neue Strecke</button><button class="text-button" id="clear-measurements" disabled>Alle löschen</button></div>
+          <div class="measurement-actions"><button class="text-button" id="reset-measurement">Neue Strecke</button><button class="text-button" id="clear-measurements" disabled>Alle löschen</button><button class="text-button" id="undo-measurement" disabled>Rückgängig</button></div>
         </div>
+        <section class="point-editor" aria-labelledby="point-editor-title">
+          <h3 id="point-editor-title">Ausgewählte Strecke korrigieren</h3>
+          <div class="point-fields"><label>Start X<input id="point-ax" inputmode="decimal" type="text" disabled></label><label>Start Y<input id="point-ay" inputmode="decimal" type="text" disabled></label><label>Ende X<input id="point-bx" inputmode="decimal" type="text" disabled></label><label>Ende Y<input id="point-by" inputmode="decimal" type="text" disabled></label></div>
+          <button id="apply-points" class="secondary-button" disabled>Punkte übernehmen</button>
+          <label class="field-label" for="label-position">Beschriftung vertikal verschieben</label><input id="label-position" type="range" min="-100" max="100" value="0" disabled>
+          <p id="point-error" class="field-error" role="status"></p>
+        </section>
         <section class="measurement-collection" aria-labelledby="measurement-list-title">
           <h3 id="measurement-list-title">Gemessene Strecken</h3>
           <p class="measurement-empty" id="measurement-empty">Wähle zwei Punkte im Bild, um deine erste Strecke zu messen.</p>
@@ -553,13 +607,15 @@ dialog::backdrop { background: rgb(13 27 20 / .3); -webkit-backdrop-filter: blur
         </section>
         <section class="measurement-calibration" aria-labelledby="calibration-title">
           <h3 id="calibration-title">Maßstab</h3>
-          <div class="calibration"><label for="known-distance"><span>Ausgewählte Referenzstrecke entspricht</span><input id="known-distance" type="number" min="0.01" step="0.1" placeholder="z. B. 100"><span>cm</span></label><button class="secondary-button" id="calibrate-button" disabled>Als Maßstab verwenden</button></div>
+          <div class="calibration"><label for="known-distance"><span>Ausgewählte Referenzstrecke entspricht</span><input id="known-distance" type="text" inputmode="decimal" aria-describedby="distance-error calibration-note" placeholder="z. B. 100"><span>cm</span></label><button class="secondary-button" id="calibrate-button" disabled>Als Maßstab verwenden</button></div>
+          <p id="distance-error" class="field-error" role="status"></p>
           <p id="calibration-note" class="setting-note">Miss zuerst eine bekannte Länge im Bild und lege damit den Maßstab fest. Danach werden alle Strecken in Zentimetern angezeigt.</p>
         </section>
       </aside>
     </div>
   </dialog>
-  <div class="toast" id="toast" role="status" hidden></div>
+  <div id="announcements" class="sr-only" role="status" aria-live="polite"></div>
+  <div class="toast" id="toast" aria-hidden="true" hidden></div>
 <script>
 (() => {
 'use strict';
@@ -712,16 +768,35 @@ async function processVideo({ url, start, end, frequency, threshold, signal, onP
       onProgress({ percent: 30 + (i + 1) / times.length * 69, text: `Bild ${i + 1} von ${times.length} wird zusammengeführt.` });
       await breathe();
     }
-    return { data: output, width, height, times, thumbs, frequency, start, end, motionPixels, originalWidth: video.videoWidth, originalHeight: video.videoHeight };
+    return { data: output, width, height, times, thumbs, frequency, start, end, threshold, motionPixels, originalWidth: video.videoWidth, originalHeight: video.videoHeight };
   } finally {
     video.pause(); video.removeAttribute('src'); video.load();
   }
 }
 
 function decorateResult(canvas, result, { grid = false, timeline = true } = {}) {
-  const legendHeight = timeline ? Math.round(result.width * 0.065) + 35 : 0;
-  canvas.width = result.width; canvas.height = result.height + legendHeight;
+  const legendLines = [];
   const ctx = canvas.getContext('2d');
+  const fontSize = Math.max(10, Math.round(result.width / 80));
+  ctx.font = `${fontSize}px sans-serif`;
+  const fmt = n => n.toLocaleString('de-DE', { maximumFractionDigits: 3 });
+  if (timeline) {
+    const lines = [
+      `STROBO · ${fmt(result.frequency)} Hz · Δt = ${fmt(1 / result.frequency)} s · ${result.times.length} Bilder`,
+      `Zeit relativ zum Abschnittsbeginn; Start im Video: ${fmt(result.start)} s.`,
+      ...result.times.filter((_, i) => i % Math.max(1, Math.ceil(result.times.length / 9)) === 0).map(t => `${fmt(t - result.start)} s`)
+    ];
+    for (const line of lines) {
+      let current = '';
+      for (const word of line.split(' ')) {
+        if (current && ctx.measureText(`${current} ${word}`).width > result.width - 20) { legendLines.push(current); current = ''; }
+        current += `${current ? ' ' : ''}${word}`;
+      }
+      if (current) legendLines.push(current);
+    }
+  }
+  const legendHeight = timeline ? legendLines.length * (fontSize + 5) + 20 : 0;
+  canvas.width = result.width; canvas.height = result.height + legendHeight;
   ctx.putImageData(new ImageData(result.data, result.width, result.height), 0, 0);
   if (grid) {
     const interval = 50;
@@ -731,20 +806,9 @@ function decorateResult(canvas, result, { grid = false, timeline = true } = {}) 
     ctx.restore();
   }
   if (timeline) {
-    const top = result.height;
-    const fontSize = Math.max(10, Math.round(result.width / 80));
-    const fmt = n => n.toLocaleString('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 3 });
-    ctx.fillStyle = '#f3f6ed'; ctx.fillRect(0, top, result.width, legendHeight);
-    ctx.fillStyle = '#3d5c32'; ctx.font = `600 ${fontSize}px sans-serif`;
-    const left = 15;
-    ctx.fillText(`STROBO  ·  ${result.frequency.toLocaleString('de-DE')} Hz  ·  Δt = ${fmt(1 / result.frequency)} s  ·  ${result.times.length} Bilder`, left, top + fontSize + 13);
-    ctx.fillStyle = '#86957a'; ctx.font = `${Math.max(8, fontSize - 1)}px sans-serif`;
-    const indices = result.times.length <= 12 ? result.times.map((_, i) => i) : Array.from({ length: 9 }, (_, i) => Math.round(i * (result.times.length - 1) / 8));
-    const y = top + fontSize + 31;
-    ctx.fillText('t =', left, y);
-    const width = (result.width - 60) / indices.length;
-    indices.forEach((index, i) => ctx.fillText(`${fmt(result.times[index] - result.start)} s`, 45 + i * width, y));
-    if (legendHeight > 68) ctx.fillText(`Zeitangaben relativ zum Abschnittsbeginn. Videobeginn: ${fmt(result.start)} s.`, left, top + legendHeight - 12);
+    ctx.fillStyle = '#f3f6ed'; ctx.fillRect(0, result.height, result.width, legendHeight);
+    ctx.fillStyle = '#304b29'; ctx.font = `${fontSize}px sans-serif`;
+    legendLines.forEach((line, i) => ctx.fillText(line, 10, result.height + 15 + i * (fontSize + 5), Math.max(1, result.width - 20)));
   }
 }
 
@@ -869,7 +933,7 @@ document.querySelectorAll('.overlay-options input').forEach(input => {
   input.addEventListener('change', () => spring.to(Number(input.checked)));
 });
 
-const state = { url: null, name: '', duration: 0, width: 0, height: 0, result: null, busy: false, loading: false, controller: null, loadController: null, loadId: 0, scale: null, calibrationReferenceId: null, points: [], measurements: [], selectedMeasurementId: null, nextMeasurementId: 1 };
+const state = { url: null, name: '', duration: 0, width: 0, height: 0, result: null, busy: false, loading: false, controller: null, loadController: null, loadId: 0, scale: null, calibrationReferenceId: null, points: [], measurements: [], selectedMeasurementId: null, nextMeasurementId: 1, history: [], zoom: 1, pan: false, cursor: null, dirty: false };
 const number = (value, digits = 2) => value.toLocaleString('de-DE', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const plural = count => `${count} ${count === 1 ? 'Bild' : 'Bilder'}`;
 let toastTimer;
@@ -879,6 +943,8 @@ const toastSpring = createSpring(0, value => {
 }, target => { if (target === 0) $('toast').hidden = true; });
 
 function toast(message) {
+  if ($('measure-dialog').open) { $('measurement-feedback').textContent = message; return; }
+  $('announcements').textContent = message;
   $('toast').textContent = message; $('toast').hidden = false;
   toastSpring.to(1);
   clearTimeout(toastTimer); toastTimer = setTimeout(() => toastSpring.to(0), 4500);
@@ -886,31 +952,68 @@ function toast(message) {
 function error(message = '') { $('error-message').textContent = message; $('error-message').hidden = !message; }
 function setTag(text) { $('preview-tag').replaceChildren(); const dot = document.createElement('span'); $('preview-tag').append(dot, document.createTextNode(text)); }
 
-function parseTime(value, fallback) {
+function parseTime(value, fallback = NaN) {
   const normalized = value.trim().replace(',', '.');
   if (normalized === '') return fallback;
-  return /^(?:\d+(?:\.\d*)?|\.\d+)$/.test(normalized) ? Number(normalized) : NaN;
+  return /^-?(?:\d+(?:\.\d*)?|\.\d+)$/.test(normalized) ? Number(normalized) : NaN;
+}
+
+function invalidField(field, message) {
+  const err = new Error(message); err.field = field; throw err;
 }
 
 function settings() {
-  const frequency = $('frequency').valueAsNumber;
+  const frequency = parseTime($('frequency').value);
   const start = parseTime($('start-time').value, 0);
   const end = parseTime($('end-time').value, state.duration);
-  if (end > state.duration + 0.001) throw new Error('Der gewählte Zeitbereich liegt außerhalb des Videos.');
+  if (!Number.isFinite(frequency) || frequency < .1 || frequency > 120) invalidField('frequency', 'Gib eine Frequenz zwischen 0,1 und 120 Hz ein.');
+  if (!Number.isFinite(start)) invalidField('start-time', 'Gib den Start als Zahl in Sekunden ein.');
+  if (!Number.isFinite(end)) invalidField('end-time', 'Gib das Ende als Zahl in Sekunden ein.');
+  if (start < 0) invalidField('start-time', 'Der Start darf nicht negativ sein.');
+  if (start >= state.duration) invalidField('start-time', `Der Start muss vor dem Videoende (${number(state.duration)} s) liegen.`);
+  if (end > state.duration + .001) invalidField('end-time', `Das Ende liegt nach dem Videoende (${number(state.duration)} s).`);
+  if (end <= start) invalidField('end-time', 'Das Ende muss nach dem Start liegen.');
   const actualEnd = Math.min(end, state.duration);
-  const times = samplingTimes(start, actualEnd, frequency);
+  let times;
+  try { times = samplingTimes(start, actualEnd, frequency); }
+  catch (err) { invalidField('end-time', err.message); }
   return { frequency, start, end: actualEnd, times, threshold: $('sensitivity').valueAsNumber };
 }
 
+function resultIsStale() {
+  if (!state.result) return false;
+  try {
+    const current = settings();
+    return ['frequency', 'start', 'end', 'threshold'].some(key => Math.abs(current[key] - state.result[key]) > 1e-8);
+  } catch { return true; }
+}
+
+function updateResultNotes() {
+  const result = state.result;
+  $('result-notes').hidden = !result;
+  if (!result) return;
+  const stale = resultIsStale();
+  $('stale-result').hidden = !stale;
+  $('download-label').textContent = stale ? `Vorheriges Ergebnis (${result.frequency.toLocaleString('de-DE', { maximumFractionDigits: 8 })} Hz) als PNG` : 'PNG herunterladen';
+  const canvas = $('result-canvas');
+  $('result-parameters').textContent = `Angezeigtes Ergebnis: ${result.frequency.toLocaleString('de-DE', { maximumFractionDigits: 8 })} Hz · Video ${number(result.start)} bis ${number(result.end)} s · Erkennungsschwelle ${result.threshold} · Bildfläche ${result.width} × ${result.height} px · PNG ${canvas.width} × ${canvas.height} px.`;
+  const warning = result.times.length < 2 ? 'Nur ein Bild: Wähle einen längeren Zeitbereich oder eine höhere Frequenz und erstelle erneut.' : result.motionPixels < 20 ? 'Kaum Bewegung erkannt: Stelle die Bewegungserkennung weiter nach links und erstelle erneut.' : '';
+  $('quality-warning').hidden = !warning; $('quality-text').textContent = warning;
+}
+
 function updateControls() {
-  const frequency = $('frequency').valueAsNumber;
+  const frequency = parseTime($('frequency').value);
   $('interval-value').textContent = Number.isFinite(frequency) && frequency > 0 ? `${number(1 / frequency, frequency > 20 ? 3 : 2)} Sekunden` : '–';
   document.querySelectorAll('[data-frequency]').forEach(button => {
     const selected = Number(button.dataset.frequency) === frequency;
     button.classList.toggle('selected', selected); button.setAttribute('aria-pressed', String(selected));
   });
   syncSegment(document.querySelector('.frequency-presets'), '.selected');
+  for (const id of ['frequency', 'start-time', 'end-time']) { $(id).removeAttribute('aria-invalid'); $(`${id}-error`).textContent = ''; }
+  $('use-start').disabled = $('use-end').disabled = !state.url || state.busy || state.loading;
+  $('replace-video').disabled = state.busy || state.loading;
   $('create-button').disabled = true;
+  updateResultNotes();
   if (state.busy) return;
   if (state.loading) { $('create-hint').textContent = 'Video wird geladen …'; return; }
   if (!state.url) { $('create-hint').textContent = 'Wähle ein Video, um loszulegen.'; return; }
@@ -918,8 +1021,24 @@ function updateControls() {
     const config = settings();
     $('create-button').disabled = false;
     $('create-hint').textContent = `${plural(config.times.length)} · ${number(config.end - config.start)} Sekunden ausgewählt`;
-  } catch (err) { $('create-hint').textContent = err.message; }
+  } catch (err) {
+    $('create-hint').textContent = err.message;
+    if (err.field) { $(err.field).setAttribute('aria-invalid', 'true'); $(`${err.field}-error`).textContent = err.message; }
+  }
 }
+
+function beforeLeave(event) { event.preventDefault(); event.returnValue = ''; }
+function markDirty(dirty = true) {
+  state.dirty = dirty;
+  if (dirty) window.addEventListener('beforeunload', beforeLeave);
+  else window.removeEventListener('beforeunload', beforeLeave);
+}
+function confirmDiscard(action) {
+  if (!state.result && !state.measurements.length && !state.points.length && !state.scale) return true;
+  const lost = [state.result && 'das bisherige Bild', state.measurements.length && `${state.measurements.length} Messungen`, state.points.length && 'der Messentwurf', state.scale && 'der Maßstab'].filter(Boolean).join(', ');
+  return window.confirm(`${action} Dabei werden verworfen: ${lost}. Abbrechen, um vorher das PNG zu sichern. Ein PNG enthält keine editierbaren Messdaten.`);
+}
+
 
 function selectTab(tab) {
   const result = tab === 'result';
@@ -928,7 +1047,8 @@ function selectTab(tab) {
   $('result-tab').tabIndex = result ? 0 : -1; $('video-tab').tabIndex = result ? -1 : 0;
   $('result-view').hidden = !result; $('video-view').hidden = result;
   syncSegment(document.querySelector('.preview-tabs'), '.active');
-  if (result) $('video-player').pause();
+  if (result) { $('video-player').pause(); renderResult(); }
+  $('show-result').hidden = result;
 }
 
 function resetResult() {
@@ -936,11 +1056,13 @@ function resetResult() {
   $('download-button').disabled = true; $('measure-button').disabled = true;
   $('empty-frames').hidden = false; $('frame-strip').hidden = true; $('frame-strip').replaceChildren();
   $('frames-count').textContent = 'GLEICHE ZEITABSTÄNDE'; $('status-dot').classList.remove('ready');
-  resetCalibration();
+  resetCalibration(); updateResultNotes();
 }
 
 function resetCalibration() {
-  state.scale = null; state.calibrationReferenceId = null; state.points = []; state.measurements = []; state.selectedMeasurementId = null; state.nextMeasurementId = 1;
+  state.scale = null; state.calibrationReferenceId = null; state.points = []; state.measurements = []; state.selectedMeasurementId = null; state.nextMeasurementId = 1; state.history = []; state.cursor = null; state.zoom = 1; state.pan = false;
+  $('undo-measurement').disabled = true; $('zoom-value').textContent = '100 %'; $('measurement-feedback').textContent = '';
+  syncPointEditor();
   $('measurement-list').replaceChildren(); $('measurement-list').hidden = true;
   $('measurement-empty').hidden = false;
   $('measurement-value').textContent = 'Zwei Punkte auswählen'; $('clear-measurements').disabled = true;
@@ -957,38 +1079,53 @@ function clearVideo() {
   $('file-input').value = ''; $('file-info').hidden = true; $('dropzone').hidden = false;
   $('video-empty').hidden = false; $('example-scene').hidden = false; $('canvas-wrap').hidden = true;
   $('start-time').value = '0'; $('end-time').value = ''; $('end-time').placeholder = 'Ende';
-  resetResult(); error(); setTag('Beispielvorschau');
+  resetResult(); error(); setTag('Beispielvorschau'); selectTab('result'); markDirty(false);
+  $('replace-video').hidden = true; $('output-note').hidden = true; $('file-error').hidden = true;
   $('preview-status').textContent = 'Dein nächstes Experiment beginnt hier.';
   updateControls();
 }
 
 async function loadVideo(file) {
-  if (state.busy) return;
-  clearVideo();
+  if (state.busy || state.loading) return;
+  if (!confirmDiscard('Video ersetzen?')) { $('file-input').value = ''; return; }
+  const restoreFocus = document.activeElement === $('dropzone') || document.activeElement === $('replace-video') || document.activeElement === $('file-input');
+  state.loadController?.abort();
   const id = ++state.loadId;
-  state.loading = true; state.name = file.name; state.url = URL.createObjectURL(file);
-  state.loadController = new AbortController();
-  const player = $('video-player'); player.src = state.url;
-  $('dropzone').hidden = true; $('file-info').hidden = false;
-  $('file-name').textContent = file.name; $('file-meta').textContent = 'Video wird gelesen …';
-  $('video-empty').hidden = true; updateControls();
+  const controller = new AbortController(); state.loadController = controller; state.loading = true;
+  const url = URL.createObjectURL(file);
+  let failed = false;
+  const probe = document.createElement('video'); probe.muted = true; probe.preload = 'auto'; probe.src = url;
+  $('file-error').hidden = true; updateControls();
   try {
-    await waitForVideo(player, state.loadController.signal);
+    await waitForVideo(probe, controller.signal);
     if (id !== state.loadId) return;
-    if (!Number.isFinite(player.duration) || player.duration <= 0 || !player.videoWidth) throw new Error('Das Video hat keine lesbare Dauer. Verwende eine vollständig gespeicherte Videodatei.');
-    state.duration = player.duration; state.width = player.videoWidth; state.height = player.videoHeight;
-    $('file-meta').textContent = `${number(state.duration)} s · ${state.width} × ${state.height} px`;
-    $('end-time').placeholder = number(state.duration); state.loading = false;
-    const canvas = $('result-canvas'); const dims = fitDimensions(state.width, state.height);
-    canvas.width = dims.width; canvas.height = dims.height;
-    canvas.getContext('2d').drawImage(player, 0, 0, dims.width, dims.height);
+    if (!Number.isFinite(probe.duration) || probe.duration <= 0 || !probe.videoWidth) throw new Error('Das Video hat keine lesbare Dauer. Verwende eine vollständig gespeicherte Videodatei.');
+    const duration = probe.duration, width = probe.videoWidth, height = probe.videoHeight;
+    clearVideo();
+    state.url = url; state.name = file.name; state.duration = duration; state.width = width; state.height = height;
+    const player = $('video-player'); player.src = url;
+    $('dropzone').hidden = true; $('file-info').hidden = false; $('replace-video').hidden = false;
+    $('file-name').textContent = file.name; $('file-meta').textContent = `${number(duration)} s · ${width} × ${height} px`;
+    $('end-time').placeholder = number(duration); $('video-empty').hidden = true;
+    const dims = fitDimensions(width, height);
+    $('output-note').hidden = width <= MAX_SIDE && height <= MAX_SIDE;
+    $('output-note').textContent = `Bildfläche wird von ${width} × ${height} auf ${dims.width} × ${dims.height} px verkleinert. Die optionale Zeitleiste kommt darunter hinzu.`;
+    const canvas = $('result-canvas'); canvas.width = dims.width; canvas.height = dims.height;
+    canvas.getContext('2d').drawImage(probe, 0, 0, dims.width, dims.height);
     $('example-scene').hidden = true; $('canvas-wrap').hidden = false;
     setTag('Video bereit'); selectTab('result');
     $('preview-status').textContent = 'Video bereit. Jetzt die Bewegung festhalten.';
     updateControls();
+    if (restoreFocus) $('frequency').focus();
   } catch (err) {
+    URL.revokeObjectURL(url);
     if (id !== state.loadId || err.name === 'AbortError') return;
-    clearVideo(); error(err.message);
+    $('file-error').textContent = err.message; $('file-error').hidden = false;
+    $('file-input').value = '';
+    failed = true;
+  } finally {
+    probe.removeAttribute('src'); probe.load();
+    if (state.loadController === controller || state.url === url) { state.loading = false; state.loadController = null; updateControls(); if (failed && restoreFocus) (state.url ? $('replace-video') : $('dropzone')).focus(); }
   }
 }
 
@@ -1005,39 +1142,43 @@ function renderResult() {
   if (!state.result) return;
   decorateResult($('result-canvas'), state.result, { grid: $('grid-overlay').checked, timeline: $('time-labels').checked });
   drawMeasurementOverlays($('result-canvas').getContext('2d'));
+  updateResultNotes();
 }
 
 async function createResult() {
   if (state.busy || state.loading || !state.url) return;
   let config;
   try { config = settings(); } catch (err) { error(err.message); return; }
+  if ((state.measurements.length || state.points.length || state.scale) && !confirmDiscard('Neues Ergebnis erstellen?')) return;
   error(); state.controller = new AbortController(); selectTab('result'); $('video-player').pause();
   $('processing-progress').value = 0; $('progress-count').textContent = '0 %';
   $('progress-description').textContent = 'Hintergrund wird ermittelt.';
   setBusy(true);
+  let lastProgress = -1;
   try {
     const result = await processVideo({ ...config, url: state.url, signal: state.controller.signal, onProgress: ({ percent, text }) => {
-      $('processing-progress').value = percent; $('progress-count').textContent = `${Math.round(percent)} %`; $('progress-description').textContent = text;
+      $('processing-progress').value = percent; $('progress-count').textContent = `${Math.round(percent)} %`; if (Math.floor(percent / 10) !== lastProgress) { lastProgress = Math.floor(percent / 10); $('progress-description').textContent = text; }
     }});
-    state.result = result; resetCalibration();
+    state.result = result; resetCalibration(); markDirty();
     $('processing-progress').value = 100; $('progress-count').textContent = '100 %';
     renderResult(); $('example-scene').hidden = true; $('canvas-wrap').hidden = false;
     $('empty-frames').hidden = true; $('frame-strip').hidden = false; $('frame-strip').replaceChildren();
     const fragment = document.createDocumentFragment();
     result.thumbs.forEach((frame, i) => {
       const button = document.createElement('button'); button.className = 'frame-item';
-      button.setAttribute('aria-label', `Einzelbild ${i + 1} bei ${number(frame.relativeTime, 3)} Sekunden im Video ansehen`);
+      button.setAttribute('aria-label', `Einzelbild ${i + 1}: ${number(frame.relativeTime, 3)} Sekunden seit Abschnittsbeginn, ${number(frame.time, 3)} Sekunden im Video ansehen`);
       const img = document.createElement('img'); img.src = frame.url; img.alt = `Position bei t = ${number(frame.relativeTime)} s`; img.loading = 'lazy';
-      const caption = document.createElement('span'); caption.textContent = `${number(frame.relativeTime)} s`;
+      const caption = document.createElement('span'); caption.textContent = `${number(frame.relativeTime)} s ab Start · Video ${number(frame.time)} s`;
       const index = document.createElement('small'); index.textContent = String(i + 1).padStart(2, '0'); caption.append(index);
-      button.append(img, caption);
+      button.append(img, caption); button.setAttribute('aria-pressed', 'false');
       button.addEventListener('click', () => {
         selectTab('video'); $('video-player').pause(); $('video-player').currentTime = frame.time;
-        document.querySelectorAll('.frame-item.selected').forEach(el => el.classList.remove('selected')); button.classList.add('selected');
+        document.querySelectorAll('.frame-item').forEach(el => { el.classList.remove('selected'); el.setAttribute('aria-pressed', 'false'); }); button.classList.add('selected'); button.setAttribute('aria-pressed', 'true');
       });
       fragment.append(button);
     });
     $('frame-strip').append(fragment); $('frames-count').textContent = `${plural(result.times.length).toUpperCase()} · Δt = ${number(1 / result.frequency, result.frequency > 20 ? 3 : 2)} s`;
+    updateResultNotes();
     setTag('Dein Ergebnis'); $('status-dot').classList.add('ready');
     $('preview-status').textContent = `${plural(result.times.length)} zusammengeführt · ${result.width} × ${result.height} px`;
     if (result.times.length < 2) toast('Nur ein Bild ausgewählt. Erhöhe die Frequenz für mehrere Positionen.');
@@ -1078,8 +1219,8 @@ function measurementCaption(measurement) {
 function measurementCaptionLayout(ctx, measurement) {
   const { width, height } = state.result;
   const [a, b] = measurement.points;
-  const radius = Math.max(4, width / 180);
   const displayScale = ctx.canvas.getBoundingClientRect().width / width || 1;
+  const radius = Math.max(4, width / 180, 5 / displayScale);
   const fontSize = Math.max(14, width / 55, 12 / displayScale);
   const label = measurementCaption(measurement);
   ctx.font = `600 ${fontSize}px sans-serif`;
@@ -1102,12 +1243,15 @@ function selectedMeasurement() {
 }
 
 function updateCalibrationButton() {
-  const distance = $('known-distance').valueAsNumber;
+  const distance = parseTime($('known-distance').value);
+  const invalid = $('known-distance').value.trim() !== '' && (!(distance > 0) || !Number.isFinite(distance));
+  $('known-distance').setAttribute('aria-invalid', String(invalid));
+  $('distance-error').textContent = invalid ? 'Gib eine bekannte Länge größer als 0 cm ein.' : '';
   $('calibrate-button').disabled = !selectedMeasurement() || !(distance > 0) || !Number.isFinite(distance);
 }
 
 function updateCalibrationNote() {
-  if (!state.scale) return;
+  if (!state.scale) { $('calibration-note').textContent = 'Miss zuerst eine bekannte Länge im Bild, wähle die Strecke und gib ihre Länge in cm ein.'; return; }
   const reference = state.measurements.find(measurement => measurement.id === state.calibrationReferenceId);
   const description = reference ? `${reference.name} entspricht ${measurementLabel(reference)}` : `1 Pixel = ${number(state.scale, 4)} cm`;
   $('calibration-note').textContent = `Maßstab festgelegt: ${description}. Alle Messungen verwenden diesen Maßstab. Er gilt für dieses Ergebnis.`;
@@ -1115,8 +1259,9 @@ function updateCalibrationNote() {
 
 function drawMeasurementOverlays(ctx, includeDraft = false) {
   const { width, height } = state.result;
-  const radius = Math.max(4, width / 180);
-  const lineWidth = Math.max(2, width / 500);
+  const displayScale = ctx.canvas.getBoundingClientRect().width / width || 1;
+  const radius = Math.max(4, width / 180, 5 / displayScale);
+  const lineWidth = Math.max(2, width / 500, 2 / displayScale);
   ctx.save(); ctx.lineCap = 'round'; ctx.lineJoin = 'round';
   const drawPoint = (point, color) => {
     ctx.beginPath(); ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
@@ -1146,7 +1291,7 @@ function fitMeasurementCanvas() {
   const style = getComputedStyle(area);
   const width = area.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
   const height = area.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
-  const scale = Math.min(width / state.result.width, height / state.result.height);
+  const scale = Math.min(width / state.result.width, height / state.result.height) * state.zoom;
   const canvas = $('measure-canvas');
   canvas.style.width = `${state.result.width * scale}px`;
   canvas.style.height = `${state.result.height * scale}px`;
@@ -1157,8 +1302,17 @@ function renderMeasurementImage() {
   $('measure-dialog').style.setProperty('--measurement-image-ratio', result.height / result.width);
   const canvas = $('measure-canvas'); canvas.width = result.width; canvas.height = result.height;
   fitMeasurementCanvas();
+  canvas.style.touchAction = state.pan ? 'pan-x pan-y' : 'none'; canvas.style.cursor = state.pan ? 'grab' : 'crosshair';
+  $('pan-image').setAttribute('aria-pressed', String(state.pan));
   const ctx = canvas.getContext('2d'); ctx.putImageData(new ImageData(result.data, result.width, result.height), 0, 0);
   drawMeasurementOverlays(ctx, true);
+  if (state.cursor && document.activeElement === canvas) {
+    const { x, y } = state.cursor;
+    const scale = canvas.getBoundingClientRect().width / result.width || 1;
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 4 / scale;
+    const crosshair = () => { ctx.beginPath(); ctx.moveTo(x - 12 / scale, y); ctx.lineTo(x + 12 / scale, y); ctx.moveTo(x, y - 12 / scale); ctx.lineTo(x, y + 12 / scale); ctx.stroke(); };
+    crosshair(); ctx.strokeStyle = '#17452f'; ctx.lineWidth = 2 / scale; crosshair();
+  }
 }
 
 function drawMeasurement() {
@@ -1167,26 +1321,32 @@ function drawMeasurement() {
   const selected = selectedMeasurement();
   $('measurement-value').textContent = state.points.length ? 'Jetzt den zweiten Punkt wählen' : selected ? `${selected.name} = ${measurementLabel(selected)}` : 'Zwei Punkte auswählen';
   $('clear-measurements').disabled = !state.measurements.length && !state.points.length;
-  const list = $('measurement-list'); list.replaceChildren(); list.hidden = !state.measurements.length;
+  const list = $('measurement-list');
+  const active = document.activeElement;
+  const focusId = active.closest('[data-measurement-id]')?.dataset.measurementId;
+  const focusAction = active.dataset.action;
+  list.replaceChildren(); list.hidden = !state.measurements.length;
   $('measurement-empty').hidden = !!state.measurements.length;
   state.measurements.forEach(measurement => {
-    const item = document.createElement('li');
+    const item = document.createElement('li'); item.dataset.measurementId = measurement.id;
     const select = document.createElement('button'); select.className = 'measurement-select'; select.type = 'button';
     select.setAttribute('aria-pressed', String(measurement.id === state.selectedMeasurementId));
     const swatch = document.createElement('span'); swatch.className = 'measurement-swatch'; swatch.style.setProperty('--measurement-color', measurement.color);
     const name = document.createElement('input'); name.type = 'text'; name.className = 'measurement-name'; name.value = measurement.name; name.maxLength = 40;
     name.setAttribute('aria-label', `Name für Strecke ${measurement.id}`); name.title = 'Strecke umbenennen';
+    select.dataset.action = 'select'; name.dataset.action = 'name';
     const value = document.createElement('strong'); value.textContent = measurementLabel(measurement);
     select.append(swatch, value);
     select.addEventListener('click', () => { state.points = []; state.selectedMeasurementId = measurement.id; drawMeasurement(); });
     const visibility = document.createElement('button'); visibility.className = 'icon-button measurement-visibility'; visibility.type = 'button';
     const remove = document.createElement('button'); remove.className = 'icon-button measurement-remove'; remove.type = 'button';
+    visibility.dataset.action = 'visibility'; remove.dataset.action = 'remove';
     const labelControls = document.createElement('div'); labelControls.className = 'measurement-label-controls';
     const lengthLabel = document.createElement('label');
     const showLength = document.createElement('input'); showLength.type = 'checkbox'; showLength.checked = measurement.showLength !== false;
     lengthLabel.append(showLength, document.createTextNode('Länge anzeigen'));
     showLength.addEventListener('change', () => {
-      measurement.showLength = showLength.checked;
+      markDirty(); measurement.showLength = showLength.checked;
       renderMeasurementImage(); renderResult();
     });
     labelControls.append(lengthLabel);
@@ -1196,44 +1356,64 @@ function drawMeasurement() {
       const visible = measurement.visible !== false;
       item.dataset.visible = String(visible);
       visibility.setAttribute('aria-pressed', String(visible));
-      const visibilityLabel = `${measurement.name} ${visible ? 'ausblenden' : 'einblenden'}`;
+      const visibilityLabel = `${measurement.name} sichtbar`;
       visibility.setAttribute('aria-label', visibilityLabel); visibility.title = visibilityLabel;
       visibility.innerHTML = `<svg class="icon" aria-hidden="true"><use href="#${visible ? 'i-eye' : 'i-eye-off'}"/></svg>`;
       remove.setAttribute('aria-label', `${measurement.name} löschen`); remove.title = `${measurement.name} löschen`;
     };
     updateNames();
     visibility.addEventListener('click', () => {
-      measurement.visible = measurement.visible === false;
+      markDirty(); measurement.visible = measurement.visible === false;
       updateNames(); renderMeasurementImage(); renderResult();
     });
     name.addEventListener('input', () => {
-      measurement.name = name.value.trim() || `Strecke ${measurement.id}`;
+      markDirty(); measurement.name = name.value.trim() || `Strecke ${measurement.id}`;
       updateNames(); updateCalibrationNote();
       if (measurement.id === state.selectedMeasurementId) $('measurement-value').textContent = `${measurement.name} = ${measurementLabel(measurement)}`;
       renderMeasurementImage(); renderResult();
     });
     name.addEventListener('blur', () => { name.value = measurement.name; });
-    name.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); name.blur(); } });
+    name.addEventListener('keydown', event => { if (event.key === 'Enter') { event.preventDefault(); select.focus(); } });
     remove.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-close"/></svg>';
     remove.addEventListener('click', () => {
+      rememberMeasurements();
+      const position = state.measurements.indexOf(measurement);
       state.measurements = state.measurements.filter(entry => entry.id !== measurement.id);
       if (state.selectedMeasurementId === measurement.id) state.selectedMeasurementId = null;
       drawMeasurement(); renderResult();
+      const next = state.measurements[Math.min(position, state.measurements.length - 1)];
+      (next ? list.querySelector(`[data-measurement-id="${next.id}"] .measurement-select`) : $('reset-measurement')).focus();
+      toast('Strecke gelöscht. Mit Rückgängig wiederherstellen.');
     });
     item.append(name, select, visibility, remove, labelControls); list.append(item);
   });
-  updateCalibrationButton(); updateCalibrationNote();
+  updateCalibrationButton(); updateCalibrationNote(); syncPointEditor();
+  $('undo-measurement').disabled = !state.history.length;
+  if (focusId && focusAction) list.querySelector(`[data-measurement-id="${focusId}"] [data-action="${focusAction}"]`)?.focus();
 }
 
 $('dropzone').addEventListener('click', () => $('file-input').click());
+$('replace-video').addEventListener('click', () => $('file-input').click());
 $('file-input').addEventListener('change', event => { if (event.target.files[0]) loadVideo(event.target.files[0]); });
-for (const event of ['dragenter', 'dragover']) $('dropzone').addEventListener(event, e => { e.preventDefault(); if (!state.busy) $('dropzone').classList.add('dragover'); });
-for (const event of ['dragleave', 'drop']) $('dropzone').addEventListener(event, e => { e.preventDefault(); $('dropzone').classList.remove('dragover'); });
-$('dropzone').addEventListener('drop', e => { const file = e.dataTransfer.files[0]; if (file && !state.busy) loadVideo(file); });
-// Prevent a dropped video from navigating away from the experiment.
+for (const target of [$('dropzone'), $('file-info')]) {
+  for (const event of ['dragenter', 'dragover']) target.addEventListener(event, e => { e.preventDefault(); if (!state.busy) target.classList.add('dragover'); });
+  for (const event of ['dragleave', 'drop']) target.addEventListener(event, e => { e.preventDefault(); target.classList.remove('dragover'); });
+  target.addEventListener('drop', e => { const file = e.dataTransfer.files[0]; if (file) loadVideo(file); });
+}
 window.addEventListener('dragover', e => e.preventDefault()); window.addEventListener('drop', e => e.preventDefault());
-$('remove-video').addEventListener('click', clearVideo);
-for (const id of ['frequency', 'start-time', 'end-time', 'sensitivity']) $(id).addEventListener('input', () => { error(); updateControls(); });
+$('remove-video').addEventListener('click', () => { if (state.busy || !confirmDiscard('Video und Ergebnis entfernen?')) return; clearVideo(); $('dropzone').focus(); });
+let validationTimer;
+for (const id of ['frequency', 'start-time', 'end-time', 'sensitivity']) $(id).addEventListener('input', () => {
+  error(); updateControls(); clearTimeout(validationTimer);
+  validationTimer = setTimeout(() => { $('announcements').textContent = $('create-hint').textContent; }, 700);
+});
+for (const [id, field] of [['use-start', 'start-time'], ['use-end', 'end-time']]) $(id).addEventListener('click', () => {
+  $(field).value = String(Number($('video-player').currentTime.toFixed(3))).replace('.', ',');
+  updateControls(); $(field).focus();
+});
+$('show-result').addEventListener('click', () => { selectTab('result'); $('result-tab').focus(); });
+$('quality-settings').addEventListener('click', () => { (state.result.times.length < 2 ? $('start-time') : $('sensitivity')).focus(); });
+
 $('sensitivity').addEventListener('input', () => { const n = $('sensitivity').valueAsNumber; $('sensitivity-value').textContent = n < 18 ? 'Empfindlich' : n > 40 ? 'Weniger Rauschen' : 'Normal'; });
 document.querySelectorAll('[data-frequency]').forEach(button => button.addEventListener('click', () => { $('frequency').value = button.dataset.frequency; error(); updateControls(); }));
 for (const id of ['time-labels', 'grid-overlay']) $(id).addEventListener('change', renderResult);
@@ -1247,7 +1427,7 @@ document.querySelector('.preview-tabs').addEventListener('keydown', event => {
   const next = event.key === 'Home' ? 'result' : event.key === 'End' ? 'video' : $('result-view').hidden ? 'result' : 'video';
   selectTab(next); $(`${next}-tab`).focus();
 });
-document.querySelectorAll('[data-open-dialog]').forEach(button => button.addEventListener('click', () => showDialog($(button.dataset.openDialog), button)));
+document.querySelectorAll('[data-open-dialog]').forEach(button => button.addEventListener('click', () => { showDialog($(button.dataset.openDialog), button); if (button.id === 'frequency-help') requestAnimationFrame(() => $('frequency-explanation').focus()); }));
 document.querySelectorAll('[data-close-dialog]').forEach(button => button.addEventListener('click', () => closeDialog(button.closest('dialog'))));
 document.querySelectorAll('dialog').forEach(dialog => {
   dialog.addEventListener('cancel', event => { event.preventDefault(); closeDialog(dialog); });
@@ -1264,114 +1444,188 @@ $('fullscreen-button').addEventListener('click', async () => {
   if (!area.requestFullscreen) { toast('Vergrößere die Ansicht mit der Zoomfunktion deines Browsers.'); return; }
   try { await area.requestFullscreen(); } catch { toast('Der Browser konnte die Vollbildansicht nicht öffnen.'); }
 });
-document.addEventListener('fullscreenchange', () => $('visual-area').classList.toggle('fullscreen-view', document.fullscreenElement === $('visual-area')));
-$('measure-button').addEventListener('click', () => { if (!state.result) return; showDialog($('measure-dialog'), $('measure-button')); drawMeasurement(); });
-const measureCanvas = $('measure-canvas');
-let captionDrag = null;
-let suppressMeasurementClick = false;
+$('exit-fullscreen').addEventListener('click', () => document.exitFullscreen());
+document.addEventListener('fullscreenchange', () => {
+  const full = document.fullscreenElement === $('visual-area');
+  $('visual-area').classList.toggle('fullscreen-view', full);
+  (full ? $('exit-fullscreen') : $('fullscreen-button')).focus();
+});
+$('measure-button').addEventListener('click', () => { if (!state.result) return; $('video-player').pause(); showDialog($('measure-dialog'), $('measure-button')); drawMeasurement(); });
+function rememberMeasurements() {
+  const { points, measurements, selectedMeasurementId, nextMeasurementId, scale, calibrationReferenceId } = state;
+  state.history.push(structuredClone({ points, measurements, selectedMeasurementId, nextMeasurementId, scale, calibrationReferenceId }));
+  if (state.history.length > 30) state.history.shift();
+  markDirty(); $('undo-measurement').disabled = false;
+}
 
+function syncPointEditor() {
+  const selected = selectedMeasurement();
+  for (const [id, point, axis] of [['point-ax', 0, 'x'], ['point-ay', 0, 'y'], ['point-bx', 1, 'x'], ['point-by', 1, 'y']]) {
+    $(id).disabled = !selected; $(id).value = selected ? number(selected.points[point][axis], 2) : '';
+  }
+  $('apply-points').disabled = $('label-position').disabled = !selected;
+  $('label-position').value = selected ? (selected.labelOffsetY || 0) * 100 : 0;
+  $('point-error').textContent = '';
+}
+
+function updateMeasurementPoints(measurement, points) {
+  const pixels = Math.hypot(points[1].x - points[0].x, points[1].y - points[0].y);
+  if (pixels < .01) return false;
+  if (measurement.id === state.calibrationReferenceId && state.scale) state.scale *= measurement.pixels / pixels;
+  measurement.points = points; measurement.pixels = pixels;
+  return true;
+}
+
+function addMeasurementPoint(point) {
+  if (!state.result) return;
+  if (state.points.length && Math.hypot(point.x - state.points[0].x, point.y - state.points[0].y) < .01) { toast('Wähle zwei unterschiedliche Punkte für eine Strecke.'); return; }
+  rememberMeasurements(); state.selectedMeasurementId = null;
+  state.points.push(point);
+  if (state.points.length === 2) {
+    const [a, b] = state.points;
+    const id = state.nextMeasurementId++;
+    state.measurements.push({ id, name: `Strecke ${id}`, visible: true, showLength: true, labelOffsetY: 0, points: state.points, pixels: Math.hypot(b.x - a.x, b.y - a.y), color: measurementColor(id) });
+    state.selectedMeasurementId = id; state.points = [];
+    toast(`Strecke ${id} angelegt. Wähle sie als Referenz und gib die bekannte Länge in cm ein.`);
+  } else toast('Erster Punkt gesetzt. Jetzt den zweiten Punkt wählen.');
+  drawMeasurement(); renderResult();
+}
+
+const measureCanvas = $('measure-canvas');
+let measurementDrag = null;
+let suppressMeasurementClick = false;
 function measurementPointerPosition(event) {
   const rect = measureCanvas.getBoundingClientRect();
   return {
-    x: (event.clientX - rect.left) * measureCanvas.width / rect.width,
-    y: (event.clientY - rect.top) * measureCanvas.height / rect.height
+    x: Math.max(0, Math.min(state.result.width - 1, (event.clientX - rect.left) * measureCanvas.width / rect.width)),
+    y: Math.max(0, Math.min(state.result.height - 1, (event.clientY - rect.top) * measureCanvas.height / rect.height))
   };
 }
-
-function measurementCaptionAt(point) {
-  if (!state.result) return null;
-  const ctx = measureCanvas.getContext('2d');
-  // The last label drawn is on top when labels overlap.
-  for (let i = state.measurements.length - 1; i >= 0; i--) {
-    const measurement = state.measurements[i];
+function measurementHit(point) {
+  const scale = measureCanvas.getBoundingClientRect().width / state.result.width;
+  const ordered = [...state.measurements].sort((a, b) => Number(a.id === state.selectedMeasurementId) - Number(b.id === state.selectedMeasurementId)).reverse();
+  for (const measurement of ordered) {
     if (measurement.visible === false) continue;
-    const layout = measurementCaptionLayout(ctx, measurement);
-    if (point.x >= layout.x && point.x <= layout.x + layout.labelWidth &&
-        point.y >= layout.y && point.y <= layout.y + layout.labelHeight) {
-      return { measurement, layout };
-    }
+    const endpoint = measurement.points.findIndex(p => Math.hypot(p.x - point.x, p.y - point.y) <= 22 / scale);
+    if (endpoint !== -1) return { measurement, endpoint };
+    const layout = measurementCaptionLayout(measureCanvas.getContext('2d'), measurement);
+    if (point.x >= layout.x && point.x <= layout.x + layout.labelWidth && point.y >= layout.y && point.y <= layout.y + layout.labelHeight) return { measurement, grabY: point.y - layout.y };
   }
   return null;
 }
-
 measureCanvas.addEventListener('pointerdown', event => {
-  if (event.button !== 0 || !event.isPrimary || captionDrag) return;
+  if (!state.result || state.pan || event.button !== 0 || !event.isPrimary || measurementDrag) return;
   suppressMeasurementClick = false;
-  const point = measurementPointerPosition(event);
-  const hit = measurementCaptionAt(point);
+  const hit = measurementHit(measurementPointerPosition(event));
   if (!hit) return;
-  event.preventDefault();
-  suppressMeasurementClick = true;
-  captionDrag = { pointerId: event.pointerId, measurement: hit.measurement, grabY: point.y - hit.layout.y };
-  measureCanvas.setPointerCapture(event.pointerId);
-  measureCanvas.style.cursor = 'ns-resize';
+  event.preventDefault(); rememberMeasurements();
+  state.selectedMeasurementId = hit.measurement.id; state.points = [];
+  measurementDrag = { ...hit, pointerId: event.pointerId };
+  suppressMeasurementClick = true; measureCanvas.setPointerCapture(event.pointerId);
+  drawMeasurement();
 });
-
 measureCanvas.addEventListener('pointermove', event => {
-  const point = measurementPointerPosition(event);
-  if (!captionDrag) {
-    measureCanvas.style.cursor = measurementCaptionAt(point) ? 'ns-resize' : 'crosshair';
-    return;
-  }
-  if (event.pointerId !== captionDrag.pointerId) return;
+  if (!measurementDrag || event.pointerId !== measurementDrag.pointerId) return;
   event.preventDefault();
-  const { measurement, grabY } = captionDrag;
-  const { baseY, maxY } = measurementCaptionLayout(measureCanvas.getContext('2d'), measurement);
-  const y = Math.max(2, Math.min(maxY, point.y - grabY));
-  measurement.labelOffsetY = (y - baseY) / state.result.height;
+  const point = measurementPointerPosition(event), { measurement, endpoint, grabY } = measurementDrag;
+  if (endpoint !== undefined) {
+    const points = measurement.points.map(p => ({ ...p })); points[endpoint] = point;
+    updateMeasurementPoints(measurement, points);
+  } else {
+    const { baseY, maxY } = measurementCaptionLayout(measureCanvas.getContext('2d'), measurement);
+    measurement.labelOffsetY = (Math.max(2, Math.min(maxY, point.y - grabY)) - baseY) / state.result.height;
+  }
+  renderMeasurementImage(); renderResult(); syncPointEditor();
+});
+function endMeasurementDrag(event) {
+  if (!measurementDrag || event.pointerId !== measurementDrag.pointerId) return;
+  measurementDrag = null;
+  if (measureCanvas.hasPointerCapture(event.pointerId)) measureCanvas.releasePointerCapture(event.pointerId);
+  drawMeasurement(); renderResult();
+}
+for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) measureCanvas.addEventListener(type, endMeasurementDrag);
+$('measure-dialog').addEventListener('close', () => { if (measurementDrag) endMeasurementDrag({ pointerId: measurementDrag.pointerId }); });
+measureCanvas.addEventListener('click', event => {
+  if (state.pan) return;
+  if (suppressMeasurementClick) { suppressMeasurementClick = false; return; }
+  if (state.result) addMeasurementPoint(measurementPointerPosition(event));
+});
+measureCanvas.addEventListener('focus', () => {
+  if (!state.result) return;
+  state.cursor ||= { x: Math.floor(state.result.width / 2), y: Math.floor(state.result.height / 2) };
+  renderMeasurementImage();
+});
+measureCanvas.addEventListener('blur', renderMeasurementImage);
+measureCanvas.addEventListener('keydown', event => {
+  if (!state.result) return;
+  if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+    event.preventDefault();
+    const step = event.shiftKey ? 10 : 1;
+    const p = state.cursor;
+    p.x = Math.max(0, Math.min(state.result.width - 1, p.x + (event.key === 'ArrowLeft' ? -step : event.key === 'ArrowRight' ? step : 0)));
+    p.y = Math.max(0, Math.min(state.result.height - 1, p.y + (event.key === 'ArrowUp' ? -step : event.key === 'ArrowDown' ? step : 0)));
+    renderMeasurementImage();
+    $('measurement-feedback').textContent = `Fadenkreuz X ${number(p.x, 0)}, Y ${number(p.y, 0)} Pixel. Enter setzt den ${state.points.length ? 'zweiten' : 'ersten'} Punkt.`;
+    const rect = measureCanvas.getBoundingClientRect(), area = document.querySelector('.measurement-image');
+    const bounds = area.getBoundingClientRect();
+    const x = rect.left + p.x / state.result.width * rect.width, y = rect.top + p.y / state.result.height * rect.height;
+    if (x < bounds.left + 20 || x > bounds.right - 20) area.scrollLeft += x - (bounds.left + bounds.width / 2);
+    if (y < bounds.top + 20 || y > bounds.bottom - 20) area.scrollTop += y - (bounds.top + bounds.height / 2);
+  } else if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault(); state.pan = false; addMeasurementPoint({ ...state.cursor });
+  } else if (event.key === 'Backspace') {
+    event.preventDefault(); if (state.points.length) { rememberMeasurements(); state.points.pop(); drawMeasurement(); }
+  }
+});
+$('apply-points').addEventListener('click', () => {
+  const selected = selectedMeasurement(); if (!selected) return;
+  const values = ['point-ax', 'point-ay', 'point-bx', 'point-by'].map(id => parseTime($(id).value));
+  const valid = values.every((v, i) => Number.isFinite(v) && v >= 0 && v <= (i % 2 ? state.result.height : state.result.width) - 1);
+  if (!valid || Math.hypot(values[2] - values[0], values[3] - values[1]) < .01) { $('point-error').textContent = 'Wähle zwei unterschiedliche Punkte innerhalb der Bildfläche (Pixelkoordinaten ab 0).'; return; }
+  rememberMeasurements();
+  updateMeasurementPoints(selected, [{ x: values[0], y: values[1] }, { x: values[2], y: values[3] }]);
+  drawMeasurement(); renderResult(); toast('Punkte übernommen. Eine kalibrierte Referenz behält ihre bekannte Länge.');
+});
+let labelEditSaved = false;
+$('label-position').addEventListener('input', () => {
+  const selected = selectedMeasurement(); if (!selected) return;
+  if (!labelEditSaved) { rememberMeasurements(); labelEditSaved = true; }
+  selected.labelOffsetY = $('label-position').valueAsNumber / 100;
   renderMeasurementImage(); renderResult();
 });
-
-function endCaptionDrag(event) {
-  if (!captionDrag || event.pointerId !== captionDrag.pointerId) return;
-  captionDrag = null;
-  if (measureCanvas.hasPointerCapture(event.pointerId)) measureCanvas.releasePointerCapture(event.pointerId);
-  measureCanvas.style.cursor = 'crosshair';
+$('label-position').addEventListener('change', () => { labelEditSaved = false; });
+function changeZoom(value) {
+  const area = document.querySelector('.measurement-image');
+  const x = (area.scrollLeft + area.clientWidth / 2) / Math.max(1, area.scrollWidth);
+  const y = (area.scrollTop + area.clientHeight / 2) / Math.max(1, area.scrollHeight);
+  state.zoom = Math.max(1, Math.min(4, value));
+  state.pan = state.zoom > 1;
+  renderMeasurementImage(); $('zoom-value').textContent = `${Math.round(state.zoom * 100)} %`;
+  area.scrollLeft = area.scrollWidth * x - area.clientWidth / 2; area.scrollTop = area.scrollHeight * y - area.clientHeight / 2;
 }
-for (const type of ['pointerup', 'pointercancel', 'lostpointercapture']) {
-  measureCanvas.addEventListener(type, endCaptionDrag);
-}
-measureCanvas.addEventListener('pointerleave', () => {
-  if (!captionDrag) measureCanvas.style.cursor = 'crosshair';
-});
-$('measure-dialog').addEventListener('close', () => {
-  if (captionDrag) endCaptionDrag({ pointerId: captionDrag.pointerId });
-});
-measureCanvas.addEventListener('click', e => {
-  if (suppressMeasurementClick) { suppressMeasurementClick = false; return; }
-  if (measurementCaptionAt(measurementPointerPosition(e))) return;
-  if (!state.result) return;
-  const canvas = $('measure-canvas'); const rect = canvas.getBoundingClientRect();
-  state.selectedMeasurementId = null;
-  state.points.push({ x: (e.clientX - rect.left) * canvas.width / rect.width, y: (e.clientY - rect.top) * canvas.height / rect.height });
-  if (state.points.length === 2) {
-    const [a, b] = state.points;
-    const pixels = Math.hypot(b.x - a.x, b.y - a.y);
-    if (pixels > 0) {
-      const id = state.nextMeasurementId++;
-      state.measurements.push({ id, name: `Strecke ${id}`, visible: true, showLength: true, labelOffsetY: 0, points: state.points, pixels, color: measurementColor(id) });
-      state.selectedMeasurementId = id;
-    } else {
-      toast('Wähle zwei unterschiedliche Punkte für eine Strecke.');
-    }
-    state.points = [];
-  }
-  drawMeasurement(); renderResult();
-});
-$('reset-measurement').addEventListener('click', () => { state.points = []; state.selectedMeasurementId = null; drawMeasurement(); });
+$('zoom-in').addEventListener('click', () => changeZoom(state.zoom * 2));
+$('zoom-out').addEventListener('click', () => changeZoom(state.zoom / 2));
+$('zoom-fit').addEventListener('click', () => changeZoom(1));
+$('pan-image').addEventListener('click', () => { state.pan = !state.pan; renderMeasurementImage(); toast(state.pan ? 'Verschieben aktiv: Ziehe das vergrößerte Bild. Zum Setzen von Punkten Verschieben ausschalten.' : 'Messen aktiv: Klicke zwei Punkte oder ziehe vorhandene Endpunkte.'); });
+$('reset-measurement').addEventListener('click', () => { if (state.points.length) rememberMeasurements(); state.points = []; state.selectedMeasurementId = null; drawMeasurement(); measureCanvas.focus(); });
 $('clear-measurements').addEventListener('click', () => {
-  state.points = []; state.measurements = []; state.selectedMeasurementId = null;
-  drawMeasurement(); renderResult();
+  rememberMeasurements(); state.points = []; state.measurements = []; state.selectedMeasurementId = null;
+  drawMeasurement(); renderResult(); $('undo-measurement').focus(); toast('Alle Strecken gelöscht. Mit Rückgängig wiederherstellen.');
+});
+$('undo-measurement').addEventListener('click', () => {
+  const previous = state.history.pop(); if (!previous) return;
+  Object.assign(state, previous); markDirty(); drawMeasurement(); renderResult();
+  if (!state.history.length) $('reset-measurement').focus();
+  toast('Letzte Messaktion rückgängig gemacht.');
 });
 $('known-distance').addEventListener('input', updateCalibrationButton);
 $('calibrate-button').addEventListener('click', () => {
-  const distance = $('known-distance').valueAsNumber;
-  const reference = selectedMeasurement();
+  const distance = parseTime($('known-distance').value), reference = selectedMeasurement();
   if (!reference || !(distance > 0) || !Number.isFinite(distance)) return;
-  state.scale = distance / reference.pixels;
-  state.calibrationReferenceId = reference.id;
+  rememberMeasurements(); state.scale = distance / reference.pixels; state.calibrationReferenceId = reference.id;
   state.points = []; drawMeasurement(); renderResult(); toast('Maßstab gespeichert. Alle Strecken werden in cm angezeigt.');
 });
+
 window.addEventListener('resize', () => {
   renderResult();
 });
@@ -1383,7 +1637,7 @@ const segmentObserver = new ResizeObserver(entries => {
   for (const { target } of entries) syncSegment(target, target.classList.contains('preview-tabs') ? '.active' : '.selected', true);
 });
 document.querySelectorAll('.preview-tabs, .frequency-presets').forEach(group => segmentObserver.observe(group));
-window.addEventListener('pagehide', () => { state.controller?.abort(); state.loadController?.abort(); if (state.url) URL.revokeObjectURL(state.url); });
+window.addEventListener('pagehide', event => { if (event.persisted) return; state.controller?.abort(); state.loadController?.abort(); if (state.url) URL.revokeObjectURL(state.url); });
 selectTab('result'); updateControls();
 
 })();
