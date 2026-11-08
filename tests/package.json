@@ -1,0 +1,6 @@
+{
+  "name": "strobo-browser-checks",
+  "private": true,
+  "scripts": { "test": "node ux.cjs" },
+  "devDependencies": { "playwright-core": "1.64.1" }
+}
